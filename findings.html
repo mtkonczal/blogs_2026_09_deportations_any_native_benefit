@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deportations and Native-Born Workers</title>
+<style>
+:root { --navy:#2c3254; --red:#ff8361; --green:#20705a; --gold:#e0a23c;
+  --bg:#faf9f4; --card:#fff; --ink:#1d2033; --muted:#6b6f80; --line:#e3e1d6; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg:#14161f; --card:#1c1f2b; --ink:#e8e8ee; --muted:#9a9eb0; --line:#2e3242; --navy:#aab4e8; } }
+:root[data-theme="dark"] { --bg:#14161f; --card:#1c1f2b; --ink:#e8e8ee; --muted:#9a9eb0; --line:#2e3242; --navy:#aab4e8; }
+* { box-sizing:border-box; }
+body { background:var(--bg); color:var(--ink); margin:0;
+  font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif; }
+.wrap { max-width:900px; margin:0 auto; padding:48px 16px 96px; }
+h1 { font-size:2.1rem; line-height:1.15; letter-spacing:-.02em; margin:0 0 .3em; color:var(--navy); }
+h2 { font-size:1.35rem; margin:2.6em 0 .5em; color:var(--navy); letter-spacing:-.01em;
+  border-top:2px solid var(--line); padding-top:1.1em; }
+h3 { font-size:1.05rem; margin:1.8em 0 .4em; }
+.sub { color:var(--muted); font-size:1.05rem; margin:0 0 .4em; }
+.byline { color:var(--muted); font-size:.88rem; margin-bottom:2.2em; }
+.card { background:var(--card); border:1px solid var(--line); border-radius:12px;
+  padding:20px 22px; margin:1.4em 0; }
+.kicker { text-transform:uppercase; letter-spacing:.09em; font-size:.72rem;
+  font-weight:700; color:var(--muted); }
+table { border-collapse:collapse; width:100%; font-size:.85rem; }
+th,td { text-align:left; padding:7px 9px; border-bottom:1px solid var(--line); vertical-align:top; }
+th { font-size:.72rem; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); font-weight:700; }
+.tw { overflow-x:auto; margin:1em 0; }
+td.cn { font-weight:700; color:var(--navy); white-space:nowrap; }
+td.hy { white-space:nowrap; font-size:.78rem; color:var(--muted); }
+.pred { color:var(--muted); font-size:.82rem; }
+.verdict { display:inline-block; padding:3px 9px; border-radius:99px; font-size:.68rem;
+  font-weight:800; letter-spacing:.05em; white-space:nowrap; }
+.v-refuted { background:#fde2da; color:#8c2f13; }
+.v-supported { background:#d6ece0; color:#14543c; }
+.v-mixed, .v-inconc { background:#f7e6c4; color:#77500a; }
+.v-null { background:#e2e4ee; color:#3a4064; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .v-refuted { background:#4a1f11; color:#ffb69c; }
+  :root:not([data-theme="light"]) .v-supported { background:#14382a; color:#8fdcb8; }
+  :root:not([data-theme="light"]) .v-mixed, :root:not([data-theme="light"]) .v-inconc { background:#4a3a12; color:#f3d089; }
+  :root:not([data-theme="light"]) .v-null { background:#2b2f45; color:#c2c7e0; } }
+figure { margin:1.5em 0; }
+figure img { width:100%; border:1px solid var(--line); border-radius:10px; display:block; }
+figcaption { color:var(--muted); font-size:.82rem; margin-top:.5em; }
+.note { color:var(--muted); font-size:.82rem; font-style:italic; }
+.missing { color:var(--muted); font-style:italic; }
+.finding { border-left:3px solid var(--navy); padding-left:14px; margin:1.1em 0; font-size:1.02rem; }
+.caveat { background:rgba(224,162,60,.12); border-left:3px solid var(--gold);
+  padding:12px 16px; border-radius:0 8px 8px 0; margin:1.1em 0; font-size:.92rem; }
+.big { font-size:2rem; font-weight:800; color:var(--navy); line-height:1; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:14px; margin:1.2em 0; }
+.stat { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:16px; }
+.stat .lab { font-size:.75rem; color:var(--muted); margin-top:6px; line-height:1.35; }
+code { background:var(--card); border:1px solid var(--line); padding:1px 5px;
+  border-radius:4px; font-size:.85em; }
+a { color:var(--navy); }
+@media (max-width:600px) { h1 { font-size:1.6rem; } .wrap { padding:28px 16px 64px; } }
+</style></head><body><div class="wrap">
+
+<p class="kicker">Findings memo</p>
+<h1>Did Native-Born Workers Benefit from the 2025&ndash;26 Deportation Campaign?</h1>
+<p class="sub">Seven claims, thirteen hypotheses, and what the CPS microdata actually show.</p>
+<p class="byline">Mike Konczal, Economic Security Project &middot; Analysis run September 18, 2026 &middot;
+IPUMS CPS basic monthly, January 2015 &ndash; August 2026 &middot; 12.5 million person-month records</p>
+
+<div class="card">
+<p class="kicker">Bottom line</p>
+<p style="margin-bottom:0">The restrictionist case makes seven falsifiable predictions about native-born workers.
+All seven run the wrong way in the data.
+Native-born unemployment rose, prime-age employment fell, job-finding slowed, involuntary part-time
+rose, real wages fell at the bottom, and the least-educated native workers, the ones the theory says
+should gain most, did worst.
+The labor market did not tighten; it loosened. The clearest single casualty is a group the theory
+never mentions: Hispanic U.S. citizens, whose unemployment rose about three times as much as
+that of other native-born citizens.</p>
+</div>
+
+<div class="caveat">
+<strong>Read rates, not levels.</strong> Following <a href="https://jedkolko.substack.com/p/no-native-born-employment-has-not">Jed Kolko</a>,
+this memo does not use CPS employment or population <em>levels</em> by nativity anywhere in its
+conclusions. Census sets population controls by age, sex, and race, not by nativity, so when
+foreign-born respondents leave the sample their weight is redistributed onto native-born
+respondents and measured native employment rises mechanically. Every headline number below is a
+rate, a ratio, or a transition probability. See <a href="#h13">H13</a>.
+</div>
+
+<h2>The seven claims</h2>
+<div class="tw"><table><thead><tr><th>#</th><th>The claim, as its proponents make it</th><th>Tests</th><th>Verdict</th></tr></thead>
+<tbody><tr><td class="cn">C1</td><td><strong>Fewer immigrant workers competing means native unemployment falls.</strong><br><span class="pred">Testable: Native unemployment rate declines after Jan 2025.</span></td>
+<td class="hy">H1, H2</td><td><span class="verdict v-refuted">REFUTED</span></td></tr><tr><td class="cn">C2</td><td><strong>Jobs immigrants held get handed to natives, so more natives work.</strong><br><span class="pred">Testable: Prime-age native EPOP and LFP rise.</span></td>
+<td class="hy">H1, H3</td><td><span class="verdict v-refuted">REFUTED</span></td></tr><tr><td class="cn">C3</td><td><strong>A tighter labor market bids up pay, especially at the bottom.</strong><br><span class="pred">Testable: Native real wage growth accelerates, most at p10-p25.</span></td>
+<td class="hy">H6</td><td><span class="verdict v-refuted">REFUTED</span></td></tr><tr><td class="cn">C4</td><td><strong>Natives move into the occupations immigrants vacated.</strong><br><span class="pred">Testable: Native outcomes improve most in high-immigrant-share occupations.</span></td>
+<td class="hy">H4</td><td><span class="verdict v-null">NO EFFECT FOUND</span></td></tr><tr><td class="cn">C5</td><td><strong>With fewer competitors, unemployed natives find work faster.</strong><br><span class="pred">Testable: Native job-finding rate rises; durations fall.</span></td>
+<td class="hy">H7</td><td><span class="verdict v-refuted">REFUTED</span></td></tr><tr><td class="cn">C6</td><td><strong>Employers short of labor give native workers more hours.</strong><br><span class="pred">Testable: Native hours rise; involuntary part-time falls.</span></td>
+<td class="hy">H8</td><td><span class="verdict v-refuted">REFUTED</span></td></tr><tr><td class="cn">C7</td><td><strong>Gains go to natives most exposed: less than a BA, high-immigrant places.</strong><br><span class="pred">Testable: Dose-response by education and geography.</span></td>
+<td class="hy">H5, H9</td><td><span class="verdict v-refuted">REFUTED</span></td></tr></tbody></table></div>
+
+<h2 id="h1">H1. Did native outcomes improve at all?</h2>
+<span class="verdict v-refuted">REFUTED</span>
+<div class="grid">
+<div class="stat"><div class="big">+0.50 pp</div>
+  <div class="lab">Native-born unemployment rate, 2024 avg &rarr; 2026 YTD avg</div></div>
+<div class="stat"><div class="big">-0.59 pp</div>
+  <div class="lab">Prime-age native employment-population ratio</div></div>
+<div class="stat"><div class="big">+0.95 pp</div>
+  <div class="lab">Prime-age <em>foreign-born</em> employment-population ratio</div></div>
+</div>
+<p class="finding">The native-born unemployment rate rose from 3.98% to
+4.48%. Prime-age native employment fell. Over the same window the prime-age
+foreign-born employment rate <em>rose</em>. Whatever happened to the labor market in 2025 and 2026,
+native-born workers were on the losing end of it and the foreign-born who remained were not.</p>
+<div class='tw'><table><thead><tr><th>period</th><th>unrate nat</th><th>unrate for</th><th>epop nat</th><th>prime epop nat</th><th>prime epop for</th><th>lfpr nat</th><th>foreign share lf</th><th>n months</th></tr></thead><tbody><tr><td>2019</td><td>0.0378</td><td>0.0313</td><td>0.6015</td><td>0.8065</td><td>0.7728</td><td>0.6251</td><td>0.1736</td><td>12</td></tr><tr><td>2024</td><td>0.0398</td><td>0.0420</td><td>0.5927</td><td>0.8147</td><td>0.7800</td><td>0.6173</td><td>0.1919</td><td>12</td></tr><tr><td>2025</td><td>0.0431</td><td>0.0418</td><td>0.5891</td><td>0.8129</td><td>0.7796</td><td>0.6156</td><td>0.1914</td><td>12</td></tr><tr><td>2026 YTD</td><td>0.0448</td><td>0.0387</td><td>0.5813</td><td>0.8087</td><td>0.7895</td><td>0.6085</td><td>0.1911</td><td> 8</td></tr></tbody></table></div><p class='note'>Annual averages of monthly rates. 2026 covers January through August.</p>
+<figure><img src="graphics/fig1_unrate_by_nativity.png" alt="Unemployment rate by nativity. The two series crossed in 2025 and the gap widened through 2026."><figcaption>Unemployment rate by nativity. The two series crossed in 2025 and the gap widened through 2026.</figcaption></figure>
+<figure><img src="graphics/fig2_prime_epop.png" alt="Change in the prime-age employment-population ratio since December 2024."><figcaption>Change in the prime-age employment-population ratio since December 2024.</figcaption></figure>
+<div class="caveat"><strong>Selection caveat.</strong> The improvement among the foreign-born is not
+evidence that immigrants prospered. Both real departures and survey non-response are selective:
+the foreign-born who remain in the sample are more settled and more work-attached than those who
+left it. Read the foreign-born line as a composition shift, not as a welfare gain.</div>
+
+<h2 id="h2">H2. Is native unemployment worse than the overall labor market predicts?</h2>
+<span class="verdict v-null">NO EFFECT FOUND</span>
+<p>This is the honest steelman: perhaps natives did badly, but less badly than they would have.
+Regressing log native unemployment on log overall unemployment over 1994&ndash;2019 and predicting
+forward, the native rate sits essentially on its historical relationship. The same holds using the
+JOLTS job-openings rate on the right-hand side, which avoids the problem that natives are a rising
+share of the overall rate and so mechanically converge on it.</p>
+<p class="finding">No detectable benefit and no detectable extra penalty. Native unemployment is
+almost exactly where the aggregate labor market says it should be. The aggregate data cannot
+settle the question, which is why the cross-sectional tests below carry the weight.</p>
+
+<h2 id="h3">H3. Did natives fill the vacated jobs?</h2>
+<span class="verdict v-refuted">REFUTED</span>
+<p>The native share of employment barely moved. Decomposing it: had native employment rates held at
+their December 2024 level, the native share of employment would be <em>higher</em> than it actually
+is. The small rise in the native share is entirely a denominator effect, not more natives working.</p>
+<div class="caveat">This decomposition uses employment levels and is therefore partly contaminated by
+the reweighting artifact. It is reported because it points the same direction as the rate-based
+evidence, not because it stands on its own.</div>
+
+<h2 id="h4">H4 &amp; H5. The dose-response tests</h2>
+<span class="verdict v-null">NO EFFECT FOUND</span>
+<p>Aggregate results invite the reply that things would have been worse otherwise. These tests
+difference the aggregate out. If immigrant and native labor are substitutes, native outcomes should
+improve <em>more</em> in occupations where immigrant labor was thickest. Exposure is each occupation&rsquo;s
+foreign-born employment share averaged over 2022&ndash;2024, held fixed.</p>
+<div class='tw'><table><thead><tr><th>outcome</th><th>beta</th><th>se</th><th>p</th><th>n cells</th><th>robust to reweighting</th></tr></thead><tbody><tr><td>d_nat_unrate</td><td> 0.0098</td><td>0.0077</td><td>0.2051</td><td>365</td><td>TRUE</td></tr><tr><td>d_nat_unrate_nc</td><td> 0.0104</td><td>0.0129</td><td>0.4201</td><td>351</td><td>TRUE</td></tr><tr><td>d_nat_hrs</td><td>-0.0358</td><td>0.5146</td><td>0.9446</td><td>365</td><td>TRUE</td></tr><tr><td>d_log_nat_emp</td><td> 0.0250</td><td>0.0749</td><td>0.7387</td><td>365</td><td>FALSE</td></tr><tr><td>d_log_nat_emp_nc</td><td> 0.1080</td><td>0.0886</td><td>0.2238</td><td>351</td><td>FALSE</td></tr><tr><td>d_log_for_emp</td><td>-0.4805</td><td>0.1581</td><td>0.0025</td><td>362</td><td>FALSE</td></tr></tbody></table></div><p class='note'>Occupation-level regressions, weighted by pre-period native employment, HC1 standard errors. The predicted sign for the substitution story is negative for unemployment and positive for hours and employment.</p>
+<p>A single placebo window (2018&ndash;19) is itself significant, meaning the exposure measure is
+correlated with the business cycle. So the design is better judged by the full path of the
+coefficient across rolling windows.</p>
+<figure><img src="graphics/fig9_dose_response.png" alt="Rolling dose-response coefficient. Negative values mean natives did relatively better in immigrant-heavy occupations."><figcaption>Rolling dose-response coefficient. Negative values mean natives did relatively better in immigrant-heavy occupations.</figcaption></figure>
+<p class="finding">In the pre-pandemic tight labor market the coefficient sat near
+-0.020: natives did relatively better in immigrant-heavy occupations when the
+market was hot. In 2025&ndash;26 it is 0.009, slightly positive and never
+statistically distinguishable from zero. The predicted negative coefficient never appears.</p>
+
+<h3>H5: the education gradient runs backwards</h3>
+<p>The substitution story is most specific here. Borjas-style displacement is concentrated among
+workers without a college degree, who compete most directly with immigrant labor. They should gain
+the most.</p>
+<figure><img src="graphics/fig7_education.png" alt="Prime-age native-born unemployment by education."><figcaption>Prime-age native-born unemployment by education.</figcaption></figure>
+<div class="grid">
+<div class="stat"><div class="big">+1.02 pp</div>
+  <div class="lab">Native, less than high school, 2024 &rarr; 2026</div></div>
+<div class="stat"><div class="big">+0.60 pp</div>
+  <div class="lab">Native, BA or higher, 2024 &rarr; 2026</div></div>
+</div>
+<p class="finding">Native workers without a high school diploma saw the largest increase in
+unemployment and the largest fall in employment. The ranking is the exact inverse of the
+prediction.</p>
+<div class='tw'><table><thead><tr><th>educ grp</th><th>yr</th><th>unrate</th><th>epop</th><th>lfpr</th></tr></thead><tbody><tr><td>BA+</td><td>2023</td><td>0.0188</td><td>0.8898</td><td>0.9069</td></tr><tr><td>BA+</td><td>2024</td><td>0.0208</td><td>0.8896</td><td>0.9085</td></tr><tr><td>BA+</td><td>2025</td><td>0.0241</td><td>0.8836</td><td>0.9054</td></tr><tr><td>BA+</td><td>2026</td><td>0.0268</td><td>0.8837</td><td>0.9081</td></tr><tr><td>HS to some college</td><td>2023</td><td>0.0390</td><td>0.7759</td><td>0.8074</td></tr><tr><td>HS to some college</td><td>2024</td><td>0.0425</td><td>0.7747</td><td>0.8090</td></tr><tr><td>HS to some college</td><td>2025</td><td>0.0426</td><td>0.7758</td><td>0.8102</td></tr><tr><td>HS to some college</td><td>2026</td><td>0.0466</td><td>0.7707</td><td>0.8083</td></tr><tr><td>Less than HS</td><td>2023</td><td>0.0822</td><td>0.5550</td><td>0.6047</td></tr><tr><td>Less than HS</td><td>2024</td><td>0.0840</td><td>0.5544</td><td>0.6052</td></tr><tr><td>Less than HS</td><td>2025</td><td>0.0833</td><td>0.5661</td><td>0.6175</td></tr><tr><td>Less than HS</td><td>2026</td><td>0.0941</td><td>0.5298</td><td>0.5849</td></tr></tbody></table></div>
+
+<h2 id="h6">H6. Wages</h2>
+<span class="verdict v-refuted">REFUTED</span>
+<p>Hourly wages for outgoing rotation groups, deflated into 2026 dollars. Because 2026 covers only
+January through August, every comparison here uses January&ndash;August of each year so the seasonal
+composition matches.</p>
+<div class="grid">
+<div class="stat"><div class="big">-1.3%</div><div class="lab">Native-born real median wage growth, Jan&ndash;Aug 2026</div></div>
+<div class="stat"><div class="big">-2.3%</div><div class="lab">Native-born real wage growth at the 10th percentile</div></div>
+<div class="stat"><div class="big">-2.1%</div><div class="lab">Native median wage growth in the most immigrant-intensive occupations</div></div>
+</div>
+<p class="finding">Native real wage growth decelerated and turned negative. The bottom of the native
+distribution did worst: real wages at the 10th percentile fell 2.3% in 2026 after
+going flat in 2025. Claim 3 said the gains would show up here first and largest. They went the
+other way.</p>
+<figure><img src="graphics/fig12_wage_levels.png" alt="Native-born real hourly wages at the 10th percentile and the median."><figcaption>Native-born real hourly wages at the 10th percentile and the median.</figcaption></figure>
+<h3>The dose-response version</h3>
+<p>If the mechanism is less competition from immigrant labor, wage gains should be concentrated in
+the occupations where that labor was thickest.</p>
+<figure><img src="graphics/fig11_wages_exposure.png" alt="Native real median wage growth by occupational exposure quartile."><figcaption>Native real median wage growth by occupational exposure quartile.</figcaption></figure>
+<p class="finding">The opposite ranking. In the highest-exposure quartile native median wages fell
+2.1% in 2026, the worst of the four quartiles, after growing nearly 5% in 2024. In
+the lowest-exposure quartile they fell 1.0%. Wage growth decelerated hardest exactly
+where the theory says it should have accelerated.</p>
+<div class='tw'><table><thead><tr><th>grp</th><th>yr</th><th>p10</th><th>p50</th><th>g p10</th><th>g p50</th><th>g mean</th></tr></thead><tbody><tr><td>Foreign-born</td><td>2023</td><td>14.3549</td><td>24.1539</td><td> 0.0040</td><td> 0.0229</td><td> 0.0597</td></tr><tr><td>Foreign-born</td><td>2024</td><td>15.0152</td><td>23.7412</td><td> 0.0460</td><td>-0.0171</td><td> 0.0946</td></tr><tr><td>Foreign-born</td><td>2025</td><td>15.5095</td><td>24.8669</td><td> 0.0329</td><td> 0.0474</td><td> 0.0531</td></tr><tr><td>Foreign-born</td><td>2026</td><td>14.9936</td><td>24.9893</td><td>-0.0333</td><td> 0.0049</td><td> 0.0000</td></tr><tr><td>Native, no BA</td><td>2023</td><td>13.4364</td><td>21.8636</td><td>-0.0096</td><td> 0.0179</td><td> 0.0156</td></tr><tr><td>Native, no BA</td><td>2024</td><td>13.8609</td><td>21.7225</td><td> 0.0316</td><td>-0.0065</td><td> 0.0303</td></tr><tr><td>Native, no BA</td><td>2025</td><td>13.9585</td><td>22.4497</td><td> 0.0070</td><td> 0.0335</td><td> 0.0171</td></tr><tr><td>Native, no BA</td><td>2026</td><td>14.0445</td><td>22.2929</td><td> 0.0062</td><td>-0.0070</td><td>-0.0018</td></tr><tr><td>Native-born</td><td>2023</td><td>15.2747</td><td>27.3953</td><td> 0.0392</td><td> 0.0092</td><td> 0.0507</td></tr><tr><td>Native-born</td><td>2024</td><td>15.5440</td><td>27.5085</td><td> 0.0176</td><td> 0.0041</td><td> 0.0846</td></tr><tr><td>Native-born</td><td>2025</td><td>15.5540</td><td>28.1633</td><td> 0.0006</td><td> 0.0238</td><td> 0.0196</td></tr><tr><td>Native-born</td><td>2026</td><td>15.1912</td><td>27.7881</td><td>-0.0233</td><td>-0.0133</td><td>-0.0001</td></tr></tbody></table></div><p class='note'>January-August of each year, 2026 dollars. Imputed earnings records dropped.</p>
+<div class="caveat"><strong>Imputation.</strong> 42% of CPS outgoing rotation group
+earnings records are imputed, and imputation is not random with respect to nativity. The headline
+drops imputed records; retaining them does not change the direction of the 2026 result.
+<div class='tw'><table><thead><tr><th>grp</th><th>yr</th><th>g p10</th><th>g p50</th></tr></thead><tbody><tr><td>Native, no BA (incl. imputed)</td><td>2025</td><td>-0.0091</td><td> 0.0257</td></tr><tr><td>Native, no BA (incl. imputed)</td><td>2026</td><td> 0.0209</td><td>-0.0036</td></tr><tr><td>Native-born (incl. imputed)</td><td>2025</td><td> 0.0052</td><td> 0.0111</td></tr><tr><td>Native-born (incl. imputed)</td><td>2026</td><td>-0.0273</td><td>-0.0068</td></tr></tbody></table></div></div>
+<p>Note also that a wage gain, had one appeared, would have needed careful reading: when employment
+and hours fall at the bottom, the surviving employed are a more selected group and measured average
+wages rise for reasons that are not a gain to workers. That problem does not arise here, because
+wages fell too.</p>
+
+<h2 id="h7">H7. Did unemployed natives find work faster?</h2>
+<span class="verdict v-refuted">REFUTED</span>
+<div class="grid">
+<div class="stat"><div class="big">25.8% &rarr; 22.9%</div>
+  <div class="lab">Native prime-age monthly job-finding rate, 2024 &rarr; 2026</div></div>
+<div class="stat"><div class="big">3.7 wks</div>
+  <div class="lab">Change in mean native unemployment duration</div></div>
+<div class="stat"><div class="big">+4.96 pp</div>
+  <div class="lab">Change in share unemployed 27+ weeks</div></div>
+</div>
+<p class="finding">This is the sharpest refutation in the memo. If deportations opened up vacancies,
+the one thing that had to happen is that unemployed natives fill them faster. The opposite
+happened: the native job-finding rate fell, unemployment spells lengthened by more than three
+weeks, and long-term unemployment rose.</p>
+<figure><img src="graphics/fig6_job_finding.png" alt="Monthly job-finding rate for unemployed prime-age workers."><figcaption>Monthly job-finding rate for unemployed prime-age workers.</figcaption></figure>
+<div class='tw'><table><thead><tr><th>grp</th><th>yr</th><th>UE</th><th>EU</th><th>EN</th><th>NE</th><th>months</th></tr></thead><tbody><tr><td>Foreign-born prime-age</td><td>2023</td><td>0.3120</td><td>0.0101</td><td>0.0262</td><td>0.1018</td><td>12</td></tr><tr><td>Foreign-born prime-age</td><td>2024</td><td>0.3158</td><td>0.0116</td><td>0.0238</td><td>0.0918</td><td>12</td></tr><tr><td>Foreign-born prime-age</td><td>2025</td><td>0.2709</td><td>0.0108</td><td>0.0237</td><td>0.0947</td><td>10</td></tr><tr><td>Foreign-born prime-age</td><td>2026</td><td>0.2973</td><td>0.0086</td><td>0.0249</td><td>0.0987</td><td> 7</td></tr><tr><td>Native prime, no BA</td><td>2023</td><td>0.2670</td><td>0.0106</td><td>0.0231</td><td>0.0688</td><td>12</td></tr><tr><td>Native prime, no BA</td><td>2024</td><td>0.2516</td><td>0.0112</td><td>0.0213</td><td>0.0653</td><td>12</td></tr><tr><td>Native prime, no BA</td><td>2025</td><td>0.2596</td><td>0.0111</td><td>0.0226</td><td>0.0681</td><td>10</td></tr><tr><td>Native prime, no BA</td><td>2026</td><td>0.2304</td><td>0.0099</td><td>0.0233</td><td>0.0645</td><td> 7</td></tr><tr><td>Native prime-age</td><td>2023</td><td>0.2730</td><td>0.0078</td><td>0.0180</td><td>0.0780</td><td>12</td></tr><tr><td>Native prime-age</td><td>2024</td><td>0.2580</td><td>0.0082</td><td>0.0167</td><td>0.0735</td><td>12</td></tr><tr><td>Native prime-age</td><td>2025</td><td>0.2634</td><td>0.0088</td><td>0.0181</td><td>0.0779</td><td>10</td></tr><tr><td>Native prime-age</td><td>2026</td><td>0.2291</td><td>0.0079</td><td>0.0189</td><td>0.0746</td><td> 7</td></tr></tbody></table></div><p class='note'>Transition rates from matched CPS records (CPSIDP). The October 2025 gap is left empty, never interpolated.</p>
+
+<h2 id="h8">H8. Hours and involuntary part-time</h2>
+<span class="verdict v-refuted">REFUTED</span>
+<p>Scarce labor shows up in hours before it shows up in wages, so this is the fast-moving margin.
+Native usual hours fell slightly and the share of native workers on part time for economic reasons
+rose. Broken out by occupational exposure, involuntary part-time rose most in exactly the
+occupations where immigrant labor was thickest.</p>
+<figure><img src="graphics/fig10_parttime.png" alt="Native involuntary part-time by occupational exposure quartile."><figcaption>Native involuntary part-time by occupational exposure quartile.</figcaption></figure>
+<div class='tw'><table><thead><tr><th>yr</th><th>grp</th><th>mean uhrs</th><th>share pt</th><th>share ptecon</th><th>share ptecon wide</th><th>n</th></tr></thead><tbody><tr><td>2023</td><td>Foreign-born</td><td>39.9669</td><td>0.1100</td><td>0.0386</td><td>0.0443</td><td> 62193</td></tr><tr><td>2024</td><td>Foreign-born</td><td>39.8985</td><td>0.1110</td><td>0.0432</td><td>0.0511</td><td> 64800</td></tr><tr><td>2025</td><td>Foreign-born</td><td>40.0151</td><td>0.1099</td><td>0.0433</td><td>0.0490</td><td> 54467</td></tr><tr><td>2026</td><td>Foreign-born</td><td>40.0842</td><td>0.1052</td><td>0.0404</td><td>0.0437</td><td> 37661</td></tr><tr><td>2023</td><td>Native</td><td>40.9884</td><td>0.0948</td><td>0.0183</td><td>0.0204</td><td>294379</td></tr><tr><td>2024</td><td>Native</td><td>40.8383</td><td>0.1000</td><td>0.0202</td><td>0.0247</td><td>290618</td></tr><tr><td>2025</td><td>Native</td><td>40.7542</td><td>0.1018</td><td>0.0217</td><td>0.0250</td><td>254263</td></tr><tr><td>2026</td><td>Native</td><td>40.7035</td><td>0.1014</td><td>0.0212</td><td>0.0240</td><td>178211</td></tr></tbody></table></div>
+<p class="finding">Rising involuntary part-time concentrated in high-exposure occupations is a
+demand-shock signature. A labor supply contraction does the opposite.</p>
+
+<h2 id="h9">H9 &amp; H10. Geography and the demand channel</h2>
+<span class="verdict v-inconc">INCONCLUSIVE</span> <span class="verdict v-refuted">H10 REFUTED</span>
+<p>State-level dose-response is inconclusive. Every coefficient is insignificant, the placebo window
+is significant, and CPS state cells are thin even at twelve-month averages. This is the weakest
+design in the memo and should be reported as such or cut.</p>
+<div class='tw'><table><thead><tr><th>outcome</th><th>spec</th><th>beta</th><th>se</th><th>p</th><th>n</th></tr></thead><tbody><tr><td>d_epop</td><td>2025-26</td><td>-0.0078</td><td>0.0253</td><td>0.7589</td><td>51</td></tr><tr><td>d_lfpr</td><td>2025-26</td><td> 0.0006</td><td>0.0210</td><td>0.9787</td><td>51</td></tr><tr><td>d_unrate</td><td>2025-26</td><td> 0.0101</td><td>0.0112</td><td>0.3708</td><td>51</td></tr><tr><td>d_log_for_pop</td><td>2025-26</td><td>-0.2439</td><td>0.1924</td><td>0.2109</td><td>51</td></tr><tr><td>d_epop</td><td>PLACEBO 2018-19</td><td> 0.0021</td><td>0.0114</td><td>0.8519</td><td>51</td></tr><tr><td>d_lfpr</td><td>PLACEBO 2018-19</td><td>-0.0102</td><td>0.0108</td><td>0.3501</td><td>51</td></tr><tr><td>d_unrate</td><td>PLACEBO 2018-19</td><td>-0.0144</td><td>0.0062</td><td>0.0236</td><td>51</td></tr><tr><td>d_log_for_pop</td><td>PLACEBO 2018-19</td><td>-0.1153</td><td>0.1601</td><td>0.4748</td><td>51</td></tr></tbody></table></div><p class='note'>State-level regressions, 51 cells, weighted by pre-period employment.</p>
+<h3>H10: which industries?</h3>
+<p>Splitting industries into those that <em>employed</em> immigrants (construction, food processing,
+agriculture, building services) and those that <em>sold to</em> them (retail, food service, personal
+services) separates the two mechanisms. Substitution predicts native gains in the first group. A
+local demand shock predicts native losses in both.</p>
+<div class='tw'><table><thead><tr><th>ind grp</th><th>yr</th><th>nat unrate</th><th>nat hrs</th><th>n</th></tr></thead><tbody><tr><td>Immigrant-employing</td><td>2023</td><td>0.0466</td><td>41.9536</td><td>56499</td></tr><tr><td>Immigrant-employing</td><td>2024</td><td>0.0451</td><td>41.9242</td><td>56948</td></tr><tr><td>Immigrant-employing</td><td>2025</td><td>0.0446</td><td>41.6546</td><td>48551</td></tr><tr><td>Immigrant-employing</td><td>2026</td><td>0.0519</td><td>41.7915</td><td>33929</td></tr><tr><td>Immigrant-serving</td><td>2023</td><td>0.0482</td><td>39.3386</td><td>46720</td></tr><tr><td>Immigrant-serving</td><td>2024</td><td>0.0506</td><td>39.0308</td><td>47298</td></tr><tr><td>Immigrant-serving</td><td>2025</td><td>0.0565</td><td>38.8724</td><td>41874</td></tr><tr><td>Immigrant-serving</td><td>2026</td><td>0.0598</td><td>38.7590</td><td>28959</td></tr></tbody></table></div>
+<p class="finding">Native unemployment rose in both blocks. Natives did not gain in the industries
+that employed immigrants, and they lost ground in the industries that served them. That is the
+demand channel, not the substitution channel.</p>
+
+<h2 id="h11">H11. Enforcement spilled onto U.S. citizens</h2>
+<span class="verdict v-refuted">REFUTED</span>
+<p>Every person in this comparison is a U.S. citizen by birth. The only difference is ethnicity and
+whether their parents were born abroad.</p>
+<div class="grid">
+<div class="stat"><div class="big">+1.13 pp</div><div class="lab">Hispanic native-born citizens, prime-age unemployment, 2024 &rarr; 2026</div></div>
+<div class="stat"><div class="big">+0.38 pp</div><div class="lab">Non-Hispanic native-born citizens, same measure</div></div>
+<div class="stat"><div class="big">3.0&times;</div><div class="lab">Ratio of the two increases</div></div>
+</div>
+<figure><img src="graphics/fig8_hispanic_citizens.png" alt="Prime-age unemployment among native-born U.S. citizens by ethnicity."><figcaption>Prime-age unemployment among native-born U.S. citizens by ethnicity.</figcaption></figure>
+<p class="finding">Unemployment among Hispanic U.S. citizens rose roughly 3.0 times as
+much as among non-Hispanic citizens. This holds for third-generation-plus citizens, whose parents
+were also born here, so it is not a mixed-status-household composition story alone. The theory
+predicts nothing like this; it is the cost of enforcement falling on people the policy was never
+supposed to touch.</p>
+<div class='tw'><table><thead><tr><th>grp</th><th>yr</th><th>epop</th><th>lfpr</th><th>unrate</th><th>n</th></tr></thead><tbody><tr><td>Native, Hispanic</td><td>2023</td><td>0.7974</td><td>0.8282</td><td>0.0372</td><td> 39554</td></tr><tr><td>Native, Hispanic</td><td>2024</td><td>0.7953</td><td>0.8269</td><td>0.0382</td><td> 40463</td></tr><tr><td>Native, Hispanic</td><td>2025</td><td>0.8012</td><td>0.8352</td><td>0.0407</td><td> 36769</td></tr><tr><td>Native, Hispanic</td><td>2026</td><td>0.7892</td><td>0.8303</td><td>0.0495</td><td> 27235</td></tr><tr><td>Native, non-Hispanic</td><td>2023</td><td>0.8175</td><td>0.8429</td><td>0.0301</td><td>323888</td></tr><tr><td>Native, non-Hispanic</td><td>2024</td><td>0.8181</td><td>0.8459</td><td>0.0329</td><td>318149</td></tr><tr><td>Native, non-Hispanic</td><td>2025</td><td>0.8159</td><td>0.8449</td><td>0.0343</td><td>277383</td></tr><tr><td>Native, non-Hispanic</td><td>2026</td><td>0.8135</td><td>0.8445</td><td>0.0367</td><td>193126</td></tr></tbody></table></div>
+<div class='tw'><table><thead><tr><th>gen</th><th>yr</th><th>epop</th><th>lfpr</th><th>unrate</th><th>pop</th><th>n</th></tr></thead><tbody><tr><td>2nd gen native</td><td>2023</td><td>0.8225</td><td>0.8518</td><td>0.0344</td><td> 156827.4</td><td> 39261</td></tr><tr><td>2nd gen native</td><td>2024</td><td>0.8203</td><td>0.8531</td><td>0.0384</td><td> 159619.3</td><td> 40762</td></tr><tr><td>2nd gen native</td><td>2025</td><td>0.8220</td><td>0.8558</td><td>0.0395</td><td> 158942.9</td><td> 36333</td></tr><tr><td>2nd gen native</td><td>2026</td><td>0.8155</td><td>0.8540</td><td>0.0451</td><td> 120876.5</td><td> 26088</td></tr><tr><td>3rd+ gen native</td><td>2023</td><td>0.8147</td><td>0.8401</td><td>0.0303</td><td>1029750.8</td><td>317293</td></tr><tr><td>3rd+ gen native</td><td>2024</td><td>0.8148</td><td>0.8424</td><td>0.0328</td><td>1025411.6</td><td>311197</td></tr><tr><td>3rd+ gen native</td><td>2025</td><td>0.8128</td><td>0.8416</td><td>0.0342</td><td> 949129.5</td><td>271956</td></tr><tr><td>3rd+ gen native</td><td>2026</td><td>0.8094</td><td>0.8409</td><td>0.0376</td><td> 679779.1</td><td>189908</td></tr><tr><td>Foreign born</td><td>2023</td><td>0.7844</td><td>0.8118</td><td>0.0338</td><td> 323665.7</td><td> 79976</td></tr><tr><td>Foreign born</td><td>2024</td><td>0.7805</td><td>0.8128</td><td>0.0397</td><td> 334853.9</td><td> 83341</td></tr><tr><td>Foreign born</td><td>2025</td><td>0.7812</td><td>0.8136</td><td>0.0399</td><td> 310647.0</td><td> 69819</td></tr><tr><td>Foreign born</td><td>2026</td><td>0.7907</td><td>0.8202</td><td>0.0360</td><td> 220438.6</td><td> 47619</td></tr></tbody></table></div><p class='note'>By generation. NATIVITY distinguishes native-born citizens with foreign-born parents from those with native-born parents.</p>
+
+<h2 id="h12">H12. Did the labor market actually tighten?</h2>
+<span class="verdict v-refuted">REFUTED</span>
+<p>The entire substitution story requires tightness. A labor supply contraction against stable
+demand raises vacancies per unemployed worker and raises quits. Both fell.</p>
+<div class="grid">
+<div class="stat"><div class="big">1.14 &rarr; 1.00</div><div class="lab">Vacancies per unemployed worker</div></div>
+<div class="stat"><div class="big">2.1% &rarr; 2.0%</div><div class="lab">Quits rate</div></div>
+<div class="stat"><div class="big">3.4% &rarr; 3.3%</div><div class="lab">Hires rate</div></div>
+</div>
+<figure><img src="graphics/fig4_tightness.png" alt="Vacancies per unemployed worker and the quits rate."><figcaption>Vacancies per unemployed worker and the quits rate.</figcaption></figure>
+<p class="finding">A supply-driven tightening and a demand-driven slowdown are distinguishable, and
+this is the cleanest aggregate discriminator available. The labor market loosened.</p>
+
+<h2 id="h13">H13. What the CPS can and cannot measure</h2>
+<p>Three separate problems with CPS nativity levels, in increasing order of severity.</p>
+<h3>1. The January population controls</h3>
+<p>The CPS resets population controls each January and does not revise prior months. The January
+2025 reset was unusually large because Census changed its net-international-migration methodology.</p>
+<div class='tw'><table><thead><tr><th>date</th><th>d for</th><th>d nat</th></tr></thead><tbody><tr><td>2019-01-01</td><td> -76</td><td>-572</td></tr><tr><td>2020-01-01</td><td> -76</td><td>-604</td></tr><tr><td>2021-01-01</td><td> 139</td><td>-518</td></tr><tr><td>2022-01-01</td><td> 452</td><td> 615</td></tr><tr><td>2023-01-01</td><td> 163</td><td> 954</td></tr><tr><td>2024-01-01</td><td>-505</td><td>  54</td></tr><tr><td>2025-01-01</td><td>1598</td><td>1450</td></tr><tr><td>2026-01-01</td><td> 845</td><td>-986</td></tr></tbody></table></div><p class='note'>December-to-January discontinuities in the published population level, thousands. These are revisions, not behavior.</p>
+<h3>2. Nativity is not a population control</h3>
+<p>This is the binding constraint, and it is Kolko&rsquo;s central point. Census sets controls by age,
+sex, and race, never by nativity. Nativity comes from the survey answer. When foreign-born
+respondents leave the sample, their weight is redistributed inside their age-sex-race cell, much of
+it onto native-born respondents. Measured native-born employment rises mechanically. The two series
+are forced to sum to a predetermined total.</p>
+<div class="caveat">This is why the memo reports no estimate of how many workers left. Removing the
+January steps from the published series gives a foreign-born employment decline of roughly 1.5
+million, but that number strips out only problem 1 and leaves problem 2 entirely intact. It is not
+a credible count of departures and is not used anywhere in the conclusions.</div>
+<h3>3. Non-citizens stopped answering the survey</h3>
+<p>Unweighted respondent counts carry no weights at all, so they are immune to both problems above.
+They isolate the survey-participation channel directly.</p>
+<div class='tw'><table><thead><tr><th>group</th><th>avg 2024</th><th>avg recent</th><th>pct change</th></tr></thead><tbody><tr><td>Non-citizens</td><td> 6029</td><td> 4979</td><td>-17.4</td></tr><tr><td>Naturalized citizens</td><td> 6176</td><td> 6020</td><td> -2.5</td></tr><tr><td>Native-born</td><td>69047</td><td>65154</td><td> -5.6</td></tr><tr><td>All respondents 16+</td><td>81252</td><td>76154</td><td> -6.3</td></tr></tbody></table></div><p class='note'>Unweighted CPS respondents age 16+, 2024 monthly average versus September 2025 to August 2026 monthly average.</p>
+<figure><img src="graphics/fig5_nonresponse.png" alt="Unweighted CPS respondent counts by nativity, indexed to December 2024."><figcaption>Unweighted CPS respondent counts by nativity, indexed to December 2024.</figcaption></figure>
+<p class="finding">Non-citizen respondents fell 17.4% while the whole CPS sample fell 6.3%, an
+excess decline of about eleven points. This closely replicates the St. Louis Fed&rsquo;s finding of a
+16.6% versus 6.2% split for January&ndash;November 2025, and it was produced independently here from
+raw interview counts. A large share of the apparent foreign-born decline is people declining to be
+surveyed, not people leaving the country.</p>
+<p>Rates survive all three problems. Weight redistribution inside an age-sex-race cell scales
+employed and unemployed natives up roughly proportionally, leaving the native unemployment rate
+intact. That is why every conclusion in this memo is a rate.</p>
+
+<h2>What this does not establish</h2>
+<div class="card">
+<p>None of this is a clean natural experiment. Enforcement intensity is correlated with local
+immigrant share, industry mix, and politics, and nothing here randomizes it. The occupational
+dose-response design has a pre-trend: its 2018&ndash;19 placebo is significant, which is why the
+rolling-window path is shown rather than a single difference. The state-level design is
+underpowered. The honest summary is that the restrictionist theory makes seven specific predictions
+about native-born workers, and the data refuse to deliver any of them, in an environment where the
+theory&rsquo;s own precondition, a tightening labor market, did not hold.</p>
+<p style="margin-bottom:0">The strongest affirmative claim available is the negative one: after
+eighteen months, there is no measurable benefit to native-born workers on any margin the theory
+names, and there is a measurable cost to Hispanic U.S. citizens that the theory does not.</p>
+</div>
+
+<h2>Sources and method notes</h2>
+<ul>
+<li>IPUMS CPS basic monthly, January 2015 &ndash; August 2026, 12,545,329 person-month records age 16+.
+Native-born is <code>CITIZEN</code> in {1,2,3}, matching the BLS definition. Weighted totals validate
+against published BLS nativity series within roughly 0.5%.</li>
+<li>Jed Kolko, <a href="https://jedkolko.substack.com/p/no-native-born-employment-has-not">&ldquo;No, Native-Born Employment Has Not Soared&rdquo;</a>
+and <a href="https://jedkolko.substack.com/p/your-guide-to-immigration-and-the">&ldquo;Your Guide to Immigration and the Jobs Report&rdquo;</a>,
+on why nativity levels mislead and rates do not. Kolko also publishes
+<a href="https://jedkolko.com/cps-weights/">historically comparable CPS weights</a> (April 2010 &ndash; December 2024),
+which fix cross-year comparability but do not address the 2025&ndash;26 period.</li>
+<li>St. Louis Fed, <a href="https://www.stlouisfed.org/on-the-economy/2025/dec/what-is-affecting-cps-data-shifts-immigration-native-born-populations">&ldquo;What Is Affecting the CPS Data on Shifts in Immigrant and Native-Born Populations?&rdquo;</a>,
+December 2025, on survey non-response versus actual departures.</li>
+<li>No household survey was conducted in October 2025. That month is left empty in every series and
+is never interpolated. Month-to-month flows are unavailable for two links.</li>
+<li>Nativity series are published seasonally unadjusted; seasonal adjustment here is the author&rsquo;s,
+via X-13. Conclusions are also checked against twelve-month moving averages.</li>
+<li>Literature to verify before publication: Clemens, Lewis and Postel (2018, <em>AER</em>) on the
+Bracero exclusion, and East, Luck, Mansour and Vel&aacute;squez (2023) on Secure Communities. Both
+point the same direction as these results; neither has been re-read for this memo and the point
+estimates should not be quoted from memory.</li>
+</ul>
+</div></body></html>

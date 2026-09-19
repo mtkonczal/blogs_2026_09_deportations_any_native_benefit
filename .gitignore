@@ -1,0 +1,13 @@
+# IPUMS microdata (large, redistributable only via IPUMS)
+data_raw/
+*.dat
+*.dat.gz
+*.xml
+*.rds
+*.fst
+*.parquet
+
+.DS_Store
+.Rhistory
+.RData
+.Rproj.user/

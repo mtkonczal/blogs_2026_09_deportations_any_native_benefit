@@ -1,0 +1,5 @@
+suppressMessages(library(ipumsr)); set_ipums_api_key(Sys.getenv("IPUMS_API_KEY"))
+n <- as.integer(readLines("data_raw/extract_id_earn.txt"))
+wait_for_extract(c("cps", n), timeout = 14400)
+f <- download_extract(c("cps", n), download_dir = "data_raw", overwrite = TRUE)
+cat("DOWNLOADED:", f, "\n"); writeLines(f, "data_raw/ddi_path_earn.txt")

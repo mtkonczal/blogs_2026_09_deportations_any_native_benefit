@@ -1,0 +1,1 @@
+{"version":"0.0.1","configurations":[{"name":"findings","runtimeExecutable":"python3","runtimeArgs":["-m","http.server","8799"],"port":8799,"url":"http://localhost:8799"}]}
