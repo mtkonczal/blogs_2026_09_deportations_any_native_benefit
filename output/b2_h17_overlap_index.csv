@@ -1,0 +1,9 @@
+grp,overlap,n_occ
+Native men,0.18723799576111463,365
+Native women,0.1575604288850179,365
+"Native men, no BA",0.20237931746666643,350
+"Native women, no BA",0.17369370572002374,351
+"Native men, prime age",0.18458850103263633,365
+"Native women, prime age",0.15412229459115054,365
+All native-born,0.17295752209847715,365
+Noncitizens (reference),0.2781469605147516,364

@@ -58,9 +58,13 @@ fl_nat <- flow %>% filter(grp=="Native prime-age")
 ue24 <- fl_nat$UE[fl_nat$yr==2024]; ue26 <- fl_nat$UE[fl_nat$yr==2026]
 edu_l <- edu %>% filter(educ_grp=="Less than HS"); edu_b <- edu %>% filter(educ_grp=="BA+")
 hi <- hisp %>% filter(grp=="Native, Hispanic"); nh <- hisp %>% filter(grp=="Native, non-Hispanic")
+hrs_nat <- hrs %>% filter(grp=="Native"); dur_nat <- dur %>% filter(grp=="Native")
+hrs24 <- hrs_nat %>% filter(yr==2024); hrs26 <- hrs_nat %>% filter(yr==2026)
+dur24 <- dur_nat %>% filter(yr==2024); dur26 <- dur_nat %>% filter(yr==2026)
 d_hi <- hi$unrate[hi$yr==2026]-hi$unrate[hi$yr==2024]
 d_nh <- nh$unrate[nh$yr==2026]-nh$unrate[nh$yr==2024]
 occ_t <- dose %>% filter(spec=="OCC2010 / 2025-26")
+occ_t_u <- occ_t %>% filter(outcome=="d_nat_unrate")
 wn <- w8 %>% filter(grp=="Native-born")
 w_p10_26 <- wn$g_p10[wn$yr==2026]; w_p50_26 <- wn$g_p50[wn$yr==2026]
 w_p50_25 <- wn$g_p50[wn$yr==2025]
@@ -72,24 +76,38 @@ roll_recent <- roll_u %>% filter(window_end >= as.Date("2025-12-01"))
 roll_pre <- roll_u %>% filter(window_end < as.Date("2020-01-01"))
 
 CLAIMS <- tribble(
-  ~n, ~claim, ~pred, ~hyp, ~verdict,
+  ~n, ~claim, ~pred, ~found, ~hyp, ~verdict,
   1, "Fewer immigrant workers competing means native unemployment falls.",
-     "Native unemployment rate declines after Jan 2025.", "H1, H2", "refuted",
+     "Native unemployment rate declines after Jan 2025.",
+     glue("Native unemployment <strong>rose</strong> from {pctf(nat24$unrate_nat)} in 2024 to {pctf(nat26$unrate_nat)} in 2026, and crossed above the foreign-born rate."),
+     "H1, H2", "refuted",
   2, "Jobs immigrants held get handed to natives, so more natives work.",
-     "Prime-age native EPOP and LFP rise.", "H1, H3", "refuted",
+     "Prime-age native EPOP and LFP rise.",
+     glue("Prime-age native employment <strong>fell</strong> {g(abs(100*(nat26$prime_epop_nat-nat24$prime_epop_nat)),2)} points, and the rise in the native share of employment is entirely a shrinking denominator."),
+     "H1, H3", "refuted",
   3, "A tighter labor market bids up pay, especially at the bottom.",
-     "Native real wage growth accelerates, most at p10-p25.", "H6", "refuted",
+     "Native real wage growth accelerates, most at p10-p25.",
+     glue("Native real wages <strong>fell</strong> {pctf(abs(w_p50_26))} at the median and {pctf(abs(w_p10_26))} at the 10th percentile in 2026."),
+     "H6", "refuted",
   4, "Natives move into the occupations immigrants vacated.",
-     "Native outcomes improve most in high-immigrant-share occupations.", "H4", "null",
+     "Native outcomes improve most in high-immigrant-share occupations.",
+     glue("The dose-response coefficient on the native unemployment rate is {g(occ_t_u$beta,4)} (p = {g(occ_t_u$p,2)}): slightly the wrong sign and never distinguishable from zero."),
+     "H4", "null",
   5, "With fewer competitors, unemployed natives find work faster.",
-     "Native job-finding rate rises; durations fall.", "H7", "refuted",
+     "Native job-finding rate rises; durations fall.",
+     glue("The native job-finding rate <strong>fell</strong> from {pctf(ue24)} to {pctf(ue26)} and mean unemployment duration lengthened {g(dur26$mean_dur-dur24$mean_dur,1)} weeks."),
+     "H7", "refuted",
   6, "Employers short of labor give native workers more hours.",
-     "Native hours rise; involuntary part-time falls.", "H8", "refuted",
+     "Native hours rise; involuntary part-time falls.",
+     glue("Native usual hours <strong>fell</strong> from {g(hrs24$mean_uhrs,1)} to {g(hrs26$mean_uhrs,1)} and involuntary part-time <strong>rose</strong>, most in the most immigrant-intensive occupations."),
+     "H8", "refuted",
   7, "Gains go to natives most exposed: less than a BA, high-immigrant places.",
-     "Dose-response by education and geography.", "H5, H9", "refuted")
+     "Dose-response by education and geography.",
+     glue("The ranking runs backwards: unemployment rose {g(100*(edu_l$unrate[edu_l$yr==2026]-edu_l$unrate[edu_l$yr==2024]),2)} points for natives without a high school diploma against {g(100*(edu_b$unrate[edu_b$yr==2026]-edu_b$unrate[edu_b$yr==2024]),2)} points for those with a BA."),
+     "H5, H9", "refuted")
 
 claims_rows <- paste0(apply(CLAIMS, 1, function(r) glue(
- '<tr><td class="cn">C{r[["n"]]}</td><td><strong>{r[["claim"]]}</strong><br><span class="pred">Testable: {r[["pred"]]}</span></td>
+ '<tr><td class="cn">C{r[["n"]]}</td><td><strong>{r[["claim"]]}</strong><br><span class="pred">Hypothesis: {r[["pred"]]}</span><br><span class="found">Found: {r[["found"]]}</span></td>
   <td class="hy">{r[["hyp"]]}</td><td>{vb(r[["verdict"]])}</td></tr>')), collapse="")
 
 HTML <- glue('<!DOCTYPE html>
@@ -123,6 +141,8 @@ th {{ font-size:.72rem; text-transform:uppercase; letter-spacing:.05em; color:va
 td.cn {{ font-weight:700; color:var(--navy); white-space:nowrap; }}
 td.hy {{ white-space:nowrap; font-size:.78rem; color:var(--muted); }}
 .pred {{ color:var(--muted); font-size:.82rem; }}
+.found {{ display:inline-block; margin-top:.35em; font-size:.82rem; color:var(--ink);
+  border-left:2px solid var(--red); padding-left:8px; }}
 .verdict {{ display:inline-block; padding:3px 9px; border-radius:99px; font-size:.68rem;
   font-weight:800; letter-spacing:.05em; white-space:nowrap; }}
 .v-refuted {{ background:#fde2da; color:#8c2f13; }}
@@ -154,7 +174,7 @@ a {{ color:var(--navy); }}
 <p class="kicker">Findings memo</p>
 <h1>Did Native-Born Workers Benefit from the 2025&ndash;26 Deportation Campaign?</h1>
 <p class="sub">Seven claims, thirteen hypotheses, and what the CPS microdata actually show.</p>
-<p class="byline">Mike Konczal, Economic Security Project &middot; Analysis run {format(Sys.Date(), "%B %d, %Y")} &middot;
+<p class="byline">Mike Konczal &middot; Analysis run {format(Sys.Date(), "%B %d, %Y")} &middot;
 IPUMS CPS basic monthly, January 2015 &ndash; August 2026 &middot; 12.5 million person-month records</p>
 
 <div class="card">
@@ -408,6 +428,13 @@ theory&rsquo;s own precondition, a tightening labor market, did not hold.</p>
 eighteen months, there is no measurable benefit to native-born workers on any margin the theory
 names, and there is a measurable cost to Hispanic U.S. citizens that the theory does not.</p>
 </div>
+
+<div class="caveat"><strong>There is a second memo.</strong> The argument moved after this one was
+written: the other side conceded the population-control problem and rebuilt its case on within-year
+consistent weights, the administration shifted to prices and to the wage distribution, and the
+collapse in male employment gave both sides something new to claim. Twelve more claims, including
+the male-replacement argument and the naturalized-citizen argument, are tested in
+<a href="findings_batch2.html">round two</a>. Nothing there revises anything here.</div>
 
 <h2>Sources and method notes</h2>
 <ul>

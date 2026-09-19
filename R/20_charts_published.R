@@ -13,7 +13,7 @@ my_style <- list(
         axis.title = element_text(size = 9)),
   coord_cartesian(clip = "off"))
 W <- 7.2; H <- 4.4; DPI <- 200
-CAP <- "Source: BLS Current Population Survey. No household survey was conducted in October 2025.\nMike Konczal, Economic Security Project."
+CAP <- "Source: BLS Current Population Survey. No household survey was conducted in October 2025.\nMike Konczal."
 
 d <- read_csv("data/nativity_published.csv", show_col_types = FALSE)
 
@@ -80,7 +80,7 @@ p4 <- t %>% filter(date >= as.Date("2018-01-01")) %>%
   labs(title = "The Labor Market Got Looser, Not Tighter",
        subtitle = "A labor supply contraction against stable demand would raise both series. Both fell.",
        x = NULL, y = NULL,
-       caption = "Source: BLS JOLTS and CPS. Mike Konczal, Economic Security Project.") +
+       caption = "Source: BLS JOLTS and CPS. Mike Konczal.") +
   my_style + theme(strip.text = element_text(face = "bold", color = NAVY))
 ggsave("graphics/fig4_tightness.png", p4, width = W, height = H, dpi = DPI)
 

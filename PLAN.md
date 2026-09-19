@@ -1,7 +1,7 @@
 # Did Native-Born Workers Benefit from the 2025 Deportation Campaign?
 
 **Planning document. Hypotheses and research design only. No analysis run yet.**
-Mike Konczal, Economic Security Project. Drafted 2026-09-18.
+Mike Konczal. Drafted 2026-09-18.
 
 ---
 

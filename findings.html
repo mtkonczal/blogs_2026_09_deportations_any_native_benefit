@@ -29,6 +29,8 @@ th { font-size:.72rem; text-transform:uppercase; letter-spacing:.05em; color:var
 td.cn { font-weight:700; color:var(--navy); white-space:nowrap; }
 td.hy { white-space:nowrap; font-size:.78rem; color:var(--muted); }
 .pred { color:var(--muted); font-size:.82rem; }
+.found { display:inline-block; margin-top:.35em; font-size:.82rem; color:var(--ink);
+  border-left:2px solid var(--red); padding-left:8px; }
 .verdict { display:inline-block; padding:3px 9px; border-radius:99px; font-size:.68rem;
   font-weight:800; letter-spacing:.05em; white-space:nowrap; }
 .v-refuted { background:#fde2da; color:#8c2f13; }
@@ -60,7 +62,7 @@ a { color:var(--navy); }
 <p class="kicker">Findings memo</p>
 <h1>Did Native-Born Workers Benefit from the 2025&ndash;26 Deportation Campaign?</h1>
 <p class="sub">Seven claims, thirteen hypotheses, and what the CPS microdata actually show.</p>
-<p class="byline">Mike Konczal, Economic Security Project &middot; Analysis run September 18, 2026 &middot;
+<p class="byline">Mike Konczal &middot; Analysis run September 19, 2026 &middot;
 IPUMS CPS basic monthly, January 2015 &ndash; August 2026 &middot; 12.5 million person-month records</p>
 
 <div class="card">
@@ -86,13 +88,13 @@ rate, a ratio, or a transition probability. See <a href="#h13">H13</a>.
 
 <h2>The seven claims</h2>
 <div class="tw"><table><thead><tr><th>#</th><th>The claim, as its proponents make it</th><th>Tests</th><th>Verdict</th></tr></thead>
-<tbody><tr><td class="cn">C1</td><td><strong>Fewer immigrant workers competing means native unemployment falls.</strong><br><span class="pred">Testable: Native unemployment rate declines after Jan 2025.</span></td>
-<td class="hy">H1, H2</td><td><span class="verdict v-refuted">REFUTED</span></td></tr><tr><td class="cn">C2</td><td><strong>Jobs immigrants held get handed to natives, so more natives work.</strong><br><span class="pred">Testable: Prime-age native EPOP and LFP rise.</span></td>
-<td class="hy">H1, H3</td><td><span class="verdict v-refuted">REFUTED</span></td></tr><tr><td class="cn">C3</td><td><strong>A tighter labor market bids up pay, especially at the bottom.</strong><br><span class="pred">Testable: Native real wage growth accelerates, most at p10-p25.</span></td>
-<td class="hy">H6</td><td><span class="verdict v-refuted">REFUTED</span></td></tr><tr><td class="cn">C4</td><td><strong>Natives move into the occupations immigrants vacated.</strong><br><span class="pred">Testable: Native outcomes improve most in high-immigrant-share occupations.</span></td>
-<td class="hy">H4</td><td><span class="verdict v-null">NO EFFECT FOUND</span></td></tr><tr><td class="cn">C5</td><td><strong>With fewer competitors, unemployed natives find work faster.</strong><br><span class="pred">Testable: Native job-finding rate rises; durations fall.</span></td>
-<td class="hy">H7</td><td><span class="verdict v-refuted">REFUTED</span></td></tr><tr><td class="cn">C6</td><td><strong>Employers short of labor give native workers more hours.</strong><br><span class="pred">Testable: Native hours rise; involuntary part-time falls.</span></td>
-<td class="hy">H8</td><td><span class="verdict v-refuted">REFUTED</span></td></tr><tr><td class="cn">C7</td><td><strong>Gains go to natives most exposed: less than a BA, high-immigrant places.</strong><br><span class="pred">Testable: Dose-response by education and geography.</span></td>
+<tbody><tr><td class="cn">C1</td><td><strong>Fewer immigrant workers competing means native unemployment falls.</strong><br><span class="pred">Hypothesis: Native unemployment rate declines after Jan 2025.</span><br><span class="found">Found: Native unemployment <strong>rose</strong> from 3.98% in 2024 to 4.48% in 2026, and crossed above the foreign-born rate.</span></td>
+<td class="hy">H1, H2</td><td><span class="verdict v-refuted">REFUTED</span></td></tr><tr><td class="cn">C2</td><td><strong>Jobs immigrants held get handed to natives, so more natives work.</strong><br><span class="pred">Hypothesis: Prime-age native EPOP and LFP rise.</span><br><span class="found">Found: Prime-age native employment <strong>fell</strong> 0.59 points, and the rise in the native share of employment is entirely a shrinking denominator.</span></td>
+<td class="hy">H1, H3</td><td><span class="verdict v-refuted">REFUTED</span></td></tr><tr><td class="cn">C3</td><td><strong>A tighter labor market bids up pay, especially at the bottom.</strong><br><span class="pred">Hypothesis: Native real wage growth accelerates, most at p10-p25.</span><br><span class="found">Found: Native real wages <strong>fell</strong> 1.33% at the median and 2.33% at the 10th percentile in 2026.</span></td>
+<td class="hy">H6</td><td><span class="verdict v-refuted">REFUTED</span></td></tr><tr><td class="cn">C4</td><td><strong>Natives move into the occupations immigrants vacated.</strong><br><span class="pred">Hypothesis: Native outcomes improve most in high-immigrant-share occupations.</span><br><span class="found">Found: The dose-response coefficient on the native unemployment rate is 0.0098 (p = 0.21): slightly the wrong sign and never distinguishable from zero.</span></td>
+<td class="hy">H4</td><td><span class="verdict v-null">NO EFFECT FOUND</span></td></tr><tr><td class="cn">C5</td><td><strong>With fewer competitors, unemployed natives find work faster.</strong><br><span class="pred">Hypothesis: Native job-finding rate rises; durations fall.</span><br><span class="found">Found: The native job-finding rate <strong>fell</strong> from 25.80% to 22.91% and mean unemployment duration lengthened 3.7 weeks.</span></td>
+<td class="hy">H7</td><td><span class="verdict v-refuted">REFUTED</span></td></tr><tr><td class="cn">C6</td><td><strong>Employers short of labor give native workers more hours.</strong><br><span class="pred">Hypothesis: Native hours rise; involuntary part-time falls.</span><br><span class="found">Found: Native usual hours <strong>fell</strong> from 40.8 to 40.7 and involuntary part-time <strong>rose</strong>, most in the most immigrant-intensive occupations.</span></td>
+<td class="hy">H8</td><td><span class="verdict v-refuted">REFUTED</span></td></tr><tr><td class="cn">C7</td><td><strong>Gains go to natives most exposed: less than a BA, high-immigrant places.</strong><br><span class="pred">Hypothesis: Dose-response by education and geography.</span><br><span class="found">Found: The ranking runs backwards: unemployment rose 1.02 points for natives without a high school diploma against 0.60 points for those with a BA.</span></td>
 <td class="hy">H5, H9</td><td><span class="verdict v-refuted">REFUTED</span></td></tr></tbody></table></div>
 
 <h2 id="h1">H1. Did native outcomes improve at all?</h2>
@@ -320,6 +322,13 @@ theory&rsquo;s own precondition, a tightening labor market, did not hold.</p>
 eighteen months, there is no measurable benefit to native-born workers on any margin the theory
 names, and there is a measurable cost to Hispanic U.S. citizens that the theory does not.</p>
 </div>
+
+<div class="caveat"><strong>There is a second memo.</strong> The argument moved after this one was
+written: the other side conceded the population-control problem and rebuilt its case on within-year
+consistent weights, the administration shifted to prices and to the wage distribution, and the
+collapse in male employment gave both sides something new to claim. Twelve more claims, including
+the male-replacement argument and the naturalized-citizen argument, are tested in
+<a href="findings_batch2.html">round two</a>. Nothing there revises anything here.</div>
 
 <h2>Sources and method notes</h2>
 <ul>

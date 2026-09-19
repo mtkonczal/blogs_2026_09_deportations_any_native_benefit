@@ -12,7 +12,7 @@ my_style <- list(
         axis.title = element_text(size = 9)),
   coord_cartesian(clip = "off"))
 W <- 7.2; H <- 4.4; DPI <- 200
-CAP <- "Source: IPUMS CPS microdata, author's calculations. No household survey in October 2025.\nMike Konczal, Economic Security Project."
+CAP <- "Source: IPUMS CPS microdata, author's calculations. No household survey in October 2025.\nMike Konczal."
 
 # ---- Fig 5: measurement, unweighted respondent counts ----------------------
 raw <- read_csv("output/h13_unweighted_counts.csv", show_col_types = FALSE) %>%

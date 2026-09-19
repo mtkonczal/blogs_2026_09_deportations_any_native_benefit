@@ -1,0 +1,9 @@
+series,prior_20m,policy_20m,change
+men_nf,1350,-6,-1356
+women_nf,1591,765,-826
+tot_nf,2941,759,-2182
+construction,321,83,-238
+manufacturing,-191,-55,136
+transport_wh,86,-56.899999999999636,-142.89999999999964
+health,1592,1027.2999999999993,-564.7000000000007
+leisure,375,139,-236
