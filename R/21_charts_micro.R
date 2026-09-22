@@ -13,6 +13,7 @@ my_style <- list(
   coord_cartesian(clip = "off"))
 W <- 7.2; H <- 4.4; DPI <- 200
 CAP <- "Source: IPUMS CPS microdata, author's calculations. No household survey in October 2025.\nMike Konczal."
+CAP_CES <- "Source: BLS Current Employment Statistics (establishment survey); non-citizen shares from\n2024 ACS PUMS, crosswalked to CES industries. No CPS microdata used. Mike Konczal."
 
 # ---- Fig 5: measurement, unweighted respondent counts ----------------------
 raw <- read_csv("output/h13_unweighted_counts.csv", show_col_types = FALSE) %>%
@@ -42,14 +43,13 @@ fl <- read_csv("output/h7_flows_monthly.csv", show_col_types = FALSE) %>%
   arrange(grp, date) %>% group_by(grp) %>%
   mutate(UE12 = zoo::rollmean(UE, 12, fill = NA, align = "right")) %>% ungroup()
 p6 <- fl %>% filter(date >= as.Date("2018-01-01"), !is.na(UE12),
-                    grp %in% c("Native prime-age","Foreign-born prime-age")) %>%
-  ggplot(aes(date, UE12, color = grp)) +
+                    grp == "Native prime-age") %>%
+  ggplot(aes(date, UE12)) +
   geom_vline(xintercept = as.Date("2025-01-20"), linetype = "dashed", color = GREY) +
-  geom_line(linewidth = .9) +
-  scale_color_manual(values = c("Native prime-age" = NAVY, "Foreign-born prime-age" = RED)) +
+  geom_line(linewidth = .9, color = NAVY) +
   scale_y_continuous(labels = percent_format(accuracy = 1)) +
   labs(title = "Unemployed Native-Born Workers Are Finding Jobs More Slowly, Not Faster",
-       subtitle = "Share of unemployed prime-age workers employed the following month, 12-month moving average",
+       subtitle = "Share of unemployed native-born prime-age workers employed the following month, 12-month moving average",
        x = NULL, y = "Monthly job-finding rate", caption = CAP) + my_style
 ggsave("graphics/fig6_job_finding.png", p6, width = W, height = H, dpi = DPI)
 
@@ -116,17 +116,22 @@ ggsave("graphics/fig10_parttime.png", p10, width = W, height = H, dpi = DPI)
 
 cat("wrote 6 microdata charts\n")
 
-# ---- Fig 11: H6 native real wage growth by exposure quartile ---------------
-we <- read_csv("output/h6_wages_by_exposure_jan_aug.csv", show_col_types = FALSE)
-p11 <- we %>% filter(yr >= 2023, !is.na(g_p50)) %>%
-  ggplot(aes(factor(yr), 100*g_p50, fill = exp_grp)) +
+# ---- Fig 11: H6 industry cross-section, real wage growth by non-citizen quintile
+# blogs_2026-04 methodology: 2024 ACS non-citizen share by NAICS, crosswalked
+# onto BLS CES's 249 diffusion industries and quintiled. Wage growth is BLS
+# CES production/nonsupervisory average hourly earnings -- no CPS microdata.
+# See R/62_industry_wage_exposure.R.
+we <- read_csv("output/h6_industry_wage_jan_aug.csv", show_col_types = FALSE)
+QCOL <- c("Q1 (lowest)" = NAVY, "Q2" = GREEN, "Q3" = GOLD,
+          "Q4" = "#e0762e", "Q5 (highest)" = RED)
+p11 <- we %>% filter(yr >= 2023, !is.na(yoy)) %>%
+  ggplot(aes(factor(yr), 100*yoy, fill = nc_quintile)) +
   geom_hline(yintercept = 0, color = "grey50", linewidth = .4) +
   geom_col(position = position_dodge(.8), width = .72) +
-  scale_fill_manual(values = c("Q1 lowest immigrant share" = NAVY, "Q2" = GREEN,
-                               "Q3" = GOLD, "Q4 highest immigrant share" = RED)) +
-  labs(title = "Native Wage Growth Slowed Most Where Immigrant Labor Was Thickest",
-       subtitle = "Growth in the median real hourly wage of native-born workers, by quartile of the occupation's\npre-2025 foreign-born employment share. January-August of each year, 2026 dollars.",
-       x = NULL, y = "Real median wage growth, % per year", caption = CAP) +
+  scale_fill_manual(values = QCOL) +
+  labs(title = "No Wage Acceleration in the Most Non-Citizen-Intensive Industries",
+       subtitle = "Real hourly wage growth, production/nonsupervisory employees, by quintile of a CES industry's\nnon-citizen worker share (2024 ACS). January-August average, year-over-year, 2026 dollars.",
+       x = NULL, y = "Real wage growth, % YoY", caption = CAP_CES) +
   my_style + theme(legend.text = element_text(size = 8))
 ggsave("graphics/fig11_wages_exposure.png", p11, width = W, height = H, dpi = DPI)
 

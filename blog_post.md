@@ -6,41 +6,49 @@ We're going to move pretty fast through this. There's a GitHub where you can go 
 
 Hypothesis 1: Native-born unemployment would fall.
 
+![Native-born unemployment rate by month, not seasonally adjusted: higher in 2026 than 2024 in every month](graphics/fig1_unrate_native_monthly.png)
+
 It didn't happen. Instead, we can see it's basically the same. 
 
 Hypothesis 2 is that prime-age employment would rise for native-born workers.
+
+![Native-born prime-age employment-population ratio by month, not seasonally adjusted: lower in 2026 than 2024 in every month](graphics/fig2_prime_epop_native_monthly.png)
 
 It didn't happen. Instead, it looks like it fell. 
 
 Hypothesis 3: Prime-age employment would rise for native-born male workers. This is the subtext of the 101% female job gain response I got, and people like Vice President JD Vance have alluded to this: the idea that there are a lot of workers on the sidelines because immigration is keeping them out of the labor force.
 
+![Native-born men's prime-age employment-population ratio by month, not seasonally adjusted: lower in 2026 than 2024 in every month](graphics/fig3_native_men_epop_monthly.png)
+
 It didn't happen. Instead, we can see that fell too.
 
 Hypothesis 4: Least educated native workers would do better. There's some debate about this, but in theory, native-born without a high school diploma should have been competing the most with immigrant labor and thus should have the most to gain 
+
+![Native-born unemployment rate by education: the least-educated group did worst, not best](graphics/fig7_education.png)
 
 It didn't happen. The least educated native workers did worse on unemployment.
 
 Hypothesis 5: wage growth would pick up for lower-income workers with deportations accelerated.
 
+![Real hourly wage at the 10th percentile for native-born workers fell in 2026](graphics/fig14_wage_p10.png)
+
 It didn't happen. Nominal real wages at the bottom of the income distribution fell. Here's the 10th percentile.
 
-Hypothesis 6 is that the highest-immigration-share job categories from my CES blog post, using that methodology and not microdata, should see the biggest wage increases.
+Hypothesis 6 is that the highest-immigration-share job categories from my CES blog post, using that methodology and not microdata, should see the biggest wage increases. This one uses no CPS microdata at all: I take the non-citizen worker share by industry from the 2024 ACS, the same crosswalk onto BLS's 249 CES industries as that post, split them into quintiles, and look at BLS's own published wage data by industry.
 
-It didn't happen. The higher the immigration share, the worse the wage impact.
+![Real wage growth by quintile of a CES industry's non-citizen worker share, from BLS establishment data: no acceleration in the highest-share quintile](graphics/fig11_wages_exposure.png)
+
+It didn't happen. The most non-citizen-intensive industries never show the fastest wage growth in any year, including 2026. There isn't a clean monotonic story here the way there was by occupation above — the middle of the distribution grew fastest in 2026 — but the top quintile, the one theory says should have gained the most, at no point comes out on top.
 
 Hypothesis 7: At least unemployed native workers could find work faster because immigrants were out of the way.
 
+![Monthly job-finding rate for unemployed native-born workers fell](graphics/fig6_job_finding.png)
+
 It didn't happen. The monthly job finding rate fell for native-born workers out here in 2026.
 
-Hypothesis 8: Well, at least with immigrants not putting pressure on the labor market, the share who were involuntarily part-time employed would go down. 
+Hypothesis 8: Immigration is behind the fall in the labor share. This was actually a specific argument Baron Sargon brought up during the 2024 election. Maybe with mass deportations, the labor share could increase 
 
-It didn't happen. That actually increased too.
-
-Hypothesis 9. Hispanic U.S. citizens would benefit with higher employment rates as a result of less competition from immigrants, deep inside the period, all work on immigration that forms the basis of native-born workers not being impacted by immigrants usually finds a pretty substantial fall in the impact on other immigrants, including citizens. I was actually worried here, especially given the weakness of Dems with Hispanic voters in 2024.
-
-But it didn't happen. We're going to have a couple different graphics here that show that EPop for second-generation native-born and foreign-born both fell.
-
-Hypothesis 10: Immigration is behind the fall in the labor share. This was actually a specific argument Baron Sargon brought up during the 2024 election. Maybe with mass deportations, the labor share could increase 
+![Labor share of nonfarm business income fell to a postwar low](graphics/b2_fig1_labor_share.png)
 
 But it didn't happen. Labor share actually falls dramatically lower in 2025 and 2026, as we discussed in a recent post. It's falling so fast that people are genuinely unclear what is even going on.
 
