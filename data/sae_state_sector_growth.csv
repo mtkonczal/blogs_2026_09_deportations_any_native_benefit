@@ -1,0 +1,308 @@
+state_name,industry_name,emp_start,emp_end,growth
+Alabama,Mining and Logging,9.4,9.6,0.02127659574468077
+Alabama,Construction,108.2,114.3,0.05637707948243986
+Alabama,Manufacturing,285.1,280.6,-0.015783935461241683
+Alabama,Professional and Business Services,261.1,268.1,0.02680965147453085
+Alabama,Leisure and Hospitality,212.4,220.4,0.03766478342749524
+Alabama,Government,426,431.2,0.012206572769952961
+Alaska,Mining and Logging,13.1,13.9,0.06106870229007644
+Alaska,Construction,19.5,18.3,-0.06153846153846154
+Alaska,Manufacturing,12.5,12.9,0.03200000000000003
+Alaska,Professional and Business Services,29.1,29.7,0.020618556701030855
+Alaska,Leisure and Hospitality,36.1,38.4,0.06371191135734056
+Alaska,Government,80.3,77.3,-0.03735990037359904
+Arizona,Mining and Logging,15.3,17,0.11111111111111116
+Arizona,Construction,227.3,228.1,0.003519577650681782
+Arizona,Manufacturing,193.9,191.9,-0.010314595152140282
+Arizona,Professional and Business Services,461,469.2,0.017787418655097698
+Arizona,Leisure and Hospitality,371.9,360.5,-0.030653401452003126
+Arizona,Government,434.9,426.3,-0.019774660841572644
+Arkansas,Mining and Logging,4.9,4.8,-0.020408163265306256
+Arkansas,Construction,66.9,67.5,0.008968609865470656
+Arkansas,Manufacturing,160.8,159,-0.011194029850746356
+Arkansas,Professional and Business Services,162.8,166.2,0.020884520884520752
+Arkansas,Leisure and Hospitality,130.9,133.9,0.02291825821237592
+Arkansas,Government,206.3,204.8,-0.007270964614638831
+California,Mining and Logging,18.6,18.2,-0.021505376344086113
+California,Construction,902.3,886.8,-0.017178322065831808
+California,Manufacturing,1232.4,1203,-0.02385589094449858
+California,Professional and Business Services,2757.7,2741,-0.00605577111360911
+California,Leisure and Hospitality,2016.1,2053.5,0.018550667129606735
+California,Government,2736.2,2663.4,-0.02660624223375474
+Colorado,Mining and Logging,21.8,20.1,-0.07798165137614677
+Colorado,Construction,188.2,188.6,0.002125398512221155
+Colorado,Manufacturing,148.3,144.5,-0.025623735670937342
+Colorado,Professional and Business Services,491.1,490.3,-0.0016289961311342083
+Colorado,Leisure and Hospitality,352.2,357.1,0.013912549687677522
+Colorado,Government,491.6,484.3,-0.014849471114727453
+Connecticut,Mining and Logging,0.4,0.5,0.25
+Connecticut,Construction,63.7,66.1,0.037676609105180336
+Connecticut,Manufacturing,154.2,157,0.0181582360570689
+Connecticut,Professional and Business Services,221.2,223,0.008137432188065175
+Connecticut,Leisure and Hospitality,155.2,154.4,-0.005154639175257603
+Connecticut,Government,236.7,235.2,-0.006337135614702172
+Delaware,Manufacturing,26.6,25.7,-0.03383458646616544
+Delaware,Professional and Business Services,64.6,66.3,0.026315789473684292
+Delaware,Leisure and Hospitality,53.2,51,-0.0413533834586467
+Delaware,Government,72.2,71.8,-0.005540166204986208
+District of Columbia,Manufacturing,1.1,1,-0.09090909090909094
+District of Columbia,Professional and Business Services,169.9,161.5,-0.04944084755738676
+District of Columbia,Leisure and Hospitality,77.7,76.1,-0.0205920205920207
+District of Columbia,Government,235.5,207.6,-0.11847133757961781
+Florida,Construction,656.5,656.8,4.5696877380030365e-4
+Florida,Manufacturing,428.4,430,0.0037348272642390157
+Florida,Professional and Business Services,1620.3,1627.9,0.0046904894155404
+Florida,Leisure and Hospitality,1333.6,1345.6,0.008998200359928044
+Florida,Government,1150.8,1138.7,-0.01051442474800135
+Georgia,Mining and Logging,9.6,9.5,-0.01041666666666663
+Georgia,Construction,231.8,232.4,0.0025884383088869978
+Georgia,Manufacturing,427.9,426,-0.004440289787333462
+Georgia,Professional and Business Services,747.4,737.8,-0.012844527696012853
+Georgia,Leisure and Hospitality,515.7,515.7,0
+Georgia,Government,716.3,705.8,-0.014658662571548242
+Hawaii,Manufacturing,13,12.7,-0.023076923076923106
+Hawaii,Professional and Business Services,72.9,72.2,-0.009602194787380003
+Hawaii,Leisure and Hospitality,120.6,122.3,0.014096185737976885
+Hawaii,Government,128.3,125.6,-0.0210444271239284
+Idaho,Mining and Logging,4.3,4.6,0.06976744186046502
+Idaho,Construction,73.6,76.6,0.040760869565217295
+Idaho,Manufacturing,75,77,0.026666666666666616
+Idaho,Professional and Business Services,109.9,111.6,0.015468607825295688
+Idaho,Leisure and Hospitality,94.1,92.5,-0.01700318809776824
+Idaho,Government,130.5,128.8,-0.013026819923371513
+Illinois,Mining and Logging,6.9,7.3,0.05797101449275344
+Illinois,Construction,236.8,252.6,0.0667229729729728
+Illinois,Manufacturing,570.9,571.3,7.006480994919961e-4
+Illinois,Professional and Business Services,911.5,907.7,-0.004168952276467297
+Illinois,Leisure and Hospitality,606.7,605.1,-0.0026372177352893544
+Illinois,Government,852.8,857.3,0.005276735459662341
+Indiana,Mining and Logging,5.2,5.3,0.019230769230769162
+Indiana,Construction,171.6,181.7,0.05885780885780889
+Indiana,Manufacturing,518.5,513.4,-0.00983606557377048
+Indiana,Professional and Business Services,354.1,357.9,0.01073143179892666
+Indiana,Leisure and Hospitality,313.4,299,-0.04594767070835981
+Indiana,Government,434.7,416.4,-0.04209799861973773
+Iowa,Mining and Logging,2.2,2.2,0
+Iowa,Construction,84.2,87.1,0.03444180522565321
+Iowa,Manufacturing,219.3,212.9,-0.02918376652986776
+Iowa,Professional and Business Services,143.9,140.9,-0.020847810979847115
+Iowa,Leisure and Hospitality,144.4,141.3,-0.02146814404432129
+Iowa,Government,271.2,267.3,-0.014380530973451267
+Kansas,Mining and Logging,6.2,5.9,-0.048387096774193505
+Kansas,Construction,71.6,77.5,0.08240223463687157
+Kansas,Manufacturing,173.3,173.5,0.0011540680900172795
+Kansas,Professional and Business Services,174,174,0
+Kansas,Leisure and Hospitality,133.3,137.9,0.03450862715678915
+Kansas,Government,259.3,257,-0.00887003470883152
+Kentucky,Mining and Logging,7.2,7,-0.02777777777777779
+Kentucky,Construction,89.6,92.7,0.03459821428571441
+Kentucky,Manufacturing,253.6,249.1,-0.01774447949526814
+Kentucky,Professional and Business Services,222.9,223,4.4863167339603827e-4
+Kentucky,Leisure and Hospitality,204.6,209.4,0.02346041055718473
+Kentucky,Government,315.7,315.3,-0.0012670256572694383
+Louisiana,Mining and Logging,28.6,27.5,-0.03846153846153855
+Louisiana,Construction,141.9,151.7,0.06906272022551074
+Louisiana,Manufacturing,139.7,143.6,0.027916964924838972
+Louisiana,Professional and Business Services,223.7,227.2,0.015645954403218587
+Louisiana,Leisure and Hospitality,225.3,225.2,-4.4385264092328125e-4
+Louisiana,Government,324.7,326,0.0040036957191254
+Maine,Mining and Logging,2,1.8,-0.09999999999999998
+Maine,Construction,35.9,34.9,-0.027855153203342642
+Maine,Manufacturing,51.5,51.1,-0.007766990291262155
+Maine,Professional and Business Services,78.6,77.1,-0.01908396946564883
+Maine,Leisure and Hospitality,70.6,71.2,0.008498583569405138
+Maine,Government,103.5,102.5,-0.009661835748792313
+Maryland,Mining and Logging,1.5,1.5,0
+Maryland,Construction,162.5,165,0.01538461538461533
+Maryland,Manufacturing,111.3,111.6,0.0026954177897573484
+Maryland,Professional and Business Services,477.9,470.7,-0.015065913370998052
+Maryland,Leisure and Hospitality,271.9,275.9,0.01471129091577783
+Maryland,Government,545,527.2,-0.03266055045871552
+Massachusetts,Mining and Logging,1,1.1,0.10000000000000009
+Massachusetts,Construction,167.4,169.3,0.011350059737156526
+Massachusetts,Manufacturing,228.7,228.3,-0.0017490161783995095
+Massachusetts,Professional and Business Services,614.1,611.1,-0.00488519785051289
+Massachusetts,Leisure and Hospitality,365.2,361.6,-0.009857612267250682
+Massachusetts,Government,474.8,474.9,2.106149957876724e-4
+Michigan,Mining and Logging,7.1,7.4,0.04225352112676073
+Michigan,Construction,198.8,199.7,0.00452716297786715
+Michigan,Manufacturing,578.7,585.3,0.011404872991187087
+Michigan,Professional and Business Services,628.4,617.2,-0.017823042647994836
+Michigan,Leisure and Hospitality,431.7,432.7,0.0023164234422052843
+Michigan,Government,624.8,642.5,0.028329065300896294
+Minnesota,Mining and Logging,6.5,6.5,0
+Minnesota,Construction,139.4,148.5,0.06527977044476319
+Minnesota,Manufacturing,316.3,322.5,0.019601644008852226
+Minnesota,Professional and Business Services,371,375.4,0.011859838274932644
+Minnesota,Leisure and Hospitality,272.9,276.4,0.012825210699890066
+Minnesota,Government,434.8,437.6,0.0064397424103035394
+Mississippi,Mining and Logging,5.7,5.8,0.01754385964912264
+Mississippi,Construction,52.4,54.5,0.040076335877862634
+Mississippi,Manufacturing,139.9,138.2,-0.012151536812008645
+Mississippi,Professional and Business Services,117.1,119.6,0.021349274124679685
+Mississippi,Leisure and Hospitality,135.3,137.3,0.014781966001478297
+Mississippi,Government,239,236,-0.012552301255230103
+Missouri,Mining and Logging,4.3,4.5,0.04651162790697683
+Missouri,Construction,142.2,158.3,0.11322081575246146
+Missouri,Manufacturing,277,279.9,0.01046931407942231
+Missouri,Professional and Business Services,364.7,368.7,0.010967918837400559
+Missouri,Leisure and Hospitality,307.5,318.3,0.035121951219512226
+Missouri,Government,437.4,432.9,-0.010288065843621408
+Montana,Mining and Logging,6,5.8,-0.033333333333333326
+Montana,Construction,37.1,36.6,-0.013477088948787075
+Montana,Manufacturing,21.5,20.6,-0.041860465116279055
+Montana,Professional and Business Services,53.8,54,0.003717472118959231
+Montana,Leisure and Hospitality,73.5,71.5,-0.027210884353741527
+Montana,Government,92.8,91.3,-0.016163793103448287
+Nebraska,Mining and Logging,1,1,0
+Nebraska,Construction,63.2,68.1,0.07753164556962022
+Nebraska,Manufacturing,103.8,97.5,-0.06069364161849711
+Nebraska,Professional and Business Services,119.4,117.4,-0.01675041876046901
+Nebraska,Leisure and Hospitality,100.5,103.7,0.03184079601990053
+Nebraska,Government,179.9,177.8,-0.011673151750972721
+Nevada,Mining and Logging,14.6,15,0.027397260273972712
+Nevada,Construction,111.3,116.3,0.0449236298292901
+Nevada,Manufacturing,67.3,68.3,0.014858841010401136
+Nevada,Professional and Business Services,220.7,239.1,0.08337109198006343
+Nevada,Leisure and Hospitality,360.4,357.8,-0.007214206437291759
+Nevada,Government,183.1,184,0.004915346805024701
+New Hampshire,Mining and Logging,0.9,0.9,0
+New Hampshire,Construction,32.4,31.5,-0.02777777777777779
+New Hampshire,Manufacturing,68.1,67.6,-0.007342143906020504
+New Hampshire,Professional and Business Services,99.4,102,0.026156941649899235
+New Hampshire,Leisure and Hospitality,77,78.9,0.02467532467532485
+New Hampshire,Government,88.4,87.5,-0.010180995475113197
+New Jersey,Mining and Logging,1.6,1.5,-0.0625
+New Jersey,Construction,164.4,161.3,-0.018856447688564426
+New Jersey,Manufacturing,253.5,248.7,-0.018934911242603603
+New Jersey,Professional and Business Services,712.7,703.2,-0.01332959169355974
+New Jersey,Leisure and Hospitality,408.8,398.8,-0.024461839530332652
+New Jersey,Government,625.9,624,-0.0030356286946796596
+New Mexico,Mining and Logging,24.4,26,0.06557377049180335
+New Mexico,Construction,55.4,56.4,0.018050541516245522
+New Mexico,Manufacturing,28.6,28,-0.020979020979021046
+New Mexico,Professional and Business Services,120.9,118.5,-0.01985111662531025
+New Mexico,Leisure and Hospitality,99.5,99.4,-0.0010050251256280562
+New Mexico,Government,193,194,0.005181347150259086
+New York,Mining and Logging,5.5,5.5,0
+New York,Construction,389.8,381.3,-0.021806054386865004
+New York,Manufacturing,409.6,397.1,-0.030517578125
+New York,Professional and Business Services,1411.9,1404.5,-0.005241164388412822
+New York,Leisure and Hospitality,940.1,917.4,-0.02414636740772258
+New York,Government,1506.6,1532.2,0.01699190229656189
+North Carolina,Mining and Logging,6.1,6.1,0
+North Carolina,Construction,274.7,295.2,0.07462686567164178
+North Carolina,Manufacturing,463.4,449.8,-0.02934829520932236
+North Carolina,Professional and Business Services,740.3,763,0.030663244630555253
+North Carolina,Leisure and Hospitality,537.6,554.9,0.032180059523809534
+North Carolina,Government,771.7,779.5,0.010107554749254843
+North Dakota,Mining and Logging,18,17,-0.05555555555555558
+North Dakota,Construction,30,31.2,0.040000000000000036
+North Dakota,Manufacturing,28.1,27.7,-0.014234875444839923
+North Dakota,Professional and Business Services,34.6,33.9,-0.020231213872832443
+North Dakota,Leisure and Hospitality,41.2,41.9,0.016990291262135804
+North Dakota,Government,86.2,86.3,0.001160092807424462
+Ohio,Mining and Logging,8.8,9.2,0.04545454545454519
+Ohio,Construction,253.6,273.6,0.07886435331230301
+Ohio,Manufacturing,675.1,689,0.02058954229003107
+Ohio,Professional and Business Services,731.4,727.7,-0.005058791359037418
+Ohio,Leisure and Hospitality,568.6,570.1,0.0026380583890257547
+Ohio,Government,794.7,786.5,-0.01031835912923118
+Oklahoma,Mining and Logging,28.8,28.3,-0.01736111111111116
+Oklahoma,Construction,87.6,94,0.0730593607305936
+Oklahoma,Manufacturing,141.4,139.6,-0.012729844413012836
+Oklahoma,Professional and Business Services,206.3,202.9,-0.016480853126514816
+Oklahoma,Leisure and Hospitality,185.6,181.6,-0.02155172413793105
+Oklahoma,Government,371.7,371.9,5.380683346785098e-4
+Oregon,Mining and Logging,6,5.9,-0.016666666666666607
+Oregon,Construction,115.5,113,-0.02164502164502169
+Oregon,Manufacturing,182,173.2,-0.0483516483516484
+Oregon,Professional and Business Services,258.7,248.1,-0.04097410127560874
+Oregon,Leisure and Hospitality,208,203.7,-0.02067307692307696
+Oregon,Government,317.1,311.7,-0.017029328287606504
+Pennsylvania,Mining and Logging,20.7,21.9,0.05797101449275366
+Pennsylvania,Construction,260.6,261.5,0.003453568687643793
+Pennsylvania,Manufacturing,560.3,557.5,-0.004997322862752007
+Pennsylvania,Professional and Business Services,834.4,834.3,-1.1984659635666528e-4
+Pennsylvania,Leisure and Hospitality,571.4,583.6,0.02135106755337768
+Pennsylvania,Government,707.4,700.1,-0.010319479785128594
+Rhode Island,Mining and Logging,0.1,0.2,1
+Rhode Island,Construction,22.5,22.3,-0.008888888888888835
+Rhode Island,Manufacturing,39.4,40.2,0.020304568527918843
+Rhode Island,Professional and Business Services,68.4,68.8,0.005847953216374213
+Rhode Island,Leisure and Hospitality,61.1,59.3,-0.029459901800327426
+Rhode Island,Government,67.2,64.6,-0.038690476190476275
+South Carolina,Mining and Logging,4.7,4.8,0.02127659574468077
+South Carolina,Construction,121.1,129,0.06523534269199005
+South Carolina,Manufacturing,262.5,264.8,0.008761904761904749
+South Carolina,Professional and Business Services,316.1,313.7,-0.007592534008225349
+South Carolina,Leisure and Hospitality,282,287.3,0.01879432624113475
+South Carolina,Government,393.5,401.1,0.019313850063532367
+South Dakota,Mining and Logging,1.1,1.2,0.09090909090909083
+South Dakota,Construction,30,30.4,0.013333333333333197
+South Dakota,Manufacturing,44.4,44,-0.009009009009009028
+South Dakota,Professional and Business Services,37.3,37,-0.008042895442359144
+South Dakota,Leisure and Hospitality,50.9,54.2,0.06483300589390972
+South Dakota,Government,82.2,80.8,-0.017031630170316392
+Tennessee,Mining and Logging,4.4,4.3,-0.022727272727272818
+Tennessee,Construction,164.7,165.6,0.005464480874316946
+Tennessee,Manufacturing,359.4,355.5,-0.01085141903171949
+Tennessee,Professional and Business Services,446.7,450.3,0.008059100067159264
+Tennessee,Leisure and Hospitality,365.5,371.3,0.015868673050615678
+Tennessee,Government,453.8,457.3,0.007712648743940065
+Texas,Mining and Logging,213.7,211.9,-0.008423022929340163
+Texas,Construction,885.1,923.3,0.04315896508869055
+Texas,Manufacturing,987.1,980.6,-0.006584945800830688
+Texas,Professional and Business Services,2115.9,2186.1,0.03317737133134835
+Texas,Leisure and Hospitality,1528.7,1556.2,0.01798914110028127
+Texas,Government,2128.8,2128.8,0
+Utah,Mining and Logging,11.5,10.8,-0.060869565217391286
+Utah,Construction,142.3,145.4,0.021784961349262
+Utah,Manufacturing,153.9,154.6,0.00454840805717982
+Utah,Professional and Business Services,250.3,260.9,0.04234918098282048
+Utah,Leisure and Hospitality,177.4,177.8,0.0022547914317925244
+Utah,Government,276.2,276.2,0
+Vermont,Mining and Logging,0.8,0.9,0.125
+Vermont,Construction,16.3,16.5,0.012269938650306678
+Vermont,Manufacturing,27.5,27.8,0.01090909090909098
+Vermont,Professional and Business Services,32.7,31.4,-0.03975535168195732
+Vermont,Leisure and Hospitality,35.6,35.2,-0.011235955056179692
+Vermont,Government,56.2,57.3,0.019572953736654686
+Virginia,Mining and Logging,7,6.4,-0.08571428571428563
+Virginia,Construction,223.3,224.9,0.0071652485445588
+Virginia,Manufacturing,240.9,230.5,-0.04317144043171439
+Virginia,Professional and Business Services,815.2,785.6,-0.036310107948969605
+Virginia,Leisure and Hospitality,418,423.9,0.01411483253588508
+Virginia,Government,764.3,757.7,-0.008635352610231517
+Washington,Mining and Logging,5.1,5.1,0
+Washington,Construction,220.1,215.5,-0.02089959109495676
+Washington,Manufacturing,274.8,275.8,0.00363901018922852
+Washington,Professional and Business Services,539.9,550.2,0.01907760696425287
+Washington,Leisure and Hospitality,344.7,348.8,0.011894400928343485
+Washington,Government,620.7,607.1,-0.021910745932012254
+West Virginia,Mining and Logging,21,19.5,-0.0714285714285714
+West Virginia,Construction,32.7,35,0.07033639143730874
+West Virginia,Manufacturing,45.6,45.1,-0.010964912280701733
+West Virginia,Professional and Business Services,71.8,73,0.01671309192200554
+West Virginia,Leisure and Hospitality,71.4,71.9,0.007002801120448154
+West Virginia,Government,147.7,147.8,6.770480704132442e-4
+Wisconsin,Mining and Logging,4.1,4.1,0
+Wisconsin,Construction,143.8,154.7,0.07579972183588302
+Wisconsin,Manufacturing,461.1,458.1,-0.006506180871828193
+Wisconsin,Professional and Business Services,329,333.4,0.013373860182370745
+Wisconsin,Leisure and Hospitality,290.1,294.8,0.01620130989314017
+Wisconsin,Government,420.2,412.3,-0.01880057115659206
+Wyoming,Mining and Logging,15.8,15.4,-0.025316455696202556
+Wyoming,Construction,23.8,23.9,0.004201680672268893
+Wyoming,Manufacturing,10.5,10.3,-0.01904761904761898
+Wyoming,Professional and Business Services,22.1,21.7,-0.018099547511312264
+Wyoming,Leisure and Hospitality,38.1,39.3,0.03149606299212593
+Wyoming,Government,71.2,71.1,-0.0014044943820226141
+Puerto Rico,Mining and Logging,0.6,0.6,0
+Puerto Rico,Construction,38.5,38.9,0.010389610389610393
+Puerto Rico,Manufacturing,81.5,81.2,-0.0036809815950920033
+Puerto Rico,Professional and Business Services,136.1,134.4,-0.012490815576781666
+Puerto Rico,Leisure and Hospitality,98.5,104.9,0.06497461928934012
+Puerto Rico,Government,196.6,194.5,-0.010681586978636748
+Virgin Islands,Leisure and Hospitality,6.5,5.3,-0.18461538461538463
+Virgin Islands,Government,10.8,10.3,-0.04629629629629628

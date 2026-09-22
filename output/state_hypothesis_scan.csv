@@ -1,0 +1,24 @@
+var,label,category,n,r,ci_lo,ci_hi,p_value
+construction_emp_share_pre,2024 construction share of state employment,Confound / baseline,50,0.37660097370183104,0.10975883746493643,0.5928070839137027,0.007025051076480039
+wage_yoy_Total_Private,"Total private wage growth, YoY (NSA)",Wages,50,0.29033851682219536,0.013045033508365679,0.5261642388413696,0.04081863316407321
+d_unrate,"Change in unemployment rate, pp (LAUS, household survey)",Labor demand,50,0.27827692539140325,-7.673701332231464e-5,0.5166092548072905,0.05037243180964395
+total_nonfarm_job_growth,Total nonfarm payroll job growth (all industries),Labor demand,50,0.27131750451738934,-0.007604511333481174,0.5110689825592762,0.0566631204006066
+d_for_epop,"Change in FOREIGN-BORN prime-age EPOP, pp (CPS)",CPS: foreign-born outcomes,50,-0.2428209925341916,-0.4881737002818548,0.03810198870815722,0.08929850630952717
+for_share_pre,2024 foreign-born share of state population,Confound / baseline,50,0.20599506921029873,-0.0767535649952681,0.45807742629536413,0.1512279540862294
+growth_Professional_and_Business_Services,Professional & business services job growth,Placebo sector,50,0.17683158424772963,-0.1067714987782135,0.43382609268166594,0.21927028851661964
+growth_Government,Government payroll job growth,Placebo sector,50,0.17617618647360012,-0.10744021085358185,0.4332767747256327,0.22101076104706904
+growth_Mining_and_Logging,Mining & logging payroll job growth,Labor demand,47,-0.16499606989888482,-0.4317079561821636,0.12824727663334679,0.26772627426811574
+labor_force_growth,Labor force growth (LAUS),Labor supply,50,0.13797534053945468,-0.1459787079688917,0.40092546786161115,0.33930622531692445
+d_nat_unrate,"Change in NATIVE prime-age unemployment rate, pp (CPS)",CPS: native outcomes,50,0.12282825738472149,-0.16102473003764797,0.38791361096208954,0.39544531217642676
+d_log_for_pop,"Change in log foreign-born population (CPS, levels)",CPS: foreign-born outcomes,50,0.11442033660225222,-0.16931999338040782,0.38064502877606887,0.42881926992656094
+growth_Construction,Construction payroll job growth,Labor demand,48,0.09852608270611703,-0.19095432024751763,0.37224004044997017,0.5052581882220988
+d_nat_epop,"Change in NATIVE prime-age EPOP, pp (CPS)",CPS: native outcomes,50,-0.09819094385575926,-0.36652118922026244,0.18521903790966324,0.49752077228169833
+d_for_unrate,"Change in FOREIGN-BORN prime-age unemployment rate, pp (CPS)",CPS: foreign-born outcomes,50,0.09778505344704883,-0.18561477375371874,0.36616636556546933,0.49930864052977275
+growth_Manufacturing,Manufacturing payroll job growth,Labor demand,50,-0.08947003021433787,-0.3588802737933661,0.19370158985870145,0.536648965473437
+d_epop,"Change in employment-population ratio, pp (LAUS)",Labor demand,50,-0.0630851512766528,-0.3355409031019468,0.21911005389194355,0.6633949584419672
+hh_employment_growth,Household-survey employment growth (LAUS),Labor demand,50,0.04007062921723964,-0.2409647055943903,0.3149060219462863,0.7823279830962326
+d_lfpr,"Change in labor force participation rate, pp (LAUS)",Labor supply,50,0.020601272092625123,-0.2592329704877762,0.29724449642665424,0.8870772436319887
+growth_Leisure_and_Hospitality,Leisure & hospitality payroll job growth,Labor demand,50,0.02058907463065777,-0.25924435305121074,0.2972333719038633,0.8871436684873387
+wage_yoy_Leisure_and_Hospitality,"Leisure & hospitality wage growth, YoY (NSA)",Wages,50,0.015819515226269124,-0.26368931330393736,0.2928775982201068,0.913172082032402
+unrate_level_jan2025,Jan 2025 unemployment rate LEVEL (pre-existing conditions),Confound / baseline,50,0.01404460596947094,-0.26534040356101973,0.2912537309391943,0.9228826591391694
+wage_yoy_Construction,"Construction wage growth, YoY (NSA)",Wages,43,-0.006235366189438475,-0.3060061528290189,0.2946603209647497,0.9683454361241342
