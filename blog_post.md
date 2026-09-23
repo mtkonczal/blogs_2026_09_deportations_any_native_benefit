@@ -24,19 +24,19 @@ Not this time. Instead, it is lower. (Not seasonally adjusted, aggregated publis
 
 ![Native-born men's prime-age employment-population ratio by month, not seasonally adjusted: no higher in 2026 than 2024](graphics/fig3_native_men_epop_monthly.png)
 
-It's a made-up tale. Employment here is about the same as or lower than in 2024. (Not seasonally adjusted, author's IPUMS calculation.)
+It's a made-up tale. Employment ran slightly around or above 2024 through May, then fell well below it this summer. (Not seasonally adjusted, author's IPUMS calculation.)
 
 **Hypothesis 4: Least-educated native workers would do better.** Native-born workers without a college degree should have the most to gain when it comes to unemployment rates.
 
 ![Native-born prime-age unemployment rate by education, 3-month moving average, 2024 vs. 2026: no improvement in 2026 for less than high school, high school, or some college](graphics/fig7_education.png)
 
-It's totally pure fiction. Their unemployment rates are the same or higher. (Not seasonally adjusted, author's IPUMS calculation.)
+It's totally pure fiction. (Not seasonally adjusted, author's IPUMS calculation.)
 
-**Hypothesis 5: In the states that actually lost the most immigrant workers, native-born employment should rise.**
+**Hypothesis 5: In the states that actually lost the most noncitizen workers, native-born employment should rise.**
 
 ![By state, noncitizen jobs lost versus native-born jobs gained, per 100 prime-age residents: states do not follow the one-for-one replacement line](graphics/fig11_exposure_native.png)
 
-Not a chance. If native-born workers took jobs immigrants left states would line up along the dashed line, where you have one native-born job gained for every noncitizen job lost. Instead the line is flat. That immigration enforcement doesn't help native-born employment, and can even reduce it, is already in the empirical economics literature ([East et al. 2023](https://www.journals.uchicago.edu/doi/10.1086/721152)), but I guess we get to relearn it here. (Author's IPUMS calculation.)
+Not a chance. If native-born workers took the jobs noncitizens left, states would line up along the dashed line, where you have one native-born job gained for every noncitizen job lost. Instead the line is flat. That immigration enforcement doesn't help native-born employment, and can even reduce it, is already in the empirical economics literature ([East et al. 2023](https://www.journals.uchicago.edu/doi/10.1086/721152)), but I guess we get to relearn it here. (Author's IPUMS calculation.)
 
 **Hypothesis 6: Native-born wage growth would pick up for lower-income workers.** Let's stick with nominal wage growth for native-born workers, since the Iran war causes inflation to skyrocket (and real wages to fall), which is very bad for these workers but separate from what we want to explore here.
 
@@ -60,7 +60,7 @@ It's a total fabrication. The labor share actually falls suddenly and dramatical
 
 ![Vacancies per unemployed worker and the quits rate, 2018-2026: both fell from their 2022-23 highs and stayed down](graphics/fig4_tightness.png)
 
-We created it. Both measures are at or below their 2024 levels in 2026.
+We created it. Both measures are at or below their 2024 levels in 2026. Vacancies per unemployed worker have ticked up this year, but only back to where they were in late 2024.
 
 **Hypothesis 10: Native-born workers in construction should particularly benefit.** A very high foreign-born labor share and it’s hard to automate with AI.
 
