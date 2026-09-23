@@ -6,7 +6,7 @@ Pretty good actually. I crank through 12 ways in which the mass deportations of 
 
 We're going to move pretty fast through this. There's [a GitHub here](https://github.com/mtkonczal/blogs_2026_09_deportations_any_native_benefit) where you can go ahead and ask your AI to download it and check it yourself. Let's channel Jonathan Frakes telling us that none of these ever happened, they are all fiction, as we go through these.
 
-[https://www.youtube.com/watch?v=GM-e46xdcUo]
+https://www.youtube.com/watch?v=GM-e46xdcUo
 
 **Hypothesis 1: Native-born unemployment would fall.**
 
@@ -20,7 +20,7 @@ It never happened. It's higher instead. (Not seasonally adjusted, published BLS 
 
 Not this time. Instead, it is lower. (Not seasonally adjusted, aggregated published BLS categories.)
 
-**Hypothesis 3: Prime-age employment would rise for native-born male workers.** Overall is lower, but maybe it would rise for men. During the 2024 election, in response to a question about deportations, J.D. Vance [said](https://reason.com/2024/10/17/j-d-vance-says-7-million-able-bodied-men-have-dropped-out-of-the-labor-force-where-are-they/), "You would take, let's say for example, the seven million prime-age men who have dropped out of the labor force" and "re-engage folks into the American labor market." He later noted, "we have seven million—just men, not even women, just men—who have completely dropped out of the labor force." Did that work?
+**Hypothesis 3: Prime-age employment would rise for native-born male workers.** Overall employment is lower, but maybe it would rise for men. During the 2024 election, in response to a question about deportations, J.D. Vance [said](https://reason.com/2024/10/17/j-d-vance-says-7-million-able-bodied-men-have-dropped-out-of-the-labor-force-where-are-they/), "You would take, let's say for example, the seven million prime-age men who have dropped out of the labor force" and "re-engage folks into the American labor market." He later noted, "we have seven million—just men, not even women, just men—who have completely dropped out of the labor force." Did that work?
 
 ![Native-born men's prime-age employment-population ratio by month, not seasonally adjusted: no higher in 2026 than 2024](graphics/fig3_native_men_epop_monthly.png)
 
@@ -32,13 +32,13 @@ It's a made-up tale. Employment here is about the same as or lower than in 2024.
 
 It's totally pure fiction. Their unemployment rates are the same or higher. (Not seasonally adjusted, author's IPUMS calculation.)
 
-**Hypothesis 5: In the states that actually lost the most immigrant workers, native-born employment should rise.** 
+**Hypothesis 5: In the states that actually lost the most immigrant workers, native-born employment should rise.**
 
 ![By state, the 2022-24 noncitizen share of employment versus the change in noncitizen employment and in the native-born prime-age employment rate: immigrant employment fell more in exposed states, native employment did not rise](graphics/fig11_exposure_native.png)
 
 Not a chance. On the left you can see states with higher noncitizen shares saw noncitizen prime-age employment fall more. On the right, you can see those same states saw no increase in native-born prime-age employment rates. That immigration enforcement doesn't help native-born employment, and can even reduce it, is already in the empirical economics literature ([East et al. 2023](https://www.journals.uchicago.edu/doi/10.1086/721152)), but I guess we get to relearn it here. (Author's IPUMS calculation.)
 
-**Hypothesis 6: Native-born wage growth would pick up for lower-income workers.** Let's stick with nominal wage growth for native-born workers, since the Iranian War causes inflation to skyrocket (and real wages to fall), which is very bad for these workers but separate from what we want to explore here.
+**Hypothesis 6: Native-born wage growth would pick up for lower-income workers.** Let's stick with nominal wage growth for native-born workers, since the Iran war causes inflation to skyrocket (and real wages to fall), which is very bad for these workers but separate from what we want to explore here.
 
 ![Nominal hourly wage growth for native-born workers at the 10th, 20th, and 40th percentiles and the median, 2023 to 2026: growth slowed across the bottom half, and the bottom slowed first](graphics/fig14c_nominal_wage_percentiles_monthly.png)
 
