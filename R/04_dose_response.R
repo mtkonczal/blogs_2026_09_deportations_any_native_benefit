@@ -124,4 +124,15 @@ print(dcast(edu[yr >= 2023], educ_grp ~ yr, value.var = "unrate"))
 cat("\n(EPOP)\n")
 print(dcast(edu[yr >= 2023], educ_grp ~ yr, value.var = "epop"))
 write_csv(edu, "output/h5_native_by_education.csv")
+
+# Like-for-like: 2026 has only Jan-Aug, and unemployment is seasonal, so the
+# chart compares January-August of every year.
+edu8 <- cps[!is.na(educ_grp) & prime == 1 & native == 1 & data.table::month(date) <= 8, .(
+  unrate = sum(WTFINL*unemp)/sum(WTFINL*inlf),
+  epop   = sum(WTFINL*emp)/sum(WTFINL),
+  n_lf   = sum(inlf)
+), by = .(educ_grp, yr = data.table::year(date))][order(educ_grp, yr)]
+cat("\n=== H5: prime-age NATIVE unemployment by education, January-August ===\n")
+print(dcast(edu8[yr >= 2023], educ_grp ~ yr, value.var = "unrate"))
+write_csv(edu8, "output/h5_native_by_education_jan_aug.csv")
 cat("\nDONE 04_dose_response.R\n")

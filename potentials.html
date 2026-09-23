@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Potentials: Candidate Graphics for the Deportations Post</title>
+<style>
+:root { --navy:#2c3254; --red:#ff8361; --green:#20705a; --gold:#e0a23c;
+  --bg:#faf9f4; --card:#fff; --ink:#1d2033; --muted:#6b6f80; --line:#e3e1d6; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg:#14161f; --card:#1c1f2b; --ink:#e8e8ee; --muted:#9a9eb0; --line:#2e3242; --navy:#aab4e8; } }
+:root[data-theme="dark"] { --bg:#14161f; --card:#1c1f2b; --ink:#e8e8ee; --muted:#9a9eb0; --line:#2e3242; --navy:#aab4e8; }
+* { box-sizing:border-box; }
+body { background:var(--bg); color:var(--ink); margin:0;
+  font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif; }
+.wrap { max-width:900px; margin:0 auto; padding:48px 16px 96px; }
+h1 { font-size:2.1rem; line-height:1.15; letter-spacing:-.02em; margin:0 0 .3em; color:var(--navy); }
+h2 { font-size:1.35rem; margin:2.6em 0 .5em; color:var(--navy); letter-spacing:-.01em;
+  border-top:2px solid var(--line); padding-top:1.1em; }
+h3 { font-size:1.08rem; margin:0 0 .5em; color:var(--ink); }
+.sub { color:var(--muted); font-size:1.05rem; margin:0 0 .4em; }
+.byline { color:var(--muted); font-size:.88rem; margin-bottom:2.2em; }
+.tierdesc { color:var(--muted); font-size:.92rem; margin:-.3em 0 1.2em; }
+.card { background:var(--card); border:1px solid var(--line); border-radius:12px;
+  padding:20px 22px; margin:1.4em 0; }
+.kicker { text-transform:uppercase; letter-spacing:.09em; font-size:.72rem;
+  font-weight:700; color:var(--muted); }
+.filename { font-size:.72rem; color:var(--muted); font-family:ui-monospace,Menlo,Consolas,monospace; }
+.hyp-row { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; margin-bottom:.6em; }
+.verdict { display:inline-block; padding:3px 9px; border-radius:99px; font-size:.68rem;
+  font-weight:800; letter-spacing:.05em; white-space:nowrap; flex-shrink:0; }
+.v-refuted { background:#fde2da; color:#8c2f13; }
+.v-supported { background:#d6ece0; color:#14543c; }
+.v-mixed, .v-inconc { background:#f7e6c4; color:#77500a; }
+.v-null { background:#e2e4ee; color:#3a4064; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .v-refuted { background:#4a1f11; color:#ffb69c; }
+  :root:not([data-theme="light"]) .v-supported { background:#14382a; color:#8fdcb8; }
+  :root:not([data-theme="light"]) .v-mixed, :root:not([data-theme="light"]) .v-inconc { background:#4a3a12; color:#f3d089; }
+  :root:not([data-theme="light"]) .v-null { background:#2b2f45; color:#c2c7e0; } }
+figure { margin:1em 0; }
+figure img { width:100%; border:1px solid var(--line); border-radius:10px; display:block; }
+figcaption { color:var(--muted); font-size:.8rem; margin-top:.5em; }
+.figrow { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+@media (max-width:640px) { .figrow { grid-template-columns:1fr; } }
+.datanote { background:var(--bg); border:1px solid var(--line); border-radius:8px;
+  padding:10px 14px; margin:.9em 0; font-size:.88rem; color:var(--muted); }
+.datanote strong { color:var(--ink); font-weight:700; }
+.says { border-left:3px solid var(--navy); padding-left:14px; margin:1em 0 .2em; font-size:.98rem; }
+.v-refuted-bar { border-left-color:var(--red); }
+.v-mixed-bar { border-left-color:var(--gold); }
+.usefor { color:var(--muted); font-size:.82rem; font-style:italic; margin-top:.6em; }
+code { background:var(--bg); border:1px solid var(--line); padding:1px 5px;
+  border-radius:4px; font-size:.85em; }
+a { color:var(--navy); }
+@media (max-width:600px) { h1 { font-size:1.6rem; } .wrap { padding:28px 16px 64px; } }
+</style>
+</head>
+<body><div class="wrap">
+
+<p class="kicker">Working notes &middot; not for publication</p>
+<h1>Potentials: Candidate Graphics for the Deportations Post</h1>
+<p class="sub">Thirteen figures from the existing analysis that aren't in <code>blog_post.md</code> yet, grouped by what they'd add.</p>
+<p class="byline">Mike Konczal &middot; Sources: <code>R/47_charts_batch2.R</code>, <code>R/21_charts_micro.R</code>,
+<code>R/20_charts_published.R</code>, <code>R/58_blog_post_charts.R</code>, <code>R/60_bls_official_monthly.R</code>,
+<code>R/61_naturalized_caveat_chart.R</code>, <code>R/57_state_hypothesis_chart.R</code></p>
+
+<div class="card">
+<p class="kicker">Why these</p>
+<p style="margin-bottom:0">The current post runs eight hypotheses and gets a clean sweep of nulls. That's convincing on its
+own terms, but it doesn't yet engage the strongest counter-arguments in circulation &mdash; the CIS
+within-year-weights claim, the Bessent bottom-quartile wage claim, or the construction/occupation-by-occupation
+version of the theory &mdash; and it's missing the one finding that complicates the story rather than confirming it
+(naturalized citizens). The list below is organized in that order: answer the hardest objections first, then
+reinforce hypotheses already in the post, then optional supporting evidence.</p>
+</div>
+
+<h2>Tier 1 &middot; Answers the strongest counter-arguments</h2>
+<p class="tierdesc">These aren't in the post at all right now. Each one responds to a specific claim made publicly in 2026, not a hypothetical objection.</p>
+
+<div class="card">
+<div class="hyp-row">
+<h3>Hypothesis 9: Properly measured &mdash; using within-year weights that dodge the population-control problem &mdash; natives gained about two million jobs a year in 2025 and 2026.</h3>
+<span class="verdict v-refuted">REFUTED</span>
+</div>
+<p class="filename">graphics/b2_fig2_within_year.png</p>
+<figure><img src="graphics/b2_fig2_within_year.png" alt="The within-year native job gains are population, and the population is not real"></figure>
+<p class="datanote"><strong>Data:</strong> IPUMS CPS microdata. For each year 2015&ndash;2026 (2020 omitted, 2026 covers January&ndash;August),
+the weighted employed native-born population in January is compared to December using only that year's own survey
+weights &mdash; the method that avoids the January population-control revision, since weights don't change within a
+year. Paired bars per year show two series: the within-year change in native employment (navy) and the within-year
+change in the native population the survey infers (red). If the "employment" bar moves only because the
+"population" bar moves with it, the gain is arithmetic, not hiring.</p>
+<p class="says v-refuted-bar">It didn't happen. This is CIS's own steelman argument (Camarota &amp; Zeigler, July 2026):
+compare January to December of the <em>same</em> year, so the January population-control revision never enters
+the comparison. Reproduced here &mdash; and then checked against native population growth, CES payrolls, and
+noncitizen survey nonresponse. The "gain" tracks exactly when noncitizens stop answering the survey, not when
+hiring happens.</p>
+<p class="usefor">Use for: the closing/synthesis section. This is the single most sophisticated pro-deportation
+argument in circulation and deserves to be the post's strongest rebuttal, not an afterthought.</p>
+</div>
+
+<div class="card">
+<div class="hyp-row">
+<h3>Hypothesis 10: Construction &mdash; about a quarter foreign-born, over 90% male, mostly non-college, and impossible to offshore &mdash; is the cleanest test case. Native construction workers should be the clearest winners.</h3>
+<span class="verdict v-refuted">REFUTED</span>
+</div>
+<p class="filename">graphics/b2_fig12_construction.png</p>
+<figure><img src="graphics/b2_fig12_construction.png" alt="Construction: the immigrant share fell and native unemployment rose"></figure>
+<p class="datanote"><strong>Data:</strong> IPUMS CPS microdata, restricted to the construction industry, annual averages of
+monthly rates, 2015&ndash;2026. Two panels on a shared year axis: native-born unemployment rate, and the industry's
+foreign-born share of employment. Construction was picked because it's the single best-identified sector for the
+substitution story &mdash; roughly a quarter foreign-born, over 90% male, mostly non-college, and its output can't
+be offshored.</p>
+<p class="says v-refuted-bar">It didn't happen. The immigrant share of construction employment fell, exactly as the
+theory requires &mdash; and native construction unemployment rose anyway, while the sector contracted. That's the
+signature of a demand shock, not a supply shock freeing up jobs for natives.</p>
+<p class="usefor">Use for: this is the sector-specific version of Hypothesis 4 (least-educated workers) and directly
+answers "but what about construction specifically," which is the first thing an informed skeptic will ask.</p>
+</div>
+
+<div class="card">
+<div class="hyp-row">
+<h3>Hypothesis 11: Go occupation by occupation &mdash; roofers, drywall, meatpacking, landscaping, housekeeping. That's where natives should have gotten their jobs back.</h3>
+<span class="verdict v-refuted">REFUTED</span>
+</div>
+<p class="filename">graphics/b2_fig11_occupations.png</p>
+<figure><img src="graphics/b2_fig11_occupations.png" alt="In the most immigrant-intensive occupations, native unemployment went up"></figure>
+<p class="datanote"><strong>Data:</strong> IPUMS CPS microdata. A scatter of the twenty CPS occupations with the highest
+2022&ndash;24 foreign-born employment share, each occupation one point sized by its native-born sample count. The
+x-axis is the occupation's foreign-born share; the y-axis is the change in that occupation's native-born
+unemployment rate from a 2023m9&ndash;2024m8 baseline to 2025m9&ndash;2026m8. A dashed line shows the linear fit across
+all twenty &mdash; flat to positive, meaning no tendency for native unemployment to fall in the most immigrant-heavy
+occupations.</p>
+<p class="says v-refuted-bar">It didn't happen. The twenty occupations with the highest 2022&ndash;24 foreign-born
+employment share, named individually, 2024 vs. 2026: native unemployment rose in most of them, not fell.
+Under the substitution story, a majority should have improved on employment share, hours, and wages together.
+They didn't.</p>
+<p class="usefor">Use for: this is a table a skeptical reader can check line by line &mdash; that's the point of including
+it. Good candidate for a "here's the full list" moment mid-post.</p>
+</div>
+
+<div class="card">
+<div class="hyp-row">
+<h3>Hypothesis 12: If deportations remove new immigrants, the workers who benefit most should be <em>prior</em> immigrants &mdash; naturalized citizens are the closest substitutes for new arrivals, so they should gain the most of anyone.</h3>
+<span class="verdict v-mixed">COMPLICATION &mdash; PARTIALLY SUPPORTED</span>
+</div>
+<p class="filename">graphics/fig16_naturalized_arrival_epop.png &middot; graphics/b2_fig8_citizenship.png</p>
+<div class="figrow">
+<figure><img src="graphics/fig16_naturalized_arrival_epop.png" alt="Naturalized citizens' employment rate rose, unlike native-born citizens'"></figure>
+<figure><img src="graphics/b2_fig8_citizenship.png" alt="The employment rate ordering follows exposure to enforcement, not substitution"></figure>
+</div>
+<p class="datanote"><strong>Data:</strong> both from IPUMS CPS microdata. The left chart tracks the prime-age (25&ndash;54)
+employment-population ratio for naturalized citizens only, split into three arrival cohorts &mdash; arrived before
+2000, 2000&ndash;2015, 2016 or later &mdash; 2019&ndash;2026. The right chart puts all three citizenship groups on one axis
+&mdash; native-born, naturalized citizen, noncitizen &mdash; plotting prime-age EPOP 2018&ndash;2026, so you can see which
+group's line moves and judge whether a rising noncitizen line looks like real economic gain or like the group
+shrinking fastest in the survey (selective departure and non-response push measured noncitizen levels down
+mechanically, which can lift a weighted rate even with no behavioral change).</p>
+<p class="says v-mixed-bar">This is the one that doesn't just confirm the rest of the post. Naturalized citizens'
+prime-age employment rate rose across every arrival cohort while native-born citizens' fell &mdash; consistent with
+prior immigrants being closer substitutes for new arrivals than natives are, which is the substitution model's
+own best prediction. But: the dose-response test (does the gain concentrate in high-immigrant-exposure
+occupations, as the mechanism requires) comes back null. The gain is real; it isn't showing up where the theory
+says it should.</p>
+<p class="usefor">Use for: this needs its own paragraph, not a caption. Naming the strongest evidence against your
+own conclusion and then showing why it doesn't rescue the theory is what makes the other eight hypotheses
+credible. Leaving it out is the single biggest risk to this post surviving scrutiny.</p>
+</div>
+
+<h2>Tier 2 &middot; Strengthens hypotheses already in the post</h2>
+<p class="tierdesc">These sharpen or visually support claims the post already makes.</p>
+
+<div class="card">
+<div class="hyp-row">
+<h3>Hypothesis 13: Wage growth for the bottom quartile of workers accelerated to almost 3.5&times; the rate of the top quartile (the Bessent claim), measured on a composition-immune, matched-worker basis.</h3>
+<span class="verdict v-refuted">REFUTED</span>
+</div>
+<p class="filename">graphics/b2_fig6_tracker_quartile.png</p>
+<figure><img src="graphics/b2_fig6_tracker_quartile.png" alt="The bottom-quartile wage premium was a 2022 phenomenon. It is gone."></figure>
+<p class="datanote"><strong>Data:</strong> a matched-worker wage tracker built from CPS outgoing rotation group microdata,
+not a published BLS series. Each native-born worker's hourly wage is linked to their own wage twelve months
+earlier via their CPS panel ID; the log change is computed and the median taken within quartiles of workers' own
+average wage. This is the same construction the Atlanta Fed uses for its published Wage Growth Tracker, rebuilt
+here from microdata so it can be cut by nativity, which the published series can't do. Four lines, one per
+quartile, 2019&ndash;2026.</p>
+<p class="says v-refuted-bar">It didn't happen. This matches each worker to their own wage twelve months earlier
+(the Atlanta Fed Wage Tracker construction), so it isn't contaminated the way a cross-sectional percentile is.
+The bottom-quartile premium over the top quartile was real &mdash; in 2022. It's gone in 2025&ndash;26.</p>
+<p class="usefor">Use for: swap in for, or run alongside, the current Hypothesis 5 chart (fig14_wage_p10.png), which
+uses a cross-sectional 10th percentile that's vulnerable to the "composition changed, not wages" objection. This
+version pre-empts that.</p>
+</div>
+
+<div class="card">
+<div class="hyp-row">
+<h3>Hypothesis 14 (context, not itself a test): Since December 2024, virtually every net payroll job has gone to women &mdash; the fact that started this whole post.</h3>
+<span class="verdict v-null">MOTIVATING FACT</span>
+</div>
+<p class="filename">graphics/b2_fig3_men_women_payrolls.png</p>
+<figure><img src="graphics/b2_fig3_men_women_payrolls.png" alt="Since December 2024 every net payroll job has gone to women"></figure>
+<p class="datanote"><strong>Data:</strong> BLS Current Employment Statistics (the establishment payroll survey, not
+CPS), nonfarm payroll counts by sex, monthly 2022&ndash;2026, rebased so December 2024 = 0 and plotted as cumulative
+change since then. This isn't a nativity chart at all &mdash; it's the aggregate fact that prompted the post's
+original question about women's share of job gains, shown directly rather than described in prose.</p>
+<p class="says">Cumulative payroll change by sex since December 2024. Right now Hypothesis 3 just asserts this in
+prose ("the 101% female job gain response I got"). This is the chart that makes it visible before you pivot to
+whether immigration explains it.</p>
+<p class="usefor">Use for: pair with the intro paragraph or directly above Hypothesis 3, so the reader sees the fact
+being explained before the explanations get tested.</p>
+</div>
+
+<div class="card">
+<div class="hyp-row">
+<h3>Hypothesis 15: The removed workforce was roughly two-thirds male, so native men &mdash; the closest substitutes &mdash; should be moving into the occupations immigrants vacated.</h3>
+<span class="verdict v-refuted">REFUTED</span>
+</div>
+<p class="filename">graphics/b2_fig4_overlap.png</p>
+<figure><img src="graphics/b2_fig4_overlap.png" alt="Native men did not move into the work immigrants left"></figure>
+<p class="datanote"><strong>Data:</strong> an exposure-weighted overlap index built from IPUMS CPS microdata. For each
+group &mdash; native men, native women, naturalized citizens, noncitizens &mdash; and each year 2015&ndash;2026, the group's
+employment is distributed across CPS occupation codes, then weighted by each occupation's 2022&ndash;24 foreign-born
+employment share. A rising line means the group is concentrating more of its employment in occupations immigrants
+worked; a flat or falling line means it isn't. Four lines shown together for comparison.</p>
+<p class="says v-refuted-bar">It didn't happen. This is the overlap index: each group's employment distributed
+across occupations, weighted by how foreign-born-heavy each occupation was pre-2025. If native men were filling
+vacated jobs, their overlap with immigrant-heavy occupations should rise over time. It doesn't.</p>
+<p class="usefor">Use for: this is the rigorous version of Hypothesis 3 (native men's EPOP fell) &mdash; it directly
+answers "maybe EPOP fell for other reasons, but men still moved into the vacated work," which a sharp reader
+could otherwise raise.</p>
+</div>
+
+<div class="card">
+<div class="hyp-row">
+<h3>Hypothesis 16: If this is a pure labor-supply story, only non-citizens should be affected. Native-born U.S. citizens &mdash; including Hispanic citizens and the U.S.-born children of immigrants &mdash; should be untouched or better off.</h3>
+<span class="verdict v-refuted">REFUTED</span>
+</div>
+<p class="filename">graphics/fig8_hispanic_citizens.png &middot; graphics/fig15_generation_epop.png</p>
+<div class="figrow">
+<figure><img src="graphics/fig8_hispanic_citizens.png" alt="Hispanic U.S. citizens absorbed three times the increase in unemployment"></figure>
+<figure><img src="graphics/fig15_generation_epop.png" alt="Both generations of native-born citizens fell, not foreign-born"></figure>
+</div>
+<p class="datanote"><strong>Data:</strong> both from IPUMS CPS microdata, native-born U.S. citizens only in the left
+chart. The left chart splits by Hispanic ethnicity and plots the prime-age (25&ndash;54) unemployment rate,
+2019&ndash;2026. The right chart splits by generation using the CPS <code>NATIVITY</code> variable &mdash; second-generation
+means native-born with at least one foreign-born parent, third-plus generation means both parents native-born
+&mdash; plus a foreign-born line for comparison, plotting prime-age EPOP, 2019&ndash;2026. Neither group in either chart
+includes anyone who could be directly removed by enforcement; both are U.S. citizens by birth.</p>
+<p class="says v-refuted-bar">It didn't happen. Hispanic U.S. citizens' unemployment rose roughly three times as
+much as other native-born citizens'; both first- and second-generation native citizens' employment rates fell
+while only the foreign-born group moved the other way. That's the signature of enforcement chilling citizens in
+mixed-status households and communities, not a clean labor-supply shock.</p>
+<p class="usefor">Use for: this is the affirmative alternative explanation the post currently doesn't offer &mdash; not
+just "no benefit," but a specific, testable mechanism (enforcement spillover) for why things got worse. Strong
+candidate for its own hypothesis, possibly the most newsworthy single finding available.</p>
+</div>
+
+<div class="card">
+<div class="hyp-row">
+<h3>Hypothesis 17: Deportations removed millions of renters from high-immigrant metros, cutting rents and delivering natives a real wage gain even if nominal wages were flat.</h3>
+<span class="verdict v-refuted">REFUTED</span>
+</div>
+<p class="filename">graphics/b2_fig9_rents.png</p>
+<figure><img src="graphics/b2_fig9_rents.png" alt="Rent disinflation started two years before the enforcement campaign"></figure>
+<p class="datanote"><strong>Data:</strong> BLS CPI, not CPS. The 12-month percent change in two shelter components
+&mdash; rent of primary residence and owners' equivalent rent &mdash; seasonally adjusted, 2018&ndash;2026. Two vertical
+markers: a dotted line at the March 2023 peak in rent inflation, and a dashed line at January 2025 when
+enforcement stepped up, so the reader can see which one the deceleration actually lines up with.</p>
+<p class="says v-refuted-bar">It didn't happen the way the claim requires. Rent disinflation is real, but it
+started roughly two years before the enforcement campaign &mdash; it's the post-pandemic multifamily supply wave,
+not a 2025 phenomenon, and it isn't differentially concentrated in high-immigrant metros.</p>
+<p class="usefor">Use for: the causal-caution paragraph the post is missing. This is good evidence for "other things
+were also happening in this window" without undercutting the post's main results.</p>
+</div>
+
+<div class="card">
+<div class="hyp-row">
+<h3>Hypothesis 18: A genuine negative labor-supply shock against stable demand should tighten the labor market &mdash; job openings and quits should rise.</h3>
+<span class="verdict v-refuted">REFUTED</span>
+</div>
+<p class="filename">graphics/fig4_tightness.png</p>
+<figure><img src="graphics/fig4_tightness.png" alt="The labor market got looser, not tighter"></figure>
+<p class="datanote"><strong>Data:</strong> BLS JOLTS and CPS, not nativity-specific. Two panels, 2018&ndash;2026: vacancies
+per unemployed worker (job openings divided by the number unemployed) and the quits rate. Both are standard
+aggregate measures of labor-market tightness that should rise together if a labor-supply contraction hit a
+stable-demand economy &mdash; this is the aggregate discriminator between a supply story and a demand story.</p>
+<p class="says v-refuted-bar">It didn't happen. Both series fell. A supply-driven tightening and a demand-driven
+slowdown look different in exactly this way, and this is the cleanest aggregate discriminator between them.</p>
+<p class="usefor">Use for: another strong candidate for the closing synthesis paragraph &mdash; it's the aggregate,
+JOLTS-based version of "this looks like weak demand, not tight supply."</p>
+</div>
+
+<h2>Tier 3 &middot; Optional / supporting evidence</h2>
+<p class="tierdesc">Weaker on their own, or already covered by other charts &mdash; use only if there's room, or move to an appendix/GitHub link.</p>
+
+<div class="card">
+<div class="hyp-row">
+<h3>Hypothesis 19: Scarce labor should mean employers give existing native workers more hours before raising wages &mdash; involuntary part-time work should fall.</h3>
+<span class="verdict v-refuted">REFUTED</span>
+</div>
+<p class="filename">graphics/fig10_parttime.png</p>
+<figure><img src="graphics/fig10_parttime.png" alt="Involuntary part-time work rose most where immigrant labor was thickest"></figure>
+<p class="datanote"><strong>Data:</strong> IPUMS CPS microdata. The share of employed native-born workers who report
+being part-time for economic reasons (they want full-time work but can't get it), grouped into quartiles by
+their occupation's pre-2025 foreign-born employment share, 2019&ndash;2026. Four lines, one per exposure quartile.</p>
+<p class="says v-refuted-bar">It didn't happen. Involuntary (economic) part-time work rose most in exactly the
+occupations that were most foreign-born-heavy pre-2025 &mdash; the opposite of what a labor-scarcity story predicts.</p>
+<p class="usefor">Use for: not currently tested anywhere in the post (the hours/underemployment margin is untouched).
+Worth adding if you want a ninth clean hypothesis rather than relying on Tier 1/2 material alone.</p>
+</div>
+
+<div class="card">
+<div class="hyp-row">
+<h3>Measurement note (not a hypothesis): how much of the "foreign-born decline" in the CPS is real departure vs. survey non-response?</h3>
+<span class="verdict v-mixed">METHODS CAVEAT</span>
+</div>
+<p class="filename">graphics/fig5_nonresponse.png</p>
+<figure><img src="graphics/fig5_nonresponse.png" alt="Non-citizens stopped answering the survey"></figure>
+<p class="datanote"><strong>Data:</strong> IPUMS CPS microdata, but deliberately <em>unweighted</em> &mdash; raw interview
+counts, not survey-weighted population totals. Non-citizen, native-born, and all respondents age 16+, 12-month
+moving average, indexed to December 2024 = 100, 2019&ndash;2026. Because these are counts of people who actually
+answered rather than weighted estimates of the population, they can't be distorted by the January population-control
+revision the way weighted levels can &mdash; they measure survey participation directly.</p>
+<p class="says">Unweighted CPS respondent counts (no weights, immune to the population-control artifact) show
+non-citizen participation falling sharply. This is the fact underlying the "read rates, not levels" methods
+note already in your findings memos.</p>
+<p class="usefor">Use for: a footnote or methods aside if a reader might otherwise ask why the post never cites raw
+employment levels by nativity.</p>
+</div>
+
+<div class="card">
+<div class="hyp-row">
+<h3>Hypothesis 20: States and metros with the heaviest ICE enforcement should show the clearest native labor-market gains.</h3>
+<span class="verdict v-inconc">WEAK / INCONCLUSIVE</span>
+</div>
+<p class="filename">graphics/fig_state_hypothesis_scan.png &middot; graphics/fig_state_enforcement_vs_jobs.png</p>
+<div class="figrow">
+<figure><img src="graphics/fig_state_hypothesis_scan.png" alt="Kicking the tires: 23 state-level correlations with ICE enforcement intensity"></figure>
+<figure><img src="graphics/fig_state_enforcement_vs_jobs.png" alt="State ICE enforcement vs. total payroll job growth"></figure>
+</div>
+<p class="datanote"><strong>Data:</strong> state-level ICE administrative arrest counts (individual-level FOIA microdata
+from the Deportation Data Project at UC Berkeley Law/UCLA, arrests &mdash; not removals &mdash; per 100,000 residents,
+January 2025&ndash;July 2026) correlated against state outcomes, DC excluded throughout. The left chart is a scan of
+23 outcome variables at once (Pearson r with 95% CIs, filled dot = p&lt;0.10), drawn from both CPS native/foreign-born
+rates and BLS state payroll data. The right chart is the single scatter of enforcement intensity against total
+nonfarm payroll growth, using BLS State and Area Employment (SAE) data &mdash; a near-census establishment count,
+unlike the thin CPS state cells used elsewhere.</p>
+<p class="says">No clean relationship either way between state enforcement intensity and payroll job growth or
+other outcomes. Your own <code>PLAN.md</code> flags this as "the most intuitive chart for a general reader and
+the weakest statistically" &mdash; CPS state cells are thin, so treat this as suggestive at best.</p>
+<p class="usefor">Use for: probably cut from the main post. If included at all, keep it to one chart with the
+sample-size caveat stated explicitly, or link it from the GitHub repo instead.</p>
+</div>
+
+</div></body></html>

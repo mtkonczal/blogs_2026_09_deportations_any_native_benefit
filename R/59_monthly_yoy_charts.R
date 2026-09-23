@@ -32,7 +32,7 @@ monthly_style <- list(
   coord_cartesian(clip = "off"))
 W <- 8; H <- 5; DPI <- 200
 MON <- scale_x_continuous(breaks = 1:12, labels = month.abb, limits = c(1, 12.6))
-YEAR_COLORS <- c(`2024` = GOLD, `2026` = NAVY)
+YEAR_COLORS <- c(`2024` = GOLD, `2025` = "#a9a79c", `2026` = NAVY)
 CAP <- "Source: BLS Current Population Survey, author's calculations. Mike Konczal, Economic Security Project."
 
 label_end <- function(df) df %>% group_by(year) %>% filter(month == max(month)) %>% ungroup()
@@ -78,8 +78,8 @@ ggsave("graphics/fig2_prime_epop_native_monthly.png", p2, width = W, height = H,
 # ---- Fig 3: native-born men prime-age EPOP, NSA, by month -------------------
 d3 <- read_csv("output/b2_h24_male_levels_monthly.csv", show_col_types = FALSE) %>%
   mutate(year = year(date), month = month(date)) %>%
-  filter(year %in% c(2024, 2026)) %>%
-  transmute(year = factor(year), month, value = epop_nat_men)
+  filter(year %in% c(2024, 2025, 2026)) %>%   # 2025 added for Fig 3 only
+  transmute(year = factor(year), month, value = epop_nat_men_prime)
 lab3 <- label_end(d3)
 p3 <- d3 %>% ggplot(aes(month, value, color = year, group = year)) +
   geom_line(linewidth = 1.1) + geom_point(size = 2.2) +
@@ -89,8 +89,8 @@ p3 <- d3 %>% ggplot(aes(month, value, color = year, group = year)) +
   scale_color_manual(values = YEAR_COLORS) +
   scale_y_continuous(labels = percent_format(accuracy = 0.1)) +
   MON +
-  labs(title = "Native-Born Men's Prime-Age Employment Is Lower Than a Year Ago",
-       subtitle = "Native-born men, prime-age (25-54) employment-population ratio by month, not seasonally adjusted, 2024 vs. 2026",
+  labs(title = "Native-Born Men's Prime-Age Employment Has Not Risen Since 2024",
+       subtitle = "Native-born men, prime-age (25-54) employment-population ratio by month, not seasonally adjusted, 2024-2026",
        caption = CAP) + monthly_style
 ggsave("graphics/fig3_native_men_epop_monthly.png", p3, width = W, height = H, dpi = DPI, bg = BG)
 

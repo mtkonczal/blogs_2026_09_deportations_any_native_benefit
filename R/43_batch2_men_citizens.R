@@ -79,9 +79,16 @@ mlv <- cps[male == 1, .(
   pop_nat = sum(WTFINL*native)/1000,
   pop_all = sum(WTFINL)/1000,
   un_nat  = sum(WTFINL*native*unemp)/1000,
-  lf_nat  = sum(WTFINL*native*inlf)/1000
+  lf_nat  = sum(WTFINL*native*inlf)/1000,
+  # prime-age (25-54) native men, for the monthly EPOP chart in blog_post.md.
+  # The columns above are all ages 16+ and drift down with population aging.
+  emp_nat_prime = sum(WTFINL*native*prime*emp)/1000,
+  pop_nat_prime = sum(WTFINL*native*prime)/1000
 ), by = date][order(date)]
-mlv[, `:=`(epop_nat_men = emp_nat/pop_nat, unrate_nat_men = un_nat/lf_nat)]
+# epop_nat_men is ages 16+ (used in the H24 levels arithmetic below);
+# epop_nat_men_prime is ages 25-54.
+mlv[, `:=`(epop_nat_men = emp_nat/pop_nat, unrate_nat_men = un_nat/lf_nat,
+           epop_nat_men_prime = emp_nat_prime/pop_nat_prime)]
 
 d0 <- mlv[date == as.Date("2024-12-01")]; d1 <- mlv[date == max(mlv$date)]
 h24a <- data.table(

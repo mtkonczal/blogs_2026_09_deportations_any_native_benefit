@@ -24,16 +24,16 @@ CAP_CPS <- "Source: IPUMS CPS microdata, author's calculations. No household sur
 
 # ---- H3: native-born men, prime-age EPOP, indexed to Dec 2024 --------------
 mm <- read_csv("output/b2_h24_male_levels_monthly.csv", show_col_types = FALSE)
-base <- mm %>% filter(date == as.Date("2024-12-01")) %>% pull(epop_nat_men)
+base <- mm %>% filter(date == as.Date("2024-12-01")) %>% pull(epop_nat_men_prime)
 p_h3 <- mm %>% filter(date >= as.Date("2022-01-01")) %>%
-  transmute(date, idx = epop_nat_men - base) %>%
+  transmute(date, idx = epop_nat_men_prime - base) %>%
   ggplot(aes(date, idx)) +
   geom_hline(yintercept = 0, color = "grey60", linewidth = .3) +
   geom_vline(xintercept = V, linetype = "dashed", color = GREY) +
   geom_line(linewidth = .9, color = NAVY) +
   scale_y_continuous(labels = function(x) paste0(round(100*x, 1), " pp")) +
   labs(title = "Prime-Age Employment Fell for Native-Born Men, Too",
-       subtitle = "Change in the prime-age (25-54) employment-population ratio for native-born men since\nDecember 2024, percentage points, seasonally adjusted",
+       subtitle = "Change in the prime-age (25-54) employment-population ratio for native-born men since\nDecember 2024, percentage points, not seasonally adjusted",
        x = NULL, y = "Change since Dec 2024", caption = CAP_CPS) + my_style
 ggsave("graphics/fig13_native_men_epop.png", p_h3, width = W, height = H, dpi = DPI)
 

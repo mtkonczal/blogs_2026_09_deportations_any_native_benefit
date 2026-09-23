@@ -31,6 +31,34 @@ wage <- read_csv("data/sae_state_wage_yoy.csv", show_col_types = FALSE) %>%
   pivot_wider(names_from = industry_name, values_from = wage_growth_yoy, names_prefix = "wage_yoy_") %>%
   rename_with(~gsub(" ", "_", .x))
 
+# Total private wage growth has the same problem as the job-growth level
+# comparisons in R/52: high-enforcement states could just have had faster
+# wage growth already, before the window started. Fix: difference this
+# year's YoY wage growth against last year's YoY wage growth (both NSA, same
+# calendar month, so no seasonality contamination), same logic as R/57d for
+# employment. Replaces the level version in the scan below (see R/57e for
+# the level-vs-diff comparison; the level result does not survive this).
+sae_raw <- readRDS("data_raw/sae_raw.rds")
+latest_wage_month <- sae_raw %>%
+  filter(data_type_text == "Average Hourly Earnings of All Employees, In Dollars",
+         industry_name == "Total Private", area_code == "00000") %>%
+  summarise(m = max(date)) %>% pull(m)
+wage_diff <- sae_raw %>%
+  filter(data_type_text == "Average Hourly Earnings of All Employees, In Dollars",
+         industry_name == "Total Private", area_code == "00000",
+         state_name %in% state.name,
+         date %in% c(latest_wage_month - lubridate::years(2),
+                     latest_wage_month - lubridate::years(1),
+                     latest_wage_month)) %>%
+  select(state_name, date, value) %>%
+  pivot_wider(names_from = date, values_from = value)
+names(wage_diff) <- c("state_name", "w_y2", "w_y1", "w_latest")
+wage_diff <- wage_diff %>%
+  transmute(state_name,
+            wage_yoy_Total_Private = w_latest / w_y1 - 1 - (w_y1 / w_y2 - 1))
+
+wage <- wage %>% select(-wage_yoy_Total_Private)  # replaced by the trend-differenced version above
+
 laus_raw <- read_csv("data/laus_state_raw.csv", show_col_types = FALSE) %>%
   filter(state != "District of Columbia", state %in% state.name)
 laus <- laus_raw %>%
@@ -52,6 +80,7 @@ cps <- read_csv("data/cps_state_panel.csv", show_col_types = FALSE) %>%
 panel <- base %>%
   left_join(sector, by = "state_name") %>%
   left_join(wage, by = "state_name") %>%
+  left_join(wage_diff, by = "state_name") %>%
   left_join(laus, by = "state_name") %>%
   left_join(cps, by = "state_name")
 
@@ -68,7 +97,7 @@ H <- tribble(
   "growth_Mining_and_Logging",       "Mining & logging payroll job growth",                        "Labor demand",
   "growth_Professional_and_Business_Services", "Professional & business services job growth",      "Placebo sector",
   "growth_Government",               "Government payroll job growth",                              "Placebo sector",
-  "wage_yoy_Total_Private",          "Total private wage growth, YoY (NSA)",                       "Wages",
+  "wage_yoy_Total_Private",          "Total private wage growth, YoY, trend-differenced (NSA)",    "Wages",
   "wage_yoy_Construction",           "Construction wage growth, YoY (NSA)",                        "Wages",
   "wage_yoy_Leisure_and_Hospitality","Leisure & hospitality wage growth, YoY (NSA)",                "Wages",
   "d_unrate",                        "Change in unemployment rate, pp (LAUS, household survey)",   "Labor demand",

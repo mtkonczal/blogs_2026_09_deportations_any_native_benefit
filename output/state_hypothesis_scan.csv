@@ -1,6 +1,5 @@
 var,label,category,n,r,ci_lo,ci_hi,p_value
 construction_emp_share_pre,2024 construction share of state employment,Confound / baseline,50,0.37660097370183104,0.10975883746493643,0.5928070839137027,0.007025051076480039
-wage_yoy_Total_Private,"Total private wage growth, YoY (NSA)",Wages,50,0.29033851682219536,0.013045033508365679,0.5261642388413696,0.04081863316407321
 d_unrate,"Change in unemployment rate, pp (LAUS, household survey)",Labor demand,50,0.27827692539140325,-7.673701332231464e-5,0.5166092548072905,0.05037243180964395
 total_nonfarm_job_growth,Total nonfarm payroll job growth (all industries),Labor demand,50,0.27131750451738934,-0.007604511333481174,0.5110689825592762,0.0566631204006066
 d_for_epop,"Change in FOREIGN-BORN prime-age EPOP, pp (CPS)",CPS: foreign-born outcomes,50,-0.2428209925341916,-0.4881737002818548,0.03810198870815722,0.08929850630952717
@@ -16,6 +15,7 @@ d_nat_epop,"Change in NATIVE prime-age EPOP, pp (CPS)",CPS: native outcomes,50,-
 d_for_unrate,"Change in FOREIGN-BORN prime-age unemployment rate, pp (CPS)",CPS: foreign-born outcomes,50,0.09778505344704883,-0.18561477375371874,0.36616636556546933,0.49930864052977275
 growth_Manufacturing,Manufacturing payroll job growth,Labor demand,50,-0.08947003021433787,-0.3588802737933661,0.19370158985870145,0.536648965473437
 d_epop,"Change in employment-population ratio, pp (LAUS)",Labor demand,50,-0.0630851512766528,-0.3355409031019468,0.21911005389194355,0.6633949584419672
+wage_yoy_Total_Private,"Total private wage growth, YoY, trend-differenced (NSA)",Wages,50,0.0474683380627291,-0.23397076685988602,0.32156728338773277,0.7434055643918275
 hh_employment_growth,Household-survey employment growth (LAUS),Labor demand,50,0.04007062921723964,-0.2409647055943903,0.3149060219462863,0.7823279830962326
 d_lfpr,"Change in labor force participation rate, pp (LAUS)",Labor supply,50,0.020601272092625123,-0.2592329704877762,0.29724449642665424,0.8870772436319887
 growth_Leisure_and_Hospitality,Leisure & hospitality payroll job growth,Labor demand,50,0.02058907463065777,-0.25924435305121074,0.2972333719038633,0.8871436684873387

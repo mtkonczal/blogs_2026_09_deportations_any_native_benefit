@@ -14,8 +14,8 @@
 # employees (data_type_code 08) -- per the 2026-04 post, this is the worker
 # subset most likely to overlap with the non-citizen workforce in
 # high-immigration industries. All-employee AHE (03) kept as a robustness
-# check. Deflated by CPI-U so this reports real wage growth, consistent with
-# H5/H6 elsewhere in this project (2026-04 used nominal YoY growth).
+# check. Reports both nominal and CPI-U-deflated real growth; the post uses
+# nominal (as did 2026-04), since 2026 real growth is dominated by inflation.
 # ==============================================================================
 suppressMessages({
   library(tidyusmacro); library(dplyr); library(tidyr); library(readr)
@@ -77,19 +77,29 @@ cat("\ndeflating to", format(max(cpi$date), "%B %Y"), "dollars\n")
 build_series <- function(wage_dt, min_industries) {
   latest_ok <- wage_dt %>% group_by(date) %>% summarize(n = n(), .groups = "drop") %>%
     filter(n >= min_industries) %>% summarize(max_date = max(date)) %>% pull()
-  wage_dt %>%
+  base <- wage_dt %>%
     filter(date <= latest_ok) %>%
     inner_join(imm, by = "industry_code") %>%
     inner_join(ces_emp %>% rename(employment = value), by = c("industry_code","date")) %>%
-    inner_join(cpi, by = "date") %>%
+    filter(!is.na(value), !is.na(employment))
+  # Nominal: no CPI needed, so October 2025 (no CPI published) stays in.
+  nom <- base %>% group_by(date, nc_quintile) %>%
+    summarize(avg_wage_nom = weighted.mean(value, employment), n_ind = n(), .groups = "drop")
+  real <- base %>% inner_join(cpi, by = "date") %>%
     mutate(real_wage = value * cpi_base / cpi) %>%
-    filter(!is.na(real_wage), !is.na(employment)) %>%
     group_by(date, nc_quintile) %>%
-    summarize(avg_wage = weighted.mean(real_wage, employment), n_ind = n(), .groups = "drop") %>%
-    arrange(nc_quintile, date) %>%
-    group_by(nc_quintile) %>%
-    mutate(yoy = avg_wage / lag(avg_wage, 12) - 1) %>%
-    ungroup()
+    summarize(avg_wage = weighted.mean(real_wage, employment), .groups = "drop")
+  out <- nom %>% left_join(real, by = c("date", "nc_quintile"))
+  # YoY matched on calendar date, not row position: October 2025 has no CPI,
+  # so a row-based lag(12) would compare the real series 13 months back from
+  # November 2025 on.
+  lag12 <- out %>% transmute(nc_quintile, date = date %m+% months(12),
+                             avg_wage_lag = avg_wage, avg_wage_nom_lag = avg_wage_nom)
+  out %>% left_join(lag12, by = c("nc_quintile", "date")) %>%
+    mutate(yoy = avg_wage / avg_wage_lag - 1,
+           yoy_nom = avg_wage_nom / avg_wage_nom_lag - 1) %>%
+    select(-avg_wage_lag, -avg_wage_nom_lag) %>%
+    arrange(nc_quintile, date)
 }
 
 # thresholds mirror blogs_2026_04's "near-full reporting" caps (150/190 of 249)
@@ -105,15 +115,25 @@ write_csv(nonsup_series, "output/h6_industry_wage_by_quintile.csv")
 write_csv(all_series,    "output/h6_industry_wage_by_quintile_allemp.csv")
 
 # --- January-August like-for-like annual bars, matching the rest of the post -
-jan_aug_bars <- function(series_dt) {
-  series_dt %>% filter(month(date) <= 8, !is.na(yoy)) %>%
+jan_aug_bars <- function(series_dt, col) {
+  series_dt %>% filter(month(date) <= 8, !is.na(.data[[col]])) %>%
     mutate(yr = year(date)) %>% group_by(nc_quintile, yr) %>%
-    summarize(yoy = mean(yoy, na.rm = TRUE), .groups = "drop")
+    summarize(yoy = mean(.data[[col]]), .groups = "drop")
 }
-nonsup_jan_aug <- jan_aug_bars(nonsup_series)
+nonsup_jan_aug <- jan_aug_bars(nonsup_series, "yoy")
 cat("\n=== H6 industry cross-section: real nonsup wage growth, Jan-Aug avg YoY ===\n")
 print(as.data.frame(nonsup_jan_aug %>% mutate(yoy = round(100*yoy, 2)) %>%
                       pivot_wider(names_from = yr, values_from = yoy)))
 write_csv(nonsup_jan_aug, "output/h6_industry_wage_jan_aug.csv")
+
+nonsup_jan_aug_nom <- jan_aug_bars(nonsup_series, "yoy_nom")
+cat("\n=== H6 industry cross-section: NOMINAL nonsup wage growth, Jan-Aug avg YoY ===\n")
+print(as.data.frame(nonsup_jan_aug_nom %>% mutate(yoy = round(100*yoy, 2)) %>%
+                      pivot_wider(names_from = yr, values_from = yoy)))
+write_csv(nonsup_jan_aug_nom, "output/h6_industry_wage_jan_aug_nominal.csv")
+all_jan_aug_nom <- jan_aug_bars(all_series, "yoy_nom")
+cat("\n=== robustness: NOMINAL all-employee AHE, Jan-Aug avg YoY ===\n")
+print(as.data.frame(all_jan_aug_nom %>% mutate(yoy = round(100*yoy, 2)) %>%
+                      pivot_wider(names_from = yr, values_from = yoy)))
 
 cat("\nDONE 62_industry_wage_exposure.R\n")

@@ -54,7 +54,7 @@ p6 <- fl %>% filter(date >= as.Date("2018-01-01"), !is.na(UE12),
 ggsave("graphics/fig6_job_finding.png", p6, width = W, height = H, dpi = DPI)
 
 # ---- Fig 7: H5 native unemployment by education -----------------------------
-edu <- read_csv("output/h5_native_by_education.csv", show_col_types = FALSE)
+edu <- read_csv("output/h5_native_by_education_jan_aug.csv", show_col_types = FALSE)
 p7 <- edu %>% filter(yr >= 2019) %>%
   mutate(educ_grp = factor(educ_grp, levels = c("Less than HS","HS to some college","BA+"))) %>%
   ggplot(aes(yr, unrate, color = educ_grp)) +
@@ -63,10 +63,10 @@ p7 <- edu %>% filter(yr >= 2019) %>%
   scale_color_manual(values = c("Less than HS" = RED, "HS to some college" = GOLD, "BA+" = NAVY)) +
   scale_y_continuous(labels = percent_format(accuracy = 1)) +
   scale_x_continuous(breaks = seq(2019, 2026, 1)) +
-  labs(title = "The Least-Educated Native Workers Did Worst, Not Best",
-       subtitle = "Prime-age (25-54) native-born unemployment rate by education. The substitution story predicts\nthe largest gains for this group, since they compete most directly with immigrant labor.",
+  labs(title = "The Least-Educated Native Workers Did Not Gain",
+       subtitle = "Prime-age (25-54) native-born unemployment rate by education, January-August of each year.\nThe substitution story predicts the largest gains for the least-educated, who compete most directly with immigrant labor.",
        x = NULL, y = "Unemployment rate", caption = CAP) + my_style
-ggsave("graphics/fig7_education.png", p7, width = W, height = H, dpi = DPI)
+ggsave("graphics/fig7_education_annual.png", p7, width = W, height = H, dpi = DPI)
 
 # ---- Fig 8: H11 Hispanic citizens -------------------------------------------
 hg <- read_csv("output/h11_native_hispanic.csv", show_col_types = FALSE)
@@ -116,12 +116,12 @@ ggsave("graphics/fig10_parttime.png", p10, width = W, height = H, dpi = DPI)
 
 cat("wrote 6 microdata charts\n")
 
-# ---- Fig 11: H6 industry cross-section, real wage growth by non-citizen quintile
+# ---- Fig 11: H6 industry cross-section, nominal wage growth by non-citizen quintile
 # blogs_2026-04 methodology: 2024 ACS non-citizen share by NAICS, crosswalked
 # onto BLS CES's 249 diffusion industries and quintiled. Wage growth is BLS
 # CES production/nonsupervisory average hourly earnings -- no CPS microdata.
 # See R/62_industry_wage_exposure.R.
-we <- read_csv("output/h6_industry_wage_jan_aug.csv", show_col_types = FALSE)
+we <- read_csv("output/h6_industry_wage_jan_aug_nominal.csv", show_col_types = FALSE)  # nominal; real version in h6_industry_wage_jan_aug.csv
 QCOL <- c("Q1 (lowest)" = NAVY, "Q2" = GREEN, "Q3" = GOLD,
           "Q4" = "#e0762e", "Q5 (highest)" = RED)
 p11 <- we %>% filter(yr >= 2023, !is.na(yoy)) %>%
@@ -130,8 +130,8 @@ p11 <- we %>% filter(yr >= 2023, !is.na(yoy)) %>%
   geom_col(position = position_dodge(.8), width = .72) +
   scale_fill_manual(values = QCOL) +
   labs(title = "No Wage Acceleration in the Most Non-Citizen-Intensive Industries",
-       subtitle = "Real hourly wage growth, production/nonsupervisory employees, by quintile of a CES industry's\nnon-citizen worker share (2024 ACS). January-August average, year-over-year, 2026 dollars.",
-       x = NULL, y = "Real wage growth, % YoY", caption = CAP_CES) +
+       subtitle = "Nominal hourly wage growth, production/nonsupervisory employees, by quintile of a CES industry's\nnon-citizen worker share (2024 ACS). January-August average of year-over-year growth.",
+       x = NULL, y = "Nominal wage growth, % YoY", caption = CAP_CES) +
   my_style + theme(legend.text = element_text(size = 8))
 ggsave("graphics/fig11_wages_exposure.png", p11, width = W, height = H, dpi = DPI)
 
