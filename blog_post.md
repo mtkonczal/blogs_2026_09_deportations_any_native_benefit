@@ -52,20 +52,30 @@ It didn't happen. The monthly job-finding rate fell for native-born workers out 
 
 It didn't happen. Labor share actually falls dramatically lower in 2025 and 2026, as we discussed in a recent post. It's falling so fast that people are genuinely unclear what is even going on.
 
-Next hypothesis: it would create a tighter labor market, especially as measured through JOLTS measures. Quits would be up. Job openings over unemployed workers would also go up.
+**Hypothesis 9: Deportations would tighten the labor market. Job openings per unemployed worker and the quits rate should both rise.**
 
-It didn't happen. These remain flat.
+![Vacancies per unemployed worker and the quits rate, 2018-2026: both fell from their 2022-23 highs and stayed there](graphics/fig4_tightness.png)
 
-Next hypothesis: Construction in particular would benefit, given that it has a high foreign-born share with mostly male non-college workers, and it is difficult to offshore or automate with AI. Employment should be picking up.
+It didn't happen. Both measures fell from their 2022–23 highs and have stayed near those lows straight through 2025 and 2026. That's the opposite of what a labor-supply squeeze should produce.
 
-It didn't happen, though the foreign-born share of employment fell. It's from fewer jobs. Male jobs did not pick up. (AI, check if this is accurate.) I don't think the native unemployment rate for industry tells us very much, so hypothesis 10 is not exactly the full graphic I'd want to lay this on.
+**Hypothesis 10: Construction, in particular, should benefit — high foreign-born share, mostly male and non-college, and hard to offshore or automate.**
 
-Next hypothesis: maybe cross-sectional for construction would tell us more. Let's get the hypothesis 20 graphic here. With both overall and construction plus in the graphic, reference Steve Ratner. 
+![Construction industry: the foreign-born employment share fell while the native-born unemployment rate rose](graphics/b2_fig12_construction.png)
 
-It didn't happen. This is not statistically significant. It's mostly noise. (Without Texas, it's not even positive.) Double-check and ( 
+It didn't happen. The foreign-born share of construction employment did fall, from 30% in 2024 to 27% in 2026, exactly as the theory requires. But native-born unemployment in the industry rose over the same period, from 4.5% to 5.1% overall and from 5.9% to 6.7% among native-born men in the construction trades specifically — and the number of construction workers CPS is sampling fell too. That's a shrinking industry, not natives moving into vacated jobs. An industry-wide unemployment rate can't fully distinguish those two stories on its own, so the next test looks across states instead.
 
-We can run these ICE impacts across a whole bunch of things. Let's get that other hypothesis 20 graphic, but with a p of 5%, not 10%. 
+**Hypothesis 11: If the mechanism is real, it should show up in the cross-state pattern too — states with heavier ICE enforcement should see an acceleration in job growth, especially in construction.**
 
---
+A raw level comparison here is contaminated: Texas and Florida have both a lot of enforcement and a lot of pre-existing growth for reasons that have nothing to do with 2025, so any positive correlation could just be "already-booming states get more enforcement," not an enforcement effect. The fix is to difference each state against its own trend — compare the post-enforcement growth rate (January 2025–July 2026) to the growth rate over the same-length window right before it (July 2023–January 2025), and correlate *that change* with enforcement intensity.
 
-Nothing's ever that clean, but in the spirit of Alex Imasane, we need some real-time analysis that's not as cleanly instrumented. We have it here, and it's kind of wild. Just randomly, you'd think some of these would pop in the direction of the restrictionists, but they don't, because the case was never very well thought out to begin with. 
+![Change in state payroll growth rate, post-period minus pre-period, versus ICE arrests per 100,000 residents: no relationship in either total nonfarm or construction](graphics/fig_state_trend_break.png)
+
+It didn't happen. Once you net out each state's own trend, the correlation isn't just insignificant — it flips slightly negative, for both total nonfarm employment (r = -0.06, p = 0.66) and construction specifically (r = -0.09, p = 0.53), and neither moves when Texas is dropped. States with heavier enforcement weren't accelerating relative to where they were already headed. *[Mike: you mentioned wanting to reference a specific chart/claim here — Steve Rattner? I couldn't find that citation anywhere in the repo, so I left it generic. Send me the link and I'll wire it in properly.]*
+
+**Hypothesis 12: Run the same enforcement-intensity comparison against every state-level outcome available — native and foreign-born employment, wages, unemployment, across 23 different measures — and something should line up.**
+
+![23 state-level correlations with ICE enforcement intensity, filled dot means p<0.05: only one clears the bar, and it's a confound, not a result](graphics/fig_state_hypothesis_scan_p05.png)
+
+It didn't happen. Wage growth here is already the trend-differenced version — each state's wage growth measured against its own prior-year trend, the same fix as Hypothesis 11 — rather than the raw level, because the level has the identical problem: high-enforcement states already had faster wage growth before the window started. Fixed that way, wage growth is unremarkable (r = 0.05, p = 0.74), and at the stricter p < 0.05 threshold across all 23 outcomes, exactly one is statistically significant: states' 2024 construction employment share predicts ICE enforcement intensity better than anything downstream of enforcement does. That's not a finding about what enforcement did — it's evidence that enforcement wasn't handed out at random across state economies in the first place. Nothing else in the scan comes close, which is what you'd expect if there's simply nothing here to find.
+
+Nothing here is as cleanly instrumented as the occupation-level and industry-level tests above — this is closer to real-time, kick-the-tires analysis than a single well-designed test. But that's what makes it useful: run enough independent looks and a few should land in the restrictionists' favor by chance alone. They don't. The case was never especially well thought out to begin with.
