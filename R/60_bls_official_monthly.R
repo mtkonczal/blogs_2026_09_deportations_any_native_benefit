@@ -93,7 +93,9 @@ p1 <- monthly_chart(d1, label_end(d1), 0.5, 1,
   "Native-Born Unemployment Is Higher Than in 2024",
   "Native-born unemployment rate by month, not seasonally adjusted, 2024 vs. 2026",
   "Unemployment rate",
-  "Source: BLS series LNU04073413 (unemployment rate, native born, NSA). No household survey in October 2025.\nMike Konczal.")
+  "Source: BLS series LNU04073413 (unemployment rate, native born, NSA). Mike Konczal.") +
+  # fixed one-decimal axis labels, so 4% doesn't sit next to 4.4%
+  scale_y_continuous(labels = scales::label_percent(accuracy = 0.1))
 blog_save("graphics/fig1_unrate_native_monthly.png", p1)
 
 # ---- Fig 2: native-born prime-age EPOP, from official monthly age-band levels

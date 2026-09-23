@@ -152,7 +152,7 @@ p <- ggplot(pd, aes(x, y)) +
   labs(title = hyp_title(5, "No Clear Link Between Noncitizen Employment Declines and Native Gains"),
        subtitle = "State-level changes, 2024 vs. September 2025-August 2026. Prime age (25-54) throughout.",
        x = "Decline in noncitizen employment share (percentage points)",
-       y = "Change in native employment rate\n(scaled, percentage points)",
+       y = "Change in native employment rate,\nscaled to all prime-age residents (pp)",
        caption = paste0("Noncitizen share denominator: all prime-age residents. Native rate change scaled by natives' baseline population share.\n",
                         "Unweighted fit and 95% confidence interval; DC excluded. Survey changes do not isolate deportations.\n",
                         "Source: IPUMS CPS, author's calculations. Mike Konczal.")) +

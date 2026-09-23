@@ -4,7 +4,8 @@
 # Copied from the my_style block in 21_charts_micro.R (the job-finding chart,
 # Hypothesis 7), so all twelve figures match it: white background, navy bold
 # title, navy subtitle, grey caption, light major gridlines, 7.2 x 4.4 in at
-# 200 dpi. Every title carries its "Hypothesis N:" prefix via hyp_title().
+# 200 dpi. Titles go through hyp_title(), which no longer prints a "Hypothesis N:"
+# prefix (the post numbers hypotheses in the text; n is kept for bookkeeping).
 # source() this from any chart script; it only defines objects.
 # ==============================================================================
 BLOG_NAVY  <- "#2c3254"
@@ -32,10 +33,10 @@ blog_theme <- ggplot2::theme_minimal(base_size = 12) +
     strip.text = ggplot2::element_text(face = "bold", color = BLOG_NAVY, size = 9.5),
     plot.background = ggplot2::element_rect(fill = "white", color = NA))
 
-# "Hypothesis N: Title"; titles longer than one line (~72 characters at this
+# Titles longer than one line (~72 characters at this
 # size and width) are split into two lines of roughly equal length.
 hyp_title <- function(n, title, max_chars = 72) {
-  full <- paste0("Hypothesis ", n, ": ", title)
+  full <- title
   if (nchar(full) <= max_chars) return(full)
   sp <- gregexpr(" ", full)[[1]]
   cut <- sp[which.min(pmax(sp, nchar(full) - sp))]
