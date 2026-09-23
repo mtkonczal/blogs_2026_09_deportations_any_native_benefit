@@ -2,17 +2,18 @@
 # 71_state_exposure_native_design.R -> graphics/fig11_exposure_native.png
 #                                      (Hypothesis 5 in blog_post.md)
 #
-# BLOG CHART (Hypothesis 5): a direct state scatter, no instrument. x = noncitizen
-# jobs lost, y = native-born jobs gained, both per 100 prime-age residents,
-# 2024 vs Sep 2025-Aug 2026. Full replacement is the 45-degree line; the fitted
-# OLS line is unweighted, matching the unweighted dots. This replaced the
+# BLOG CHART (Hypothesis 5): a descriptive state scatter, no instrument.
+# x = decline in noncitizen employment / total prime-age population (pp).
+# y = change in native prime-age EPOP (pp) times the baseline native share
+# of prime-age population. Comparison: 2024 vs Sep 2025-Aug 2026.
+# The fitted OLS line is unweighted, matching the unweighted dots. This replaced the
 # two-panel exposure/2SLS chart: its first stage was weak (F = 3.8), so the
 # 2SLS replacement ratio below is kept only as a printed diagnostic.
-# Caveats on the direct scatter: state CPS changes are noisy (split-sample
-# reliability of the noncitizen change ~0.5), which pulls the slope toward 0;
-# and common local demand shocks push both series the same way (positive
-# co-movement, i.e. a flatter line). Full replacement would still show up as a
-# clearly positive slope (~+0.5 after attenuation); the estimate is ~-0.16.
+# These are changes in measured employment ratios, not counts of departures
+# or deportations. Nativity composition, measurement error, and local demand
+# shocks can affect the association. The axes use different transformations,
+# so a 45-degree line is not a valid general benchmark for full replacement.
+# The chart does not identify a causal effect of enforcement.
 #
 # Diagnostics retained below (exposure design, see 69_state_first_stage.R):
 #
@@ -24,11 +25,12 @@
 #   3. Replacement ratio: 2SLS of native jobs gained beyond population growth
 #      (d native EPOP x native share of prime pop, in pp of prime pop) on the
 #      change in noncitizen employment (pp of prime pop), instrumented by E.
-#      Full substitution = 1 native job per departed noncitizen job.
+#      Diagnostic only: weak first stage and changing denominators preclude
+#      interpreting the ratio as a causal one-for-one replacement estimate.
 #   4. Pre-trends: monthly state panel 2022m1-2026m8, outcome on E x quarter
 #      (ref 2024Q4), state and month fixed effects, weighted by state prime-age
 #      population, SEs clustered by state.
-# Prime age 25-54 throughout the outcomes so both sides share one denominator.
+# Prime age 25-54 throughout the outcomes; denominators and scaling differ.
 # Native = CITIZEN 1-3, noncitizen = 5. WTFINL. DC excluded, as in 56.
 # ==============================================================================
 suppressMessages({library(ipumsr); library(data.table); library(tidyverse); library(tigris); library(fixest)})
@@ -120,14 +122,13 @@ print(dcast(es[, .(outcome, q, v = sprintf("%+.2f (%.2f)", b, se))], q ~ outcome
 pre_q <- es[outcome == "nat_epop" & q < "2025Q1"]
 cat("pre-2025 native EPOP coefficients: mean", round(mean(pre_q$b), 2), "| max |b|", round(max(abs(pre_q$b)), 2), "\n")
 
-# ---- chart (Hypothesis 5): noncitizen jobs lost vs native jobs gained --------
-# Both axes in jobs per 100 prime-age residents, so full replacement = 45-degree
-# line. y = change in native prime-age EPOP x native share of prime pop, which
-# excludes native gains that come only from population growth.
+# ---- chart (Hypothesis 5): descriptive association in employment ratios ----
+# Retain the audited data and fit; describe the transformations explicitly.
+# y excludes native employment changes attributable only to population growth.
 source("R/00_blog_style.R")
 NAVY <- BLOG_NAVY; GREY <- "#555555"   # used by the event-study chart below
 dfit <- lm(nat_jobs_beyond_pop ~ I(-d_nc), data = s)
-cat(sprintf("\nBlog chart: native jobs gained per noncitizen job lost (OLS, unweighted) = %+.2f (se %.2f)\n",
+cat(sprintf("\nBlog chart: scaled native EPOP change per pp decline in noncitizen employment/population (OLS, unweighted) = %+.2f (se %.2f)\n",
             coef(dfit)[2], summary(dfit)$coef[2, 2]))
 lab_st <- c("NC","NV","TX","CA","MD","NY","NJ","IL","FL")
 pd <- as_tibble(s) %>%
@@ -137,12 +138,9 @@ pd <- as_tibble(s) %>%
 p <- ggplot(pd, aes(x, y)) +
   geom_hline(yintercept = 0, color = "grey60", linewidth = .3) +
   geom_vline(xintercept = 0, color = "grey60", linewidth = .3) +
-  geom_abline(slope = 1, intercept = 0, color = BLOG_GREY, linetype = "dashed", linewidth = .8) +
-  annotate("text", x = 1.55, y = 3.1, label = "If native-born workers\nfilled every lost job",
-           hjust = 0, size = 3, color = BLOG_GREY, lineheight = .95) +
   geom_smooth(method = "lm", formula = y ~ x, se = TRUE, color = BLOG_RED, fill = BLOG_RED,
               alpha = .15, linewidth = .9) +
-  annotate("text", x = 3.75, y = -1.3, label = "What happened", hjust = 1, size = 3,
+  annotate("text", x = 3.75, y = -1.3, label = "Fitted association", hjust = 1, size = 3,
            color = BLOG_RED, fontface = "bold") +
   geom_point(color = BLOG_NAVY, size = 1.8, alpha = .8) +
   ggrepel::geom_text_repel(aes(label = lbl), size = 2.7, color = "grey30",
@@ -151,11 +149,13 @@ p <- ggplot(pd, aes(x, y)) +
   scale_x_continuous(labels = function(v) ifelse(abs(v) < 1e-9, "0", sprintf("%+.0f", v))) +
   scale_y_continuous(labels = function(v) ifelse(abs(v) < 1e-9, "0", sprintf("%+.0f", v))) +
   coord_cartesian(xlim = c(-2.5, 3.8), ylim = c(-3.5, 3.5)) +
-  labs(title = hyp_title(5, "Where Noncitizen Workers Left, Native-Born Workers Didn't Fill In"),
-       subtitle = "By state, 2024 vs. September 2025-August 2026. Both axes: jobs per 100 prime-age (25-54) residents.",
-       x = "Noncitizen jobs lost (negative = gained)", y = "Native-born jobs gained",
-       caption = paste0("Source: IPUMS CPS microdata, author's calculations. Native-born jobs gained excludes population growth.\n",
-                        "DC excluded. Mike Konczal.")) +
+  labs(title = hyp_title(5, "No Clear Link Between Noncitizen Employment Declines and Native Gains"),
+       subtitle = "State-level changes, 2024 vs. September 2025-August 2026. Prime age (25-54) throughout.",
+       x = "Decline in noncitizen employment share (percentage points)",
+       y = "Change in native employment rate\n(scaled, percentage points)",
+       caption = paste0("Noncitizen share denominator: all prime-age residents. Native rate change scaled by natives' baseline population share.\n",
+                        "Unweighted fit and 95% confidence interval; DC excluded. Survey changes do not isolate deportations.\n",
+                        "Source: IPUMS CPS, author's calculations. Mike Konczal.")) +
   blog_theme
 blog_save("graphics/fig11_exposure_native.png", p)
 

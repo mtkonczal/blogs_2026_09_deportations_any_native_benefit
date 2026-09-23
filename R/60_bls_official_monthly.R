@@ -113,7 +113,7 @@ d3 <- read_csv("output/b2_h24_male_levels_monthly.csv", show_col_types = FALSE) 
   filter(year %in% c(2024, 2025, 2026)) %>%   # 2025 added for Fig 3 only
   transmute(year = factor(year), month, value = epop_nat_men_prime)
 p3 <- monthly_chart(d3, label_end(d3), 0.5, 3,
-  "Native-Born Men's Prime-Age Employment Has Not Risen Since 2024",
+  "Native-Born Men's Prime-Age Employment Fell Below 2024 This Summer",
   "Native-born men, prime-age (25-54) employment-population ratio by month, not seasonally adjusted, 2024-2026",
   "Employment-population ratio",
   paste0("Source: IPUMS CPS microdata, author's calculations (not an official BLS series; BLS publishes this cross only annually).\n",

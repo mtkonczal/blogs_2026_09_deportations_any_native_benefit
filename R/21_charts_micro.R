@@ -40,6 +40,8 @@ p5 <- raw %>% filter(date >= as.Date("2019-01-01")) %>%
 ggsave("graphics/fig5_nonresponse.png", p5, width = W, height = H, dpi = DPI)
 
 # ---- Fig 6: H7 native job-finding rate -------------------------------------
+# Keep the existing 12-observation smoother. The two missing transitions
+# around October 2025 extend affected windows beyond 12 calendar months.
 fl <- read_csv("output/h7_flows_monthly.csv", show_col_types = FALSE) %>%
   arrange(grp, date) %>% group_by(grp) %>%
   mutate(UE12 = zoo::rollmean(UE, 12, fill = NA, align = "right")) %>% ungroup()
@@ -50,8 +52,11 @@ p6 <- fl %>% filter(date >= as.Date("2018-01-01"), !is.na(UE12),
   geom_line(linewidth = .9, color = NAVY) +
   scale_y_continuous(labels = percent_format(accuracy = 1)) +
   labs(title = hyp_title(7, "Unemployed Native-Born Workers Are Finding Jobs More Slowly, Not Faster"),
-       subtitle = "Share of unemployed native-born prime-age workers employed the following month, 12-month moving average",
-       x = NULL, y = "Monthly job-finding rate", caption = CAP) + my_style
+       subtitle = paste0("Share of unemployed native-born prime-age workers employed the following month.\n",
+                         "Moving average of 12 available monthly observations."),
+       x = NULL, y = "Monthly job-finding rate",
+       caption = paste0("Two transitions are unavailable around October 2025, extending affected windows beyond 12 calendar months.\n",
+                        "Source: IPUMS CPS microdata, author's calculations. Mike Konczal.")) + my_style
 ggsave("graphics/fig6_job_finding.png", p6, width = W, height = H, dpi = DPI)
 
 # ---- Fig 7: H5 native unemployment by education -----------------------------

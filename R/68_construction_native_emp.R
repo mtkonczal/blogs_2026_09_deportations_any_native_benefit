@@ -96,7 +96,7 @@ p <- ggplot(pd, aes(yr, value, color = name)) +
   scale_color_manual(values = c(RED, NAVY), guide = "none") +
   scale_x_continuous(breaks = seq(2015, 2026, 2)) +
   scale_y_continuous(labels = percent_format(accuracy = 0.1)) +
-  labs(title = hyp_title(10, "Construction's Immigrant Share Fell, and Prime-Age Native Workers Didn't Move In"),
+  labs(title = hyp_title(10, "Construction's Immigrant Share Fell; Native Prime-Age Employment Stayed Flat"),
        subtitle = "January-August of each year. Each panel has its own scale.",
        x = NULL, y = NULL,
        caption = paste0("Source: IPUMS CPS microdata, author's calculations. Construction = CPS industry (IND1990 60). ",
