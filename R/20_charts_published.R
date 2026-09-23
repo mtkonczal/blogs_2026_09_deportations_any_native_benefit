@@ -5,7 +5,7 @@ my_style <- list(
   theme_minimal(base_size = 12),
   theme(panel.grid.minor = element_blank(),
         panel.grid.major = element_line(color = "grey88", linewidth = .3),
-        plot.title = element_text(face = "bold", color = NAVY),
+        plot.title = element_text(face = "bold", color = NAVY, size = 13),
         plot.title.position = "plot",
         plot.subtitle = element_text(color = NAVY, size = 9.5),
         plot.caption = element_text(color = "grey40", size = 8),
@@ -13,6 +13,7 @@ my_style <- list(
         axis.title = element_text(size = 9)),
   coord_cartesian(clip = "off"))
 W <- 7.2; H <- 4.4; DPI <- 200
+source("R/00_blog_style.R")  # hyp_title() for graphics used in blog_post.md
 CAP <- "Source: BLS Current Population Survey. No household survey was conducted in October 2025.\nMike Konczal."
 
 d <- read_csv("data/nativity_published.csv", show_col_types = FALSE)
@@ -71,13 +72,14 @@ ggsave("graphics/fig3_measurement.png", p3, width = W, height = H, dpi = DPI)
 # Fig 4: H12 tightness
 t <- read_csv("output/h12_tightness.csv", show_col_types = FALSE)
 p4 <- t %>% filter(date >= as.Date("2018-01-01")) %>%
-  select(date, `Vacancies per unemployed worker` = vu, `Quits rate` = quits_rate) %>%
+  select(date, `Vacancies per unemployed worker` = vu, `Quits rate, % of employment` = quits_rate) %>%
+  mutate(`Quits rate, % of employment` = 100 * `Quits rate, % of employment`) %>%
   pivot_longer(-date) %>%
   ggplot(aes(date, value, color = name)) +
   geom_vline(xintercept = as.Date("2025-01-20"), linetype = "dashed", color = GREY) +
   geom_line(linewidth = .9) + facet_wrap(~name, scales = "free_y") +
   scale_color_manual(values = c(NAVY, RED), guide = "none") +
-  labs(title = "The Labor Market Got Looser, Not Tighter",
+  labs(title = hyp_title(9, "The Labor Market Got Looser, Not Tighter"),
        subtitle = "A labor supply contraction against stable demand would raise both series. Both fell.",
        x = NULL, y = NULL,
        caption = "Source: BLS JOLTS and CPS. Mike Konczal.") +

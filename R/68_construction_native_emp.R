@@ -69,7 +69,8 @@ for (g in list(list("men", d$male == 1), list("women", d$male == 0), list("all",
 # ---- chart: replaces the native-unemployment panel of b2_fig12 -------------
 # Written to fig9_construction.png so 47_charts_batch2.R cannot overwrite it.
 suppressMessages({library(tidyverse); library(scales)})
-NAVY <- "#2c3254"; RED <- "#ff8361"; GREY <- "#8d8b7f"
+source("R/00_blog_style.R")
+NAVY <- BLOG_NAVY; RED <- BLOG_RED; GREY <- BLOG_GREY
 pd <- as_tibble(res) %>%
   select(yr, `Foreign-born share of construction employment` = F_for_share_con,
          `Share of native-born prime-age adults working in construction` = C_nat_prime_all_con_rate) %>%
@@ -83,19 +84,11 @@ p <- ggplot(pd, aes(yr, value, color = name)) +
   scale_color_manual(values = c(RED, NAVY), guide = "none") +
   scale_x_continuous(breaks = seq(2015, 2026, 2)) +
   scale_y_continuous(labels = percent_format(accuracy = 0.1)) +
-  labs(title = "Construction: The Immigrant Share Fell, and Native Workers Didn't Move In",
+  labs(title = hyp_title(10, "Construction's Immigrant Share Fell, and Native Workers Didn't Move In"),
        subtitle = "January-August of each year. Each panel has its own scale.",
        x = NULL, y = NULL,
        caption = paste0("Source: IPUMS CPS microdata, author's calculations. Construction = CPS industry (IND1990 60). ",
                         "Prime age = 25-54,\nmen and women. Mike Konczal.")) +
-  theme_minimal(base_size = 12) +
-  theme(panel.grid.minor = element_blank(),
-        panel.grid.major = element_line(color = "grey88", linewidth = .3),
-        plot.title = element_text(face = "bold", color = NAVY, size = 13),
-        plot.title.position = "plot",
-        plot.subtitle = element_text(color = NAVY, size = 9.5),
-        plot.caption = element_text(color = "grey40", size = 8),
-        strip.text = element_text(color = NAVY, face = "bold", size = 9),
-        axis.title = element_text(size = 9))
-ggsave("graphics/fig9_construction.png", p, width = 7.2, height = 4.4, dpi = 200)
+  blog_theme
+blog_save("graphics/fig9_construction.png", p)
 cat("DONE 68_construction_native_emp.R\n")

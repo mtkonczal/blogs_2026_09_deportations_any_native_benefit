@@ -12,6 +12,7 @@ my_style <- list(
         axis.title = element_text(size = 9)),
   coord_cartesian(clip = "off"))
 W <- 7.2; H <- 4.4; DPI <- 200
+source("R/00_blog_style.R")  # hyp_title() for graphics used in blog_post.md
 CAP <- "Source: IPUMS CPS microdata, author's calculations. No household survey in October 2025.\nMike Konczal."
 CAP_CES <- "Source: BLS Current Employment Statistics (establishment survey); non-citizen shares from\n2024 ACS PUMS, crosswalked to CES industries. No CPS microdata used. Mike Konczal."
 
@@ -48,7 +49,7 @@ p6 <- fl %>% filter(date >= as.Date("2018-01-01"), !is.na(UE12),
   geom_vline(xintercept = as.Date("2025-01-20"), linetype = "dashed", color = GREY) +
   geom_line(linewidth = .9, color = NAVY) +
   scale_y_continuous(labels = percent_format(accuracy = 1)) +
-  labs(title = "Unemployed Native-Born Workers Are Finding Jobs More Slowly, Not Faster",
+  labs(title = hyp_title(7, "Unemployed Native-Born Workers Are Finding Jobs More Slowly, Not Faster"),
        subtitle = "Share of unemployed native-born prime-age workers employed the following month, 12-month moving average",
        x = NULL, y = "Monthly job-finding rate", caption = CAP) + my_style
 ggsave("graphics/fig6_job_finding.png", p6, width = W, height = H, dpi = DPI)

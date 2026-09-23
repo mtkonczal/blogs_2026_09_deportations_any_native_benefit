@@ -109,43 +109,36 @@ print(dcast(es[, .(outcome, q, v = sprintf("%+.2f (%.2f)", b, se))], q ~ outcome
 pre_q <- es[outcome == "nat_epop" & q < "2025Q1"]
 cat("pre-2025 native EPOP coefficients: mean", round(mean(pre_q$b), 2), "| max |b|", round(max(abs(pre_q$b)), 2), "\n")
 
-# ---- chart: first stage and native outcome ------------------------------------
-NAVY <- "#1c2e4a"; RED <- "#c0392b"; GREY <- "#555555"
+# ---- chart: first stage and native outcome (shared blog style) ----------------
+source("R/00_blog_style.R")
+NAVY <- BLOG_NAVY; GREY <- "#555555"   # used by the event-study chart below
 lab_st <- c("CA","TX","FL","NY","NJ","NV","WV","ME")
 pd <- bind_rows(
   as_tibble(s) %>% transmute(abb, E, y = d_nc,
-    panel = "1. Where immigrant workers left\nChange in employed noncitizens, % of prime-age pop."),
+    panel = "Where immigrant workers left: change in employed\nnoncitizens, % of prime-age population"),
   as_tibble(s) %>% transmute(abb, E, y = d_nat_epop,
-    panel = "2. Native employment didn't rise there\nChange in native prime-age employment rate, pp")) %>%
-  mutate(lbl = if_else(abb %in% lab_st, abb, NA_character_))
+    panel = "Native employment didn't rise there: change in\nnative prime-age employment rate, pp")) %>%
+  mutate(lbl = if_else(abb %in% lab_st, abb, NA_character_),
+         panel = factor(panel, levels = unique(panel)))   # first stage on the left
 p <- ggplot(pd, aes(E, y)) +
-  geom_hline(yintercept = 0, color = "grey40", linewidth = .4) +
-  geom_smooth(method = "lm", formula = y ~ x, se = TRUE, color = RED, fill = RED,
-              alpha = .12, linewidth = 1, linetype = "dashed") +
-  geom_point(color = NAVY, size = 2.4, alpha = .8) +
-  ggrepel::geom_text_repel(aes(label = lbl), size = 3.1, color = GREY, na.rm = TRUE,
+  geom_hline(yintercept = 0, color = "grey50", linewidth = .4) +
+  geom_smooth(method = "lm", formula = y ~ x, se = TRUE, color = BLOG_RED, fill = BLOG_RED,
+              alpha = .15, linewidth = .9, linetype = "dashed") +
+  geom_point(color = BLOG_NAVY, size = 1.8, alpha = .8) +
+  ggrepel::geom_text_repel(aes(label = lbl), size = 2.6, color = "grey30", na.rm = TRUE,
                            min.segment.length = Inf, seed = 1) +
   facet_wrap(~panel, scales = "free_y") +
   scale_x_continuous(labels = scales::percent_format(accuracy = 1)) +
-  scale_y_continuous(labels = function(x) ifelse(x == 0, "0", sprintf("%+.1f", x))) +
-  labs(title = "Where Immigrant Workers Left, Native-Born Workers Didn't Fill In",
+  scale_y_continuous(labels = function(x) ifelse(abs(x) < 1e-9, "0", sprintf("%+.1f", x))) +
+  labs(title = hyp_title(5, "Where Immigrant Workers Left, Native-Born Workers Didn't Fill In"),
        subtitle = "By state, against each state's 2022-24 noncitizen share of employment. 2024 vs. September 2025-August 2026.",
        x = "Noncitizen share of state employment, 2022-24", y = NULL,
-       caption = paste0("Source: IPUMS CPS microdata, author's calculations. Prime age = 25-54. DC excluded. ",
-                        sprintf("Replacement ratio (2SLS): %.2f native jobs per departed noncitizen job, 95%% CI [%.2f, %.2f].",
-                                rrt$replacement[1], rrt$ci_lo[1], rrt$ci_hi[1]),
-                        "\nMike Konczal, ESP.")) +
-  theme_minimal(base_size = 12) +
-  theme(panel.grid.minor = element_blank(), panel.grid.major.x = element_blank(),
-        panel.grid.major.y = element_line(color = "grey88", linewidth = .35),
-        plot.title = element_text(face = "bold", color = NAVY, size = 15),
-        plot.title.position = "plot",
-        plot.subtitle = element_text(color = GREY, face = "italic", size = 10),
-        plot.caption = element_text(color = GREY, face = "italic", size = 8, hjust = 0),
-        strip.text = element_text(color = NAVY, face = "bold", size = 9.5, hjust = 0),
-        axis.title.x = element_text(color = GREY, size = 10), axis.text = element_text(color = GREY)) +
+       caption = paste0("Source: IPUMS CPS microdata, author's calculations. Prime age = 25-54. DC excluded.\n",
+                        sprintf("Replacement ratio (2SLS): %.2f native jobs per departed noncitizen job, 95%% CI [%.2f, %.2f]. Mike Konczal.",
+                                rrt$replacement[1], rrt$ci_lo[1], rrt$ci_hi[1]))) +
+  blog_theme + theme(strip.text = element_text(hjust = 0, size = 8.5)) +
   coord_cartesian(clip = "off")
-ggsave("graphics/fig11_exposure_native.png", p, width = 10, height = 5.2, dpi = 200, bg = "white")
+blog_save("graphics/fig11_exposure_native.png", p, height = 4.6)
 
 # event-study chart saved for review, not yet in the post
 pe <- as_tibble(es) %>% filter(outcome == "nat_epop") %>%

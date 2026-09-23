@@ -61,9 +61,8 @@ cat("=== Jan-Aug average of monthly rates ===\n")
 print(dcast(ja, educ3 ~ year, value.var = "unrate_avg_monthly"), digits = 3)
 print(dcast(ja, educ3 ~ year, value.var = "n_lf_per_month"), digits = 4)
 
-# ---- chart: same look as Figs 1-3 -----------------------------------------
-BG <- "#faf6ec"; NAVY <- "#1c2340"; GOLD <- "#d9a066"
-YEAR_COLORS <- c(`2024` = GOLD, `2026` = NAVY)
+# ---- chart: shared blog style (R/00_blog_style.R) ---------------------------
+source("R/00_blog_style.R")
 pd <- as_tibble(m) %>% filter(year %in% c(2024, 2026)) %>%
   mutate(unrate = unrate_3m) %>%
   mutate(year = factor(year),
@@ -72,34 +71,22 @@ pd <- as_tibble(m) %>% filter(year %in% c(2024, 2026)) %>%
 lab <- pd %>% group_by(educ3, year) %>% filter(month == max(month)) %>% ungroup()
 
 p <- ggplot(pd, aes(month, unrate, color = year, group = year)) +
-  geom_line(linewidth = 1) + geom_point(size = 1.8) +
+  geom_line(linewidth = .9) + geom_point(size = 1.3) +
   ggrepel::geom_text_repel(data = lab, aes(label = percent(unrate, accuracy = 0.1)),
-                           nudge_x = .7, direction = "y", hjust = 0, size = 3.2,
-                           color = NAVY, segment.color = NA, show.legend = FALSE, seed = 1) +
+                           nudge_x = .7, direction = "y", hjust = 0, size = 2.7,
+                           segment.color = NA, show.legend = FALSE, seed = 1) +
   facet_wrap(~educ3, nrow = 1, scales = "free_y") +
-  scale_color_manual(values = YEAR_COLORS) +
+  scale_color_manual(values = BLOG_YEAR_COLORS) +
   scale_y_continuous(labels = function(x) paste0(sub("\\.?0+$", "", sprintf("%.2f", 100*x)), "%")) +
   scale_x_continuous(breaks = c(1, 4, 7, 10), labels = month.abb[c(1, 4, 7, 10)],
-                     limits = c(1, 13.4)) +
-  labs(title = "The Least-Educated Native Workers Did Not Gain",
-       subtitle = paste0("Native-born prime-age (25-54) unemployment rate by education, by month, ",
-                         "3-month moving average,\nnot seasonally adjusted, 2024 vs. 2026. Each panel has its own scale."),
-       caption = paste0("Author's calculation from IPUMS CPS microdata (WTFINL-weighted). Each point pools the month and the two ",
-                        "before it.\nMike Konczal, ESP.")) +
-  theme_minimal(base_size = 13) +
-  theme(plot.background = element_rect(fill = BG, color = NA),
-        panel.background = element_rect(fill = BG, color = NA),
-        panel.grid.minor = element_blank(), panel.grid.major.x = element_blank(),
-        panel.grid.major.y = element_line(color = "grey82", linewidth = .35),
-        plot.title = element_text(face = "bold", color = NAVY, size = 16),
-        plot.title.position = "plot",
-        plot.subtitle = element_text(color = NAVY, size = 11),
-        plot.caption = element_text(color = "grey45", size = 8.5),
-        strip.text = element_text(face = "bold", color = NAVY, size = 11),
-        legend.position = "top", legend.title = element_blank(),
-        legend.text = element_text(size = 11),
-        axis.title = element_blank(), axis.text = element_text(color = NAVY, size = 9.5),
-        panel.spacing.x = unit(1.4, "lines")) +
+                     limits = c(1, 14)) +
+  labs(title = hyp_title(4, "The Least-Educated Native Workers Did Not Gain"),
+       subtitle = paste0("Native-born prime-age (25-54) unemployment rate by education, 3-month moving average,\n",
+                         "not seasonally adjusted, 2024 vs. 2026. Each panel has its own scale."),
+       x = NULL, y = "Unemployment rate",
+       caption = paste0("Source: IPUMS CPS microdata, author's calculations. Each point pools the month and the two before it.\n",
+                        "Mike Konczal.")) +
+  blog_theme + theme(panel.spacing.x = unit(1.2, "lines"), axis.text.x = element_text(size = 8.5)) +
   coord_cartesian(clip = "off")
-ggsave("graphics/fig7_education.png", p, width = 10, height = 5, dpi = 200, bg = BG)
+blog_save("graphics/fig7_education.png", p)
 cat("DONE 65_education_monthly.R\n")

@@ -17,6 +17,7 @@ my_style <- list(
         axis.title = element_text(size = 9)),
   coord_cartesian(clip = "off"))
 W <- 7.2; H <- 4.4; DPI <- 200
+source("R/00_blog_style.R")  # hyp_title() for graphics used in blog_post.md
 YRX <- scale_x_continuous(breaks = seq(2014, 2026, 2))
 CAP_BLS <- "Source: BLS. Mike Konczal."
 CAP_CPS <- "Source: IPUMS CPS microdata, author's calculations. No household survey in October 2025.\nMike Konczal."
@@ -34,7 +35,7 @@ p <- ls_q %>% filter(date >= as.Date("1990-01-01")) %>%
   annotate("text", x = as.Date("2025-04-01"), y = last$labor_share_nfb - 1.6,
            label = sprintf("%.1f, the lowest\nin the series", last$labor_share_nfb),
            hjust = 1, size = 3, color = RED, lineheight = .95) +
-  labs(title = "The Labor Share Did Not Rise. It Fell to a Postwar Low.",
+  labs(title = hyp_title(8, "The Labor Share Did Not Rise. It Fell to a Postwar Low."),
        subtitle = "Labor share of nonfarm business sector income, index 2017 = 100. Dashed line: December 2024.",
        x = NULL, y = "Index, 2017 = 100", caption = CAP_BLS) + my_style
 ggsave("graphics/b2_fig1_labor_share.png", p, width = W, height = H, dpi = DPI)

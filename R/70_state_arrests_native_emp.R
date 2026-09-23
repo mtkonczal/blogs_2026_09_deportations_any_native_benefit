@@ -86,45 +86,35 @@ print(m[order(-arrests_per_100k)][1:5, .(state_name, arrests_per_100k = round(ar
                                          prior = round(100*nat_emp_growth_prior, 1),
                                          diff = round(100*diff_growth, 1))])
 
-# ---- chart ---------------------------------------------------------------------
-NAVY <- "#1c2e4a"; RED <- "#c0392b"; GREY <- "#555555"
+# ---- chart (shared blog style) -------------------------------------------------
+source("R/00_blog_style.R")
 lab_states <- unique(c(m[order(-arrests_per_100k)][1:3, abb],
                        m[order(-diff_growth)][1:1, abb], m[order(diff_growth)][1:2, abb],
                        "CA", "NY"))
 m[, lbl := fifelse(abb %in% lab_states, abb, NA_character_)]
 fit <- lm(diff_growth ~ arrests_per_100k, data = m)
 xr <- range(m$arrests_per_100k)
-ann_y <- predict(fit, newdata = data.frame(arrests_per_100k = xr[2])) - 0.03
+ann_y <- predict(fit, newdata = data.frame(arrests_per_100k = xr[2])) - 0.035
 
 p <- ggplot(m, aes(arrests_per_100k, diff_growth)) +
-  geom_hline(yintercept = 0, color = "grey40", linewidth = .4) +
-  geom_abline(intercept = coef(fit)[1], slope = coef(fit)[2], color = RED,
-              linewidth = 1.1, linetype = "dashed") +
-  geom_point(color = NAVY, size = 3, alpha = .8) +
-  ggrepel::geom_text_repel(aes(label = lbl), size = 3.6, color = GREY, na.rm = TRUE,
+  geom_hline(yintercept = 0, color = "grey50", linewidth = .4) +
+  geom_abline(intercept = coef(fit)[1], slope = coef(fit)[2], color = BLOG_RED,
+              linewidth = .9, linetype = "dashed") +
+  geom_point(color = BLOG_NAVY, size = 2.2, alpha = .8) +
+  ggrepel::geom_text_repel(aes(label = lbl), size = 2.8, color = "grey30", na.rm = TRUE,
                            min.segment.length = Inf, point.padding = .3, seed = 1) +
-  annotate("text", x = xr[2], y = ann_y, hjust = 1, color = RED, fontface = "bold.italic", size = 4.2,
+  annotate("text", x = xr[2], y = ann_y, hjust = 1, color = BLOG_RED, fontface = "bold", size = 3.2,
            label = sprintf("trend: flat\n(correlation %.2f)", ct_diff$estimate)) +
-  scale_y_continuous(labels = function(x) ifelse(abs(x) < 1e-9, "0", sprintf("%+.0f pp", 100*x))) +
+  scale_y_continuous(labels = function(x) ifelse(abs(x) < 1e-9, "0", sprintf("%+.0f", 100*x))) +
   scale_x_continuous(limits = c(0, NA), expand = expansion(mult = c(0, .03))) +
-  labs(title = "States With More ICE Arrests Didn't See Native-Born Job Growth Speed Up",
-       subtitle = paste0("By state: ICE arrests per 100,000 residents vs. change in native-born employment growth,\n",
-                         "Jan.-Mar. 2025 to May-July 2026, minus the same months two years earlier (2023 to 2024), pp"),
-       x = "ICE arrests per 100,000 residents, January 2025-July 2026", y = NULL,
-       caption = paste0("Source: Deportation Data Project (ICE arrests); Census Bureau population estimates; IPUMS CPS microdata ",
-                        "(native-born employment, 3-month averages).\n",
-                        sprintf("Correlation: %.2f; without the trend adjustment, %.2f. ", ct_diff$estimate, ct_lvl$estimate),
-                        "Chart modeled on one by Steven Rattner. Mike Konczal, ESP.")) +
-  theme_minimal(base_size = 13) +
-  theme(panel.grid.minor = element_blank(), panel.grid.major.x = element_blank(),
-        panel.grid.major.y = element_line(color = "grey88", linewidth = .35),
-        plot.title = element_text(face = "bold", color = NAVY, size = 17),
-        plot.title.position = "plot",
-        plot.subtitle = element_text(color = GREY, face = "italic", size = 11.5),
-        plot.caption = element_text(color = GREY, face = "italic", size = 8.5, hjust = 0),
-        axis.line = element_line(color = "grey40", linewidth = .4),
-        axis.title.x = element_text(color = GREY, size = 11),
-        axis.text = element_text(color = GREY, size = 11)) +
-  coord_cartesian(clip = "off")
-ggsave("graphics/fig10_arrests_native_emp.png", p, width = 9, height = 5.4, dpi = 200, bg = "white")
+  labs(title = hyp_title(11, "States With More ICE Arrests Didn't See Native-Born Job Growth Speed Up"),
+       subtitle = paste0("By state: ICE arrests per 100,000 residents vs. change in native-born employment growth, Jan.-Mar. 2025\n",
+                         "to May-July 2026, minus growth over the same months two years earlier (2023 to 2024)"),
+       x = "ICE arrests per 100,000 residents, January 2025-July 2026",
+       y = "Change in employment growth, pp",
+       caption = paste0("Source: Deportation Data Project; Census Bureau; IPUMS CPS microdata (native-born employment, 3-month averages).\n",
+                        sprintf("Correlation %.2f; without the trend adjustment, %.2f. Modeled on a chart by Steven Rattner. Mike Konczal.",
+                                ct_diff$estimate, ct_lvl$estimate))) +
+  blog_theme + coord_cartesian(clip = "off")
+blog_save("graphics/fig10_arrests_native_emp.png", p)
 cat("DONE 70_state_arrests_native_emp.R\n")

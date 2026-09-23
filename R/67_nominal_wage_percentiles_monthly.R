@@ -82,41 +82,33 @@ print(dcast(r[window == 12 & date %in% sel], pctile ~ date, value.var = "yoy",
             fun.aggregate = function(x) round(100*x, 1)))
 cat("\nrecords per 6-month window, range:", range(r[window == 6]$n), "\n")
 
-# ---- chart: 6-month window ---------------------------------------------------
-BG <- "#faf6ec"; NAVY <- "#1c2340"; GREY <- "#8d8b7f"
+# ---- chart: 6-month window (shared blog style) -------------------------------
+source("R/00_blog_style.R")
+PCT_COLORS <- c("10th percentile" = BLOG_RED, "20th percentile" = BLOG_GOLD,
+                "40th percentile" = BLOG_GREEN, "Median" = BLOG_NAVY)
 pd <- as_tibble(r) %>% filter(window == 6) %>%
   mutate(pctile = factor(pctile, levels = c("p10","p20","p40","p50"),
-                         labels = c("10th percentile","20th percentile","40th percentile","Median")))
+                         labels = names(PCT_COLORS)))
 # end labels placed directly, spaced at least 0.45 pp apart so none overlap
-lab <- pd %>% filter(date == max(date)) %>% arrange(yoy) %>%
-  mutate(y_lab = yoy)
+lab <- pd %>% filter(date == max(date)) %>% arrange(yoy) %>% mutate(y_lab = yoy)
 for (k in 2:nrow(lab)) lab$y_lab[k] <- max(lab$y_lab[k], lab$y_lab[k - 1] + 0.0045)
 p <- ggplot(pd, aes(date, yoy, color = pctile)) +
-  geom_hline(yintercept = 0, color = "grey60", linewidth = .3) +
-  geom_vline(xintercept = as.Date("2025-01-20"), linetype = "dashed", color = GREY) +
-  geom_line(linewidth = 1.1) +
+  geom_hline(yintercept = 0, color = "grey50", linewidth = .3) +
+  geom_vline(xintercept = as.Date("2025-01-20"), linetype = "dashed", color = BLOG_GREY) +
+  geom_line(linewidth = .9) +
   geom_text(data = lab, aes(x = date + 25, y = y_lab,
                             label = paste0(pctile, ": ", percent(yoy, accuracy = 0.1))),
-            hjust = 0, size = 3.4, show.legend = FALSE) +
-  scale_color_brewer(palette = "Dark2", guide = "none") +
+            hjust = 0, size = 2.9, show.legend = FALSE) +
+  scale_color_manual(values = PCT_COLORS, guide = "none") +
   scale_x_date(breaks = seq(as.Date("2023-01-01"), as.Date("2026-07-01"), by = "6 months"),
                date_labels = "%b\n%Y", limits = c(as.Date("2023-01-01"), as.Date("2027-06-01"))) +
   scale_y_continuous(labels = function(x) paste0(sub("\\.?0+$", "", sprintf("%.1f", 100*x)), "%")) +
-  labs(title = "Nominal Wage Growth at the Bottom Slowed",
-       subtitle = paste0("Native-born hourly wages, year-over-year nominal growth at selected percentiles,\n",
-                         "trailing 6-month window vs. the same window a year earlier. Dashed line: January 20, 2025."),
-       caption = paste0("Author's calculation from IPUMS CPS outgoing rotation groups (EARNWT-weighted), imputed earnings excluded.\n",
-                        "Each percentile averages the +/-2 percentile band to offset heaping at round-dollar wages. Mike Konczal, ESP.")) +
-  theme_minimal(base_size = 13) +
-  theme(plot.background = element_rect(fill = BG, color = NA),
-        panel.background = element_rect(fill = BG, color = NA),
-        panel.grid.minor = element_blank(), panel.grid.major.x = element_blank(),
-        panel.grid.major.y = element_line(color = "grey82", linewidth = .35),
-        plot.title = element_text(face = "bold", color = NAVY, size = 16),
-        plot.title.position = "plot",
-        plot.subtitle = element_text(color = NAVY, size = 11),
-        plot.caption = element_text(color = "grey45", size = 8.5),
-        axis.title = element_blank(), axis.text = element_text(color = NAVY, size = 10)) +
-  coord_cartesian(clip = "off")
-ggsave("graphics/fig14c_nominal_wage_percentiles_monthly.png", p, width = 8.5, height = 5, dpi = 200, bg = BG)
+  labs(title = hyp_title(6, "Nominal Wage Growth at the Bottom Slowed"),
+       subtitle = paste0("Native-born hourly wages, year-over-year nominal growth at selected percentiles, trailing 6-month\n",
+                         "window vs. the same window a year earlier. Dashed line: January 20, 2025."),
+       x = NULL, y = "Nominal wage growth, year over year",
+       caption = paste0("Source: IPUMS CPS outgoing rotation groups, author's calculations; imputed earnings excluded. Each percentile\n",
+                        "averages the +/-2 percentile band to offset heaping at round-dollar wages. Mike Konczal.")) +
+  blog_theme + coord_cartesian(clip = "off")
+blog_save("graphics/fig14c_nominal_wage_percentiles_monthly.png", p)
 cat("DONE 67_nominal_wage_percentiles_monthly.R\n")

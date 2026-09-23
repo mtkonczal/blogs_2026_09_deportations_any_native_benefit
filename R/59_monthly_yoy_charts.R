@@ -6,6 +6,7 @@
 # because non-citizen CPS response rates fell (see fig5_nonresponse.png), which
 # makes a foreign-born vs. native-born NSA comparison unreliable.
 # ==============================================================================
+stop("59_monthly_yoy_charts.R is superseded by 60_bls_official_monthly.R, which writes the same three graphics.")
 suppressMessages({library(tidyverse); library(lubridate); library(scales)})
 dir.create("graphics", showWarnings = FALSE)
 
