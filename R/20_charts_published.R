@@ -80,7 +80,7 @@ p4 <- t %>% filter(date >= as.Date("2018-01-01")) %>%
   geom_line(linewidth = .9) + facet_wrap(~name, scales = "free_y") +
   scale_color_manual(values = c(NAVY, RED), guide = "none") +
   labs(title = hyp_title(9, "The Labor Market Got Looser, Not Tighter"),
-       subtitle = "A labor supply contraction against stable demand would raise both series. Both fell.",
+       subtitle = "A labor supply contraction against stable demand would raise both series. Neither is above its 2024 level.",
        x = NULL, y = NULL,
        caption = "Source: BLS JOLTS and CPS. Mike Konczal.") +
   my_style + theme(strip.text = element_text(face = "bold", color = NAVY))

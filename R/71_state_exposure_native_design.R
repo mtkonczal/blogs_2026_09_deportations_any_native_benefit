@@ -132,7 +132,8 @@ cat(sprintf("\nBlog chart: native jobs gained per noncitizen job lost (OLS, unwe
 lab_st <- c("NC","NV","TX","CA","MD","NY","NJ","IL","FL")
 pd <- as_tibble(s) %>%
   transmute(abb, x = -d_nc, y = nat_jobs_beyond_pop,
-            lbl = if_else(abb %in% lab_st, abb, NA_character_))
+            # "" (not NA) keeps unlabeled states in the repel set, so no label sits on a dot
+            lbl = if_else(abb %in% lab_st, abb, ""))
 p <- ggplot(pd, aes(x, y)) +
   geom_hline(yintercept = 0, color = "grey60", linewidth = .3) +
   geom_vline(xintercept = 0, color = "grey60", linewidth = .3) +
@@ -144,12 +145,13 @@ p <- ggplot(pd, aes(x, y)) +
   annotate("text", x = 3.75, y = -1.3, label = "What happened", hjust = 1, size = 3,
            color = BLOG_RED, fontface = "bold") +
   geom_point(color = BLOG_NAVY, size = 1.8, alpha = .8) +
-  ggrepel::geom_text_repel(aes(label = lbl), size = 2.7, color = "grey30", na.rm = TRUE,
+  ggrepel::geom_text_repel(aes(label = lbl), size = 2.7, color = "grey30",
+                           point.padding = 0.25, box.padding = 0.3, max.overlaps = Inf,
                            min.segment.length = Inf, seed = 1) +
   scale_x_continuous(labels = function(v) ifelse(abs(v) < 1e-9, "0", sprintf("%+.0f", v))) +
   scale_y_continuous(labels = function(v) ifelse(abs(v) < 1e-9, "0", sprintf("%+.0f", v))) +
   coord_cartesian(xlim = c(-2.5, 3.8), ylim = c(-3.5, 3.5)) +
-  labs(title = hyp_title(5, "Where Immigrant Workers Left, Native-Born Workers Didn't Fill In"),
+  labs(title = hyp_title(5, "Where Noncitizen Workers Left, Native-Born Workers Didn't Fill In"),
        subtitle = "By state, 2024 vs. September 2025-August 2026. Both axes: jobs per 100 prime-age (25-54) residents.",
        x = "Noncitizen jobs lost (negative = gained)", y = "Native-born jobs gained",
        caption = paste0("Source: IPUMS CPS microdata, author's calculations. Native-born jobs gained excludes population growth.\n",

@@ -45,6 +45,8 @@ res <- d[, .(
   B_nat_prime_men_noba_rate  = sum(WTFINL*con*(native*prime*male*noba)) / sum(WTFINL*native*prime*male*noba),
   C_nat_prime_all_con_rate   = sum(WTFINL*con*(native*prime)) / sum(WTFINL*native*prime),
   C2_nat_prime_women_con_rate = sum(WTFINL*con*(native*prime*(1-male))) / sum(WTFINL*native*prime*(1-male)),
+  # ages 16-24: the one age group where native construction work rose (see text)
+  G_nat_youth_con_rate       = sum(WTFINL*con*native*(AGE <= 24)) / sum(WTFINL*native*(AGE <= 24)),
   D_nat_con_emp_mil          = sum(WTFINL*con*native) / 1e6 / 8,
   D_for_con_emp_mil          = sum(WTFINL*con*foreign) / 1e6 / 8,
   E_nat_con_hours            = sum(WTFINL*con*native*uhrs, na.rm = TRUE) /
@@ -62,6 +64,16 @@ for (g in list(list("men", d$male == 1), list("women", d$male == 0), list("all",
   f <- feols(con ~ i(yr, ref = 2024), data = d[native == 1 & prime == 1 & g[[2]] & yr >= 2022],
              weights = ~WTFINL, cluster = ~CPSID)
   cat("\n=== native prime-age", g[[1]], ": change in share working in construction vs 2024, pp ===\n")
+  ct <- coeftable(f); ct <- ct[grepl("yr::", rownames(ct)), ]
+  print(round(cbind(d_pp = 100*ct[, 1], se_pp = 100*ct[, 2], p = ct[, 4]), 3))
+}
+
+# Native 16-24: their construction rate rose in 2026. Test against both 2024
+# (a low year for them) and 2023, household-clustered SE.
+for (ref in c(2024, 2023)) {
+  f <- feols(as.formula(paste0("con ~ i(yr, ref = ", ref, ")")), data = d[native == 1 & AGE <= 24 & yr >= 2022],
+             weights = ~WTFINL, cluster = ~CPSID)
+  cat("\n=== native 16-24: change in share working in construction vs", ref, ", pp ===\n")
   ct <- coeftable(f); ct <- ct[grepl("yr::", rownames(ct)), ]
   print(round(cbind(d_pp = 100*ct[, 1], se_pp = 100*ct[, 2], p = ct[, 4]), 3))
 }
@@ -84,7 +96,7 @@ p <- ggplot(pd, aes(yr, value, color = name)) +
   scale_color_manual(values = c(RED, NAVY), guide = "none") +
   scale_x_continuous(breaks = seq(2015, 2026, 2)) +
   scale_y_continuous(labels = percent_format(accuracy = 0.1)) +
-  labs(title = hyp_title(10, "Construction's Immigrant Share Fell, and Native Workers Didn't Move In"),
+  labs(title = hyp_title(10, "Construction's Immigrant Share Fell, and Prime-Age Native Workers Didn't Move In"),
        subtitle = "January-August of each year. Each panel has its own scale.",
        x = NULL, y = NULL,
        caption = paste0("Source: IPUMS CPS microdata, author's calculations. Construction = CPS industry (IND1990 60). ",
