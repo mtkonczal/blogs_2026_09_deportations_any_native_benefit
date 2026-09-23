@@ -1,32 +1,36 @@
-In response to my [recent post on women gaining 101% of jobs](https://newsletter.mikekonczal.com/p/why-are-women-over-100-of-jobs-gained) under the Trump administration, many commentators pointed to [John Carney at Breitbart](https://www.breitbart.com/economy/2026/09/10/breitbart-business-digest-liberals-are-worried-too-many-women-got-jobs-last-month/), who argued that this was largely about immigration. It made me realize that it's been a little bit since I took a dive into the immigration debates, and I'm braced to do this because I know the media and the Trump administration are not exactly about the preponderance of the evidence. People, if they find one thing, they'll run with it. Indeed, they spent a lot of 2025 arguing off the CPS raw levels, like a bunch of jokesters, even though [Jed Kolko](https://jedkolko.substack.com/p/no-native-born-employment-has-not) spent a lot of time explaining why that was not a good idea.
+In response to my [recent post on women gaining 101% of jobs](https://newsletter.mikekonczal.com/p/why-are-women-over-100-of-jobs-gained) under the Trump administration, [many commentators argued](https://www.breitbart.com/economy/2026/09/10/breitbart-business-digest-liberals-are-worried-too-many-women-got-jobs-last-month/), that this was largely about immigration, about native-born male workers taking jobs formerly held by deported immigrants. As we will see, that's not true (see hypothesis TK below), native-born prime-age, male employment to population ratio is about the same or even below 2024 levels.
 
-Going back into it, I was actually kind of surprised that I couldn't find evidence that native-born workers were better off for a year and a half of deportations. I kept digging, and I couldn't find any evidence. I dug some more, and every hypothesis I could come up with failed. I cannot find a reasonable metric by which native-born workers are better off out here in 2026 than they were in 2024.
+But it did make me realize that it's been a little bit since I took a dive into the immigration debates, and I'm braced to do this because I know the media and the Trump administration are not exactly "preponderance of the evidence" people. If they find one thing, one way to pitch the data, they'll run with it. Indeed, they spent a lot of 2025 arguing off the CPS raw levels, even though [Jed Kolko](https://jedkolko.substack.com/p/no-native-born-employment-has-not) spent a lot of time politely and ultimately correctly explaining why that was not a good idea. Like what are the chances we shoot the moon, and find a dozen different hypotheses that all turn out to go against the restrictionist's case?
 
-We're going to move pretty fast through this. There's a GitHub where you can go ahead and ask your AI to download it and check it yourself, but I hope you trust me that I kicked the tires quite hard on this.
+Pretty good actually. I crank through 12 ways in which the mass deportations of the past year could have made things better for native-born workers in the labor market, and none of them came true. They are all null or in the other direction. That's pretty remarkable. A reminder that the unemployment rate right now (4.14%) is about where it was two years ago (4.19%), so we can't point to an obviously overall weaker macro environment to make this case. It's just that the story isn't coming true.
+
+We're going to move pretty fast through this. There's a GitHub where you can go ahead and ask your AI to download it and check it yourself. Let's channel Jonathan Frakes telling us that none of these ever happened, they are all fiction, as we go through these.
+
+[https://www.youtube.com/watch?v=GM-e46xdcUo]
 
 **Hypothesis 1: Native-born unemployment would fall.**
 
 ![Native-born unemployment rate by month, not seasonally adjusted: higher in 2026 than 2024 in every month](graphics/fig1_unrate_native_monthly.png)
 
-It didn't happen. Instead, we can see it's basically the same. 
+It didn't happen. It's higher instead. (Not seasonally adjusted, aggregated published BLS categories.)
 
 **Hypothesis 2: Prime-age employment would rise for native-born workers.**
 
 ![Native-born prime-age employment-population ratio by month, not seasonally adjusted: lower in 2026 than 2024 in every month](graphics/fig2_prime_epop_native_monthly.png)
 
-It didn't happen. Instead, it looks like it fell. 
+It didn't happen. Instead, it is lower. (Not seasonally adjusted, aggregated published BLS categories.)
 
-**Hypothesis 3: Prime-age employment would rise for native-born male workers.** This is the subtext of the 101% female job gain response I got, and people like Vice President JD Vance have alluded to this: the idea that there are a lot of workers on the sidelines because immigration is keeping them out of the labor force.
+**Hypothesis 3: Prime-age employment would rise for native-born male workers.** During the 2024 election, in response to a question about deportations, J.D. Vance [said](https://reason.com/2024/10/17/j-d-vance-says-7-million-able-bodied-men-have-dropped-out-of-the-labor-force-where-are-they/), said "You would take, let's say for example, the seven million prime-age men who have dropped out of the labor force" and "re-engage folks into the American labor market." He later noted, "we have seven million—just men, not even women, just men—who have completely dropped out of the labor force." Did that work?
 
-![Native-born men's prime-age employment-population ratio by month, not seasonally adjusted: lower in 2026 than 2024 in every month](graphics/fig3_native_men_epop_monthly.png)
+![Native-born men's prime-age employment-population ratio by month, not seasonally adjusted: no higher in 2026 than 2024](graphics/fig3_native_men_epop_monthly.png)
 
-It didn't happen. Instead, we can see that fell too.
+It didn't happen. Participation here is about the same or lower than 2024. (Not seasonally adjusted, author's IPUMS calculation.)
 
 **Hypothesis 4: Least-educated native workers would do better.** There's some debate about this, but in theory, native-born workers without a high school diploma should have been competing the most with immigrant labor and thus should have the most to gain.
 
-![Native-born unemployment rate by education: the least-educated group did worst, not best](graphics/fig7_education.png)
+![Native-born prime-age unemployment rate by education, January through August of each year: the least-educated group did not gain](graphics/fig7_education.png)
 
-It didn't happen. The least-educated native workers did worse on unemployment.
+It didn't happen. Comparing January through August of each year, unemployment for native workers without a high school diploma rose from 8.8% in 2024 to 9.4% in 2026. That's the same 0.6-point rise college graduates saw. The group with the most to gain gained nothing relative to anyone else.
 
 **Hypothesis 5: Wage growth would pick up for lower-income workers as deportations accelerated.**
 
@@ -76,6 +80,6 @@ It didn't happen. Once you net out each state's own trend, the correlation isn't
 
 ![23 state-level correlations with ICE enforcement intensity, filled dot means p<0.05: only one clears the bar, and it's a confound, not a result](graphics/fig_state_hypothesis_scan_p05.png)
 
-It didn't happen. Wage growth here is already the trend-differenced version — each state's wage growth measured against its own prior-year trend, the same fix as Hypothesis 11 — rather than the raw level, because the level has the identical problem: high-enforcement states already had faster wage growth before the window started. Fixed that way, wage growth is unremarkable (r = 0.05, p = 0.74), and at the stricter p < 0.05 threshold across all 23 outcomes, exactly one is statistically significant: states' 2024 construction employment share predicts ICE enforcement intensity better than anything downstream of enforcement does. That's not a finding about what enforcement did — it's evidence that enforcement wasn't handed out at random across state economies in the first place. Nothing else in the scan comes close, which is what you'd expect if there's simply nothing here to find.
+It didn't happen. Wage growth here is already the trend-differenced version — each state's wage growth measured against its own prior-year trend, the same fix as Hypothesis 11 — rather than the raw level, because the level has the identical problem: high-enforcement states already had faster wage growth before the window started. Fixed that way, wage growth is unremarkable (r = 0.05, p = 0.74), and at the stricter p < 0.05 threshold across all 23 outcomes, exactly one is statistically significant: states' 2024 construction employment share predicts ICE enforcement intensity better than anything downstream of enforcement does. That's not a finding about what enforcement did — it's evidence that enforcement wasn't handed out at random across state economies in the first place. The two next-closest rows sit just outside the line and don't help the restrictionist case either: heavier-enforcement states saw unemployment rise more (r = 0.28, p = 0.05), and their raw payroll growth ran slightly faster (r = 0.27, p = 0.06), which is the level comparison Hypothesis 11 already showed disappears once you net out each state's own trend.
 
-Nothing here is as cleanly instrumented as the occupation-level and industry-level tests above — this is closer to real-time, kick-the-tires analysis than a single well-designed test. But that's what makes it useful: run enough independent looks and a few should land in the restrictionists' favor by chance alone. They don't. The case was never especially well thought out to begin with.
+Nothing here is as cleanly instrumented as the occupation-level and industry-level tests above — this is closer to real-time, kick-the-tires analysis than a single well-designed test. But that's what makes it useful: run enough looks and a few should land in the restrictionists' favor by chance alone. They don't. The case was never especially well thought out to begin with.
