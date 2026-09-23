@@ -1,9 +1,20 @@
 # ==============================================================================
-# 71_state_exposure_native_design.R -> Hypothesis 11
+# 71_state_exposure_native_design.R -> graphics/fig11_exposure_native.png
+#                                      (Hypothesis 5 in blog_post.md)
 #
-# The state test with a working first stage (see 69_state_first_stage.R: ICE
-# arrests do not predict where noncitizen employment fell; the predetermined
-# 2022-2024 noncitizen share of employment does).
+# BLOG CHART (Hypothesis 5): a direct state scatter, no instrument. x = noncitizen
+# jobs lost, y = native-born jobs gained, both per 100 prime-age residents,
+# 2024 vs Sep 2025-Aug 2026. Full replacement is the 45-degree line; the fitted
+# OLS line is unweighted, matching the unweighted dots. This replaced the
+# two-panel exposure/2SLS chart: its first stage was weak (F = 3.8), so the
+# 2SLS replacement ratio below is kept only as a printed diagnostic.
+# Caveats on the direct scatter: state CPS changes are noisy (split-sample
+# reliability of the noncitizen change ~0.5), which pulls the slope toward 0;
+# and common local demand shocks push both series the same way (positive
+# co-movement, i.e. a flatter line). Full replacement would still show up as a
+# clearly positive slope (~+0.5 after attenuation); the estimate is ~-0.16.
+#
+# Diagnostics retained below (exposure design, see 69_state_first_stage.R):
 #
 #   Exposure  E  = noncitizen share of state employment, 2022-2024 (ages 16+)
 #   1. First stage: change in employed prime-age noncitizens as % of state
@@ -109,36 +120,42 @@ print(dcast(es[, .(outcome, q, v = sprintf("%+.2f (%.2f)", b, se))], q ~ outcome
 pre_q <- es[outcome == "nat_epop" & q < "2025Q1"]
 cat("pre-2025 native EPOP coefficients: mean", round(mean(pre_q$b), 2), "| max |b|", round(max(abs(pre_q$b)), 2), "\n")
 
-# ---- chart: first stage and native outcome (shared blog style) ----------------
+# ---- chart (Hypothesis 5): noncitizen jobs lost vs native jobs gained --------
+# Both axes in jobs per 100 prime-age residents, so full replacement = 45-degree
+# line. y = change in native prime-age EPOP x native share of prime pop, which
+# excludes native gains that come only from population growth.
 source("R/00_blog_style.R")
 NAVY <- BLOG_NAVY; GREY <- "#555555"   # used by the event-study chart below
-lab_st <- c("CA","TX","FL","NY","NJ","NV","WV","ME")
-pd <- bind_rows(
-  as_tibble(s) %>% transmute(abb, E, y = d_nc,
-    panel = "Where immigrant workers left: change in employed\nnoncitizens, % of prime-age population"),
-  as_tibble(s) %>% transmute(abb, E, y = d_nat_epop,
-    panel = "Native employment didn't rise there: change in\nnative prime-age employment rate, pp")) %>%
-  mutate(lbl = if_else(abb %in% lab_st, abb, NA_character_),
-         panel = factor(panel, levels = unique(panel)))   # first stage on the left
-p <- ggplot(pd, aes(E, y)) +
-  geom_hline(yintercept = 0, color = "grey50", linewidth = .4) +
+dfit <- lm(nat_jobs_beyond_pop ~ I(-d_nc), data = s)
+cat(sprintf("\nBlog chart: native jobs gained per noncitizen job lost (OLS, unweighted) = %+.2f (se %.2f)\n",
+            coef(dfit)[2], summary(dfit)$coef[2, 2]))
+lab_st <- c("NC","NV","TX","CA","MD","NY","NJ","IL","FL")
+pd <- as_tibble(s) %>%
+  transmute(abb, x = -d_nc, y = nat_jobs_beyond_pop,
+            lbl = if_else(abb %in% lab_st, abb, NA_character_))
+p <- ggplot(pd, aes(x, y)) +
+  geom_hline(yintercept = 0, color = "grey60", linewidth = .3) +
+  geom_vline(xintercept = 0, color = "grey60", linewidth = .3) +
+  geom_abline(slope = 1, intercept = 0, color = BLOG_GREY, linetype = "dashed", linewidth = .8) +
+  annotate("text", x = 1.55, y = 3.1, label = "If native-born workers\nfilled every lost job",
+           hjust = 0, size = 3, color = BLOG_GREY, lineheight = .95) +
   geom_smooth(method = "lm", formula = y ~ x, se = TRUE, color = BLOG_RED, fill = BLOG_RED,
-              alpha = .15, linewidth = .9, linetype = "dashed") +
+              alpha = .15, linewidth = .9) +
+  annotate("text", x = 3.75, y = -1.3, label = "What happened", hjust = 1, size = 3,
+           color = BLOG_RED, fontface = "bold") +
   geom_point(color = BLOG_NAVY, size = 1.8, alpha = .8) +
-  ggrepel::geom_text_repel(aes(label = lbl), size = 2.6, color = "grey30", na.rm = TRUE,
+  ggrepel::geom_text_repel(aes(label = lbl), size = 2.7, color = "grey30", na.rm = TRUE,
                            min.segment.length = Inf, seed = 1) +
-  facet_wrap(~panel, scales = "free_y") +
-  scale_x_continuous(labels = scales::percent_format(accuracy = 1)) +
-  scale_y_continuous(labels = function(x) ifelse(abs(x) < 1e-9, "0", sprintf("%+.1f", x))) +
+  scale_x_continuous(labels = function(v) ifelse(abs(v) < 1e-9, "0", sprintf("%+.0f", v))) +
+  scale_y_continuous(labels = function(v) ifelse(abs(v) < 1e-9, "0", sprintf("%+.0f", v))) +
+  coord_cartesian(xlim = c(-2.5, 3.8), ylim = c(-3.5, 3.5)) +
   labs(title = hyp_title(5, "Where Immigrant Workers Left, Native-Born Workers Didn't Fill In"),
-       subtitle = "By state, against each state's 2022-24 noncitizen share of employment. 2024 vs. September 2025-August 2026.",
-       x = "Noncitizen share of state employment, 2022-24", y = NULL,
-       caption = paste0("Source: IPUMS CPS microdata, author's calculations. Prime age = 25-54. DC excluded.\n",
-                        sprintf("Replacement ratio (2SLS): %.2f native jobs per departed noncitizen job, 95%% CI [%.2f, %.2f]. Mike Konczal.",
-                                rrt$replacement[1], rrt$ci_lo[1], rrt$ci_hi[1]))) +
-  blog_theme + theme(strip.text = element_text(hjust = 0, size = 8.5)) +
-  coord_cartesian(clip = "off")
-blog_save("graphics/fig11_exposure_native.png", p, height = 4.6)
+       subtitle = "By state, 2024 vs. September 2025-August 2026. Both axes: jobs per 100 prime-age (25-54) residents.",
+       x = "Noncitizen jobs lost (negative = gained)", y = "Native-born jobs gained",
+       caption = paste0("Source: IPUMS CPS microdata, author's calculations. Native-born jobs gained excludes population growth.\n",
+                        "DC excluded. Mike Konczal.")) +
+  blog_theme
+blog_save("graphics/fig11_exposure_native.png", p)
 
 # event-study chart saved for review, not yet in the post
 pe <- as_tibble(es) %>% filter(outcome == "nat_epop") %>%

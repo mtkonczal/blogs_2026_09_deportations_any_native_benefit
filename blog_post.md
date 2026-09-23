@@ -1,8 +1,8 @@
 In response to my [recent post on women gaining 101% of jobs](https://newsletter.mikekonczal.com/p/why-are-women-over-100-of-jobs-gained) under the Trump administration, [many commentators argued](https://www.breitbart.com/economy/2026/09/10/breitbart-business-digest-liberals-are-worried-too-many-women-got-jobs-last-month/) that this was largely about immigration, about native-born male workers taking jobs formerly held by deported immigrants, which would balance out at zero job gains. As we will see, that's not true (see Hypothesis 3 below): the native-born prime-age male employment-to-population ratio is now about the same as or even below 2024 levels.
 
-But it did make me realize that it's been a little bit since I took a dive into the immigration debates. I'm nervous doing this because I know the Trump administration is not exactly "preponderance of the evidence" people. If they find one thing, one way to pitch the data favorable to them, they'll run with it. Indeed, they spent a lot of 2025 arguing off the CPS raw levels, even though [Jed Kolko](https://jedkolko.substack.com/p/no-native-born-employment-has-not) spent a lot of time politely and ultimately correctly explaining why that was not a good idea. What are the chances we shoot the moon, and find that all dozen of our different hypotheses turn out to go against the restrictionist case?
+But it did make me realize that it's been a little bit since I took a dive into the immigration debates. I'm nervous doing this because I know the Trump administration is not exactly "preponderance of the evidence" people. If they find one thing, one way to pitch the data favorable to them, they'll run with it. Indeed, they spent a lot of 2025 arguing off the CPS raw levels, even though [Jed Kolko](https://jedkolko.substack.com/p/no-native-born-employment-has-not) spent a lot of time politely and ultimately correctly explaining why that was not a good idea. What are the chances we shoot the moon, and find that all ten of our different hypotheses turn out to go against the restrictionist case?
 
-Pretty good actually. I crank through 12 ways in which the mass deportations of the past year could have made things better for native-born workers in the labor market, and none of them came true. They are all null or go in the other direction. That's remarkable. A reminder that the unemployment rate right now (4.14%) is about where it was two years ago (4.19%), so we can't point to an obviously overall weaker macro environment to explain this away. Their theory of the labor market isn't coming true.
+Pretty good actually. I crank through 10 ways in which the mass deportations of the past year could have made things better for native-born workers in the labor market, and none of them came true. They are all null or go in the other direction. That's remarkable. A reminder that the unemployment rate right now (4.14%) is about where it was two years ago (4.19%), so we can't point to an obviously overall weaker macro environment to explain this away. Their theory of the labor market isn't coming true.
 
 We're going to move pretty fast through this. There's [a GitHub here](https://github.com/mtkonczal/blogs_2026_09_deportations_any_native_benefit) where you can go ahead and ask your AI to download it and check it yourself. Let's channel Jonathan Frakes telling us that none of these ever happened, they are all fiction, as we go through these.
 
@@ -34,9 +34,9 @@ It's totally pure fiction. Their unemployment rates are the same or higher. (Not
 
 **Hypothesis 5: In the states that actually lost the most immigrant workers, native-born employment should rise.**
 
-![By state, the 2022-24 noncitizen share of employment versus the change in noncitizen employment and in the native-born prime-age employment rate: immigrant employment fell more in exposed states, native employment did not rise](graphics/fig11_exposure_native.png)
+![By state, noncitizen jobs lost versus native-born jobs gained, per 100 prime-age residents: states do not follow the one-for-one replacement line](graphics/fig11_exposure_native.png)
 
-Not a chance. On the left you can see states with higher noncitizen shares saw noncitizen prime-age employment fall more. On the right, you can see those same states saw no increase in native-born prime-age employment rates. That immigration enforcement doesn't help native-born employment, and can even reduce it, is already in the empirical economics literature ([East et al. 2023](https://www.journals.uchicago.edu/doi/10.1086/721152)), but I guess we get to relearn it here. (Author's IPUMS calculation.)
+Not a chance. If native-born workers took jobs immigrants left states would line up along the dashed line, where you have one native-born job gained for every noncitizen job lost. Instead the line is flat. That immigration enforcement doesn't help native-born employment, and can even reduce it, is already in the empirical economics literature ([East et al. 2023](https://www.journals.uchicago.edu/doi/10.1086/721152)), but I guess we get to relearn it here. (Author's IPUMS calculation.)
 
 **Hypothesis 6: Native-born wage growth would pick up for lower-income workers.** Let's stick with nominal wage growth for native-born workers, since the Iran war causes inflation to skyrocket (and real wages to fall), which is very bad for these workers but separate from what we want to explore here.
 
@@ -67,17 +67,5 @@ We created it. Both measures are at or below their 2024 levels in 2026.
 ![Construction: the foreign-born share of employment fell after 2024, while the share of native-born prime-age adults working in construction stayed flat](graphics/fig9_construction.png)
 
 It's an urban legend. The foreign-born share of construction employment fell. But the share of native-born prime-age adults working in construction didn't rise. It stayed flat.
-
-**Hypothesis 11: States with more ICE arrests should see native-born employment grow faster.** Based on a [Steven Rattner chart](https://x.com/SteveRattner) I can no longer find.
-
-![By state, ICE arrests per 100,000 residents versus the change in native-born employment growth relative to each state's own prior trend: no relationship](graphics/fig10_arrests_native_emp.png)
-
-We got you. There’s no relationship.
-
-**Hypothesis 12: Let AI run wild and see if ICE arrests correlate with anything at all.** This is a bit of a grab bag but at this point I was curious if AI could even data-mine something that mattered.
-
-![23 state-level correlations with ICE enforcement intensity, filled dot means p<0.05: only one clears the bar, and it's a confound, not a result](graphics/fig_state_hypothesis_scan_p05.png)
-
-It never happened. Virtually nothing is significant when it comes to ICE enforcement and making the lives of working people better off.
 
 This doesn't surprise me, and yet I remain surprised by how nothing here tracks to make the economic reality or labor market situation of native-born workers better off. I bet the Trump administration, with an approval rating now with a two-handle, is also surprised as to why everyone hates them and their handling of the economy. If they expected these deportations to have such amazing upsides that they'd balance out the trillions in cuts to health care and brand new neocon wars, economic theory and an incredibly developed empirical literature over the past 20 years would have all told them otherwise.
