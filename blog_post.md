@@ -36,7 +36,7 @@ It's totally pure fiction. They are the same or lower. (Not seasonally adjusted,
 
 ![By state, the 2022-24 noncitizen share of employment versus the change in noncitizen employment and in the native-born prime-age employment rate: immigrant employment fell more in exposed states, native employment did not rise](graphics/fig11_exposure_native.png)
 
-Not a chance. On the left you can see states with higher noncitizen shares saw noncitizen prime-age employment fall more. On the right, you can see states where noncitizen employment fell more saw no increase in citizen prime-age employment rates.(Author's IPUMS calculation.)
+Not a chance. On the left you can see states with higher noncitizen shares saw noncitizen prime-age employment fall more. On the right, you can see states where noncitizen employment fell more saw no increase in citizen prime-age employment rates. That deportations also reduce native-born employment was well known in the economics empirical literature ([East et al 2023](https://www.journals.uchicago.edu/doi/10.1086/721152)), but I guess we get to relearn it here. (Author's IPUMS calculation.)
 
 **Hypothesis 6: Native-born wage growth would pick up for lower-income workers.** Let's stick with nominal wage growth for native-born workers, since the Iranian War causes inflation to skyrocket (and real wages to fall), which is very bad for these workers but seperate from what we want to explore here.
 
@@ -80,3 +80,4 @@ We got you. There’s no relationship.
 
 It never happened. Virtually nothing is significant when it comes to ICE enforcement and making the lives of working people better off.
 
+This doesn't surprise me, but yet I remain surprised by how nothing here tracks to make the economic reality or labor market situation of native-born workers better off. I bet the Trump administration, with an approval rating now with a two-handle, is also surprised as to why everyone hates them and their handling of the economy. If they expected these deportations to have such amazing upsides they balanced the trillions in cuts to health care and brand new neocon wars, economic theory and an incredibly developed empirical literature over the past 20 years would have all told them others.
